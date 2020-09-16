@@ -19,8 +19,8 @@ installFlux() {
   message "installing flux"
   # install flux
   helm repo add fluxcd https://charts.fluxcd.io
-  helm upgrade --install flux --values "$REPO_ROOT"/flux/flux/flux-values.yml --namespace flux fluxcd/flux
-  helm upgrade --install helm-operator --values "$REPO_ROOT"/flux/helm-operator/flux-helm-operator-values.yml --namespace flux fluxcd/helm-operator
+  helm upgrade --install flux --values "$REPO_ROOT"/flux/flux/flux-values.yml --set prometheus.serviceMonitor.create=false --namespace flux fluxcd/flux
+  helm upgrade --install helm-operator --values "$REPO_ROOT"/flux/helm-operator/helm-operator-values.yml --set prometheus.serviceMonitor.create=false --namespace flux fluxcd/helm-operator
 
   FLUX_READY=1
   while [ $FLUX_READY != 0 ]; do
