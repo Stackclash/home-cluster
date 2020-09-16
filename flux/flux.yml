@@ -2,11 +2,11 @@
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
-  name: metallb
+  name: flux
   namespace: kube-system
 spec:
   repo: https://charts.fluxcd.io/
-  chart: vlux
+  chart: flux
   version: 1.5.0
   targetNamespace: flux
   valuesContent: |-
