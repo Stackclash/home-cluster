@@ -25,37 +25,10 @@ installManualObjects(){
 
   message "installing manual secrets and objects"
 
-  ##########
-  # secrets
-  ##########
-  kubectl -n kube-system create secret generic kms-vault --from-literal=account.json="$(echo $VAULT_KMS_ACCOUNT_JSON | base64 --decode)"
-
-  ###################
-  # nginx
-  ###################
-  for i in "$REPO_ROOT"/kube-system/nginx/nginx-external/*.txt
-  do
-    kapply "$i"
-  done
-
-  kapply "$REPO_ROOT"/default/frigate/frigate-noauth-ingress.txt
-
-  ###################
-  # rook
-  ###################
-  ROOK_NAMESPACE_READY=1
-  while [ $ROOK_NAMESPACE_READY != 0 ]; do
-    echo "waiting for rook-ceph namespace to be fully ready..."
-    # this is a hack to check for the namespace
-    kubectl -n rook-ceph wait --for condition=Established crd/volumes.rook.io > /dev/null 2>&1
-    ROOK_NAMESPACE_READY="$?"
-    sleep 5
-  done
-  kapply "$REPO_ROOT"/rook-ceph/dashboard/ingress.txt
-
   #########################
   # cert-manager bootstrap
   #########################
+  kapply "$REPO_ROOT"/kube-system/cert-manager/cloudflare-api-key.txt
   CERT_MANAGER_READY=1
   while [ $CERT_MANAGER_READY != 0 ]; do
     echo "waiting for cert-manager to be fully ready..."
@@ -63,11 +36,8 @@ installManualObjects(){
     CERT_MANAGER_READY="$?"
     sleep 5
   done
-  kapply "$REPO_ROOT"/cert-manager/cloudflare/cert-manager-letsencrypt.txt
-
+  kapply "$REPO_ROOT"/kube-system/cert-manager/cert-manager-letsencrypt.txt
 }
-
-export KUBECONFIG="$REPO_ROOT/setup/kubeconfig"
 installManualObjects
 
 message "all done!"
