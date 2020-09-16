@@ -31,5 +31,5 @@ spec:
       serviceMonitor:
         enabled: false
         interval: 30s
-        prometheusRule:
-          enabled: false
+      prometheusRule:
+        enabled: false
