@@ -17,11 +17,9 @@ message() {
 
 installFlux() {
   message "installing flux"
-  . "$REPO_ROOT"/setup/.env
   # install flux
-  helm repo add fluxcd https://charts.fluxcd.io
-  helm upgrade --install flux --set git.url="$GIT_URL" --namespace flux fluxcd/flux
-
+  kubectl apply -f "$REPO_ROOT"/flux/flux.yml
+  
   FLUX_READY=1
   while [ $FLUX_READY != 0 ]; do
     echo "waiting for flux pod to be fully ready..."
