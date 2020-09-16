@@ -17,10 +17,10 @@ message() {
 
 installFlux() {
   message "installing flux"
+  . "$REPO_ROOT"/setup/.env
   # install flux
   helm repo add fluxcd https://charts.fluxcd.io
-  helm upgrade --install flux --values "$REPO_ROOT"/flux/flux/flux-values.yml --set prometheus.serviceMonitor.create=false --namespace flux fluxcd/flux
-  helm upgrade --install helm-operator --values "$REPO_ROOT"/flux/helm-operator/helm-operator-values.yml --set prometheus.serviceMonitor.create=false --namespace flux fluxcd/helm-operator
+  helm upgrade --install flux --set git.url="$GIT_URL" --namespace flux fluxcd/flux
 
   FLUX_READY=1
   while [ $FLUX_READY != 0 ]; do
