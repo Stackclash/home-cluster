@@ -1,0 +1,34 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: traefik-internal
+  namespace: kube-system
+spec:
+  repo: https://containous.github.io/traefik-helm-chart
+  chart: traefik
+  version: 9.1.1
+  targetNamespace: kube-system
+  valuesContent: |-
+    ingressRoute:
+      dashboard:
+        enabled: true
+    providers:
+      kubernetesCRD:
+        enabled: false
+      kubernetesIngress:
+        enabled: true
+        publishedService:
+          enabled: false
+    additionalArguments:
+      - "--providers.kubernetesingress.ingressclass=traefik-internal"
+    logs:
+      general:
+        format: json
+        level: ERROR
+    access:
+      enabled: true
+    service:
+      enabled: true
+      type: LoadBalancer
+      spec:
+        loadBalancerIP: 192.168.1.10

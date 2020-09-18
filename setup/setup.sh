@@ -37,6 +37,5 @@ installFlux() {
 
 installFlux
 "$REPO_ROOT"/setup/bootstrap-objects.sh
-# "$REPO_ROOT"/setup/bootstrap-vault.sh
 
 message "all done!"
