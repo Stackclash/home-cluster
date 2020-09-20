@@ -35,4 +35,4 @@ spec:
         # enabled: true
         interval: 30s
       prometheusRule:
-        # enabled: true
+        enabled: false
