@@ -1,13 +1,16 @@
-apiVersion: helm.cattle.io/v1
-kind: HelmChart
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
 metadata:
-  name: nfs-kube
+  name: nfs-client-provisioner
   namespace: kube-system
 spec:
-  chart: stable/nfs-client-provisioner
-  version: 1.2.9
-  targetNamespace: kube-system
-  valuesContent: |-
+  releaseName: nfs-client-provisioner
+  helmVersion: v3
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/ 
+    name: nfs-client-provisioner
+    version: 1.2.9
+  values:
     image:
       repository: quay.io/external_storage/nfs-client-provisioner-arm
       tag: v3.1.0-k8s1.11

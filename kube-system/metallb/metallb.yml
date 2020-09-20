@@ -1,14 +1,17 @@
 ---
-apiVersion: helm.cattle.io/v1
-kind: HelmChart
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
 metadata:
   name: metallb
   namespace: kube-system
 spec:
-  repo: https://charts.bitnami.com/bitnami
-  chart: metallb
-  version: 0.1.23
-  valuesContent: |-
+  releaseName: metallb
+  helmVersion: v3
+  chart:
+    repository: https://charts.bitnami.com/bitnami
+    name: metallb
+    version: 0.1.23
+  values:
     controller:
       image:
         repository: metallb/controller
@@ -29,7 +32,7 @@ spec:
     prometheus:
       enabled: true
       serviceMonitor:
-        enabled: false
+        # enabled: true
         interval: 30s
       prometheusRule:
-        enabled: false
+        # enabled: true

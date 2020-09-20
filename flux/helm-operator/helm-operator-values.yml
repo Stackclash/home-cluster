@@ -1,0 +1,14 @@
+createCRD: true
+chartsSyncInterval: "10m"
+statusUpdateInterval: "10m"
+helm:
+  versions: "v3"
+prometheus:
+  enabled: true
+  serviceMonitor:
+    # create: true
+    interval: 30s
+    scrapeTimeout: 10s
+    namespace: flux
+dashboards:
+  enabled: true

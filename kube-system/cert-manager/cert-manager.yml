@@ -1,17 +1,20 @@
 ---
-apiVersion: helm.cattle.io/v1
-kind: HelmChart
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
 metadata:
   name: cert-manager
   namespace: kube-system
 spec:
-  repo: https://charts.jetstack.io
-  chart: cert-manager
-  version: v1.0.1
-  valuesContent: |-
+  releaseName: cert-manager
+  helmVersion: v3
+  chart:
+    repository: https://charts.jetstack.io
+    name: cert-manager
+    version: v1.0.1
+  values:
     installCRDs: true
     prometheus:
       enabled: true
       servicemonitor:
-        enabled: false
+        # enabled: true
         interval: 60s

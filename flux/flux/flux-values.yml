@@ -1,0 +1,19 @@
+image:
+  repository: docker.io/raspbernetes/flux
+  tag: 1.20.2
+git:
+  url: "git@github.com:rickcoxdev/k3s-gitops"
+registry:
+  rps: 50
+  burst: 50
+prometheus:
+  enabled: true
+  serviceMonitor:
+    # create: true
+    interval: 30s
+    scrapeTimeout: 10s
+    namespace: flux
+syncGarbageCollection:
+  enabled: true
+dashboards:
+  enabled: true

@@ -1,14 +1,16 @@
-apiVersion: helm.cattle.io/v1
-kind: HelmChart
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
 metadata:
   name: traefik-internal
   namespace: kube-system
 spec:
-  repo: https://containous.github.io/traefik-helm-chart
-  chart: traefik
-  version: 9.1.1
-  targetNamespace: kube-system
-  valuesContent: |-
+  releaseName: traefik-external
+  helmVersion: v3
+  chart:
+    repository: https://containous.github.io/traefik-helm-chart
+    name: traefik
+    version: 9.1.1
+  values:
     ingressRoute:
       dashboard:
         enabled: true
