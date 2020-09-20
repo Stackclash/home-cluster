@@ -22,16 +22,16 @@ kapply() {
 
 ksecret() {
   if output=$(envsubst < "$2"); then
-    NAMESPACE_READY=1
-    while [ $NAMESPACE_READY != 0 ]; do
-      echo "waiting for $1 namespace to be ready"
-      ready=$(kubectl get ns --output=name | grep "$1")
-      if [ -n $ready ]
-      then
-        NAMESPACE_READY=0
-      fi
-      sleep 5
-    done
+    # NAMESPACE_READY=1
+    # while [ $NAMESPACE_READY != 0 ]; do
+    #   echo "waiting for $1 namespace to be ready"
+    #   ready=$(kubectl get ns --output=name | grep "$1")
+    #   if [ -n $ready ]
+    #   then
+    #     NAMESPACE_READY=0
+    #   fi
+    #   sleep 5
+    # done
     kubectl create secret generic -n "$1" "$1"-helm-values --from-literal=values.yaml="$output"
   fi
 }

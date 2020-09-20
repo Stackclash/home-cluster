@@ -1,0 +1,80 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: pihole
+spec:
+  releaseName: pihole
+  helmVersion: v3
+  chart:
+    repository: https://mojo2600.github.io/pihole-kubernetes
+    name: pihole
+    version: 1.7.15
+  values:
+    serviceTCP:
+      type: ClusterIP
+    serviceUDP:
+      type: LoadBalancer
+      loadBalancerIP: 192.168.1.12
+    virtualHost: ""
+    persistentVolumeClaim:
+      enabled: true
+      storageClass: nfs-kube
+    DNS1: "1.1.1.1"
+    DNS2: "1.0.0.1"
+
+
+    doh:
+      enabled: false
+      name: "cloudflared"
+      repository: "crazymax/cloudflared"
+      tag: latest
+      pullPolicy: IfNotPresent
+
+    dnsmasq:
+      upstreamServers: []
+      # Here you can add upstream dns servers with. All lines will be added to the
+      # pihole dnsmasq configuration.
+      # The format should be like:
+      # - server=/foo.bar/192.168.178.10
+      # - server=/bar.foo/192.168.178.11
+
+      customDnsEntries: []
+      # Here you can add custom dns entries to override the
+      # dns resolution with. All lines will be added to the
+      # pihole dnsmasq configuration.
+      # The format should be like:
+      # - address=/foo.bar/192.168.178.10
+      # - address=/bar.foo/192.168.178.11
+
+      additionalHostsEntries: []
+      # Dnsmasq reads the /etc/hosts file to resolve ips. You can add additional entries if you like
+      # - 192.168.0.3     host4
+      # - 192.168.0.4     host5
+
+
+    adlists: {}
+      # If you want to provide blocklists, add them here.
+      # - https://hosts-file.net/grm.txt
+      # - https://reddestdream.github.io/Projects/MinimalHosts/etc/MinimalHostsBlocker/minimalhosts
+
+    whitelist: {}
+      # If you want to provide whitelisted domains, add them here.
+      # - clients4.google.com
+
+    blacklist: {}
+      # If you want to have special domains blacklisted, add them here
+      # - *.blackist.com
+
+    regex: {}
+      # Add regular expression blacklist items
+      # - (^|\.)facebook\.com$
+
+
+    webHttp: "80"
+    webHttps: "443"
+    hostNetwork: "true"
+    privileged: "true"
+  valueFileSecrets:
+  - name: "pihole-helm-values"
