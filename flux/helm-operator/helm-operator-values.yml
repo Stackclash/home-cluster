@@ -1,7 +1,6 @@
 image:
   repository: docker.io/raspbernetes/helm-operator
   tag: v1.20
-createCRD: true
 chartsSyncInterval: "10m"
 statusUpdateInterval: "10m"
 helm:
