@@ -13,6 +13,7 @@ spec:
     version: 6.0.3
   values:
     basic_auth: true
+    generateBasicAuth: true
     serviceType: ClusterIP
     nodeSelector:
       beta.kubernetes.io/arch: arm
