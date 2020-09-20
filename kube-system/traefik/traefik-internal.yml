@@ -4,7 +4,7 @@ metadata:
   name: traefik-internal
   namespace: kube-system
 spec:
-  releaseName: traefik-external
+  releaseName: traefik-internal
   helmVersion: v3
   chart:
     repository: https://containous.github.io/traefik-helm-chart
