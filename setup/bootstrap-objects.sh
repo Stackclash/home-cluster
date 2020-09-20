@@ -20,9 +20,13 @@ kapply() {
   fi
 }
 
-installManualObjects(){
-  . "$REPO_ROOT"/setup/.env
+ksecret() {
+  if output=$(envsubst < "$2"); then
+    kubectl create secret generic -n "$1" "$1"-helm-values --from-literal=values.yaml="$output"
+  fi
+}
 
+installManualObjects(){
   message "installing manual secrets and objects"
 
   #########################
@@ -38,6 +42,14 @@ installManualObjects(){
   done
   kapply "$REPO_ROOT"/kube-system/cert-manager/letsencrypt-issuer.txt
 }
+
+installValuesSecrets() {
+  ksecret pihole "$REPO_ROOT"/pihole/pihole-values-secret.txt
+}
+
+. "$REPO_ROOT"/setup/.env
+
 installManualObjects
+installValuesSecrets
 
 message "all done!"

@@ -20,8 +20,8 @@ installFlux() {
   # install flux
   kubectl create ns flux
   helm repo add fluxcd https://charts.fluxcd.io
-  helm upgrade --install flux --values "$REPO_ROOT"/flux/flux/flux-values.yaml --namespace flux fluxcd/flux
-  helm upgrade --install helm-operator --values "$REPO_ROOT"/flux/helm-operator/helm-operator-values.yaml --namespace flux fluxcd/helm-operator
+  helm upgrade --install flux --values "$REPO_ROOT"/flux/flux/flux-values.yml --namespace flux fluxcd/flux
+  helm upgrade --install helm-operator --values "$REPO_ROOT"/flux/helm-operator/helm-operator-values.yml --namespace flux fluxcd/helm-operator
   
   FLUX_READY=1
   while [ $FLUX_READY != 0 ]; do
