@@ -1,0 +1,46 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: openfaas
+  namespace: openfaas
+spec:
+  releaseName: openfaas
+  helmVersion: v3
+  chart:
+    repository: https://openfaas.github.io/faas-netes/
+    name: openfaas
+    version: 6.0.3
+  values:
+    basic_auth: true
+    serviceType: ClusterIP
+    nodeSelector:
+      beta.kubernetes.io/arch: arm
+    gateway:
+      image: openfaas/gateway:0.18.18-armhf
+      directFunctions: true
+    oauth2Plugin:
+      enabled: false
+    faasnetes:
+      image: openfaas/faas-netes:0.12.2-armhf
+    operator:
+      image: openfaas/faas-netes:0.12.2-armhf
+      create: true
+    queueWorker:
+      image: openfaas/queue-worker:0.11.0-armhf
+    prometheus:
+      create: false
+    alertmanager:
+      create: false
+    faasIdler:
+      image: openfaas/faas-idler:0.3.0-armhf
+    basicAuthPlugin:
+      image: openfaas/basic-auth-plugin:0.18.17-armhf
+      replicas: 1
+    ingressOperator:
+      create: true
+    nats:
+      metrics:
+        enabled: false
+  valueFileSecrets:
+  - name: "openfaas-helm-values"
