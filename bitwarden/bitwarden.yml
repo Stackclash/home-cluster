@@ -1,0 +1,22 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: bitwarden
+  namespace: bitwarden
+spec:
+  releaseName: bitwarden
+  helmVersion: v3
+  chart:
+    repository: https://cdwv.github.io/bitwarden-k8s/
+    name: bitwarden
+    version: 0.1.5
+  values:
+    image:
+      repository: bitwardenrs/server
+      tag: raspberry
+    persistence:
+      enabled: true
+      storageClass: nfs-kube
+      accessMode: ReadWriteOnce
+      size: 800Mi

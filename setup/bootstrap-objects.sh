@@ -26,7 +26,7 @@ ksecret() {
     while [ $NAMESPACE_READY != 0 ]; do
       echo "waiting for $1 namespace to be ready"
       ready=$(kubectl get ns --output=name | grep "$1" | tr -d '\n')
-      if [ -n $ready ]
+      if [ ${#ready} -ne 0 ]
       then
         NAMESPACE_READY=0
       fi
@@ -58,6 +58,7 @@ installValuesSecrets() {
 
   ksecret pihole "$REPO_ROOT"/pihole/pihole-values-secret.txt
   ksecret openfaas "$REPO_ROOT"/openfaas/openfaas-values-secret.txt
+  ksecret bitwarden "$REPO_ROOT"/bitwarden/bitwarden-values-secret.txt
 }
 
 . "$REPO_ROOT"/setup/.env
