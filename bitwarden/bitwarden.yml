@@ -20,3 +20,5 @@ spec:
       storageClass: nfs-kube
       accessMode: ReadWriteOnce
       size: 800Mi
+  valueFileSecrets:
+  - name: "bitwarden-helm-values"
