@@ -13,7 +13,7 @@ spec:
   values:
     ingressRoute:
       dashboard:
-        enabled: true
+        enabled: false
     providers:
       kubernetesCRD:
         enabled: false
@@ -23,6 +23,8 @@ spec:
           enabled: false
     additionalArguments:
       - "--providers.kubernetesingress.ingressclass=traefik-internal"
+      - "--api.dashboard=true"
+      - "--api.insecure=true"
     logs:
       general:
         format: json
