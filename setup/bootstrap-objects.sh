@@ -21,18 +21,21 @@ kapply() {
 }
 
 ksecret() {
-  if output=$(envsubst < "$2"); then
+  NAMESPACE=$(echo "$1" | sed 's/^\([^/]*\)\/.*$/\1/')
+  APPLICATION_NAME=$(echo "$1" | sed 's/^.*\/\(.*\)-values-secret.txt$/\1/')
+
+  if output=$(envsubst < "${REPO_ROOT}/${1}"); then
     NAMESPACE_READY=1
     while [ $NAMESPACE_READY != 0 ]; do
-      echo "waiting for $1 namespace to be ready"
-      ready=$(kubectl get ns --output=name | grep "$1" | tr -d '\n')
+      echo "waiting for $NAMESPACE namespace to be ready"
+      ready=$(kubectl get ns --output=name | grep "$NAMESPACE" | tr -d '\n')
       if [ ${#ready} -ne 0 ]
       then
         NAMESPACE_READY=0
       fi
       sleep 5
     done
-    kubectl create secret generic -n "$1" "$1"-helm-values --from-literal=values.yaml="$output"
+    kubectl create secret generic -n "$NAMESPACE" "${APPLICATION_NAME}-helm-values" --from-literal=values.yaml="$output"
   fi
 }
 
@@ -56,9 +59,11 @@ installManualObjects(){
 installValuesSecrets() {
   message "creating helm values secrets"
 
-  ksecret pihole "$REPO_ROOT"/pihole/pihole-values-secret.txt
-  ksecret openfaas "$REPO_ROOT"/openfaas/openfaas-values-secret.txt
-  ksecret bitwarden "$REPO_ROOT"/bitwarden/bitwarden-values-secret.txt
+  ksecret pihole/pihole-values-secret.txt
+  ksecret openfaas/openfaas-values-secret.txt
+  ksecret bitwarden/bitwarden-values-secret.txt
+  ksecret kube-system/traefik/traefik-external-values-secret.txt
+  ksecret kube-system/traefik/traefik-internal-values-secret.txt
 }
 
 . "$REPO_ROOT"/setup/.env
