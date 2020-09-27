@@ -54,6 +54,16 @@ installManualObjects(){
     sleep 5
   done
   kapply "$REPO_ROOT"/kube-system/cert-manager/letsencrypt-issuer.txt
+
+  TRAEFIK_CRDS_READY=1
+  while [ $TRAEFIK_CRDS_READY != 0 ]; do
+    echo "waiting for traefik crds"
+    kubectl wait --for condition=established customresourcedefinition.apiextensions.k8s.io/ingressroutes.traefik.containo.us
+    TRAEFIK_CRDS_READY="$?"
+    sleep 5
+  done
+  kapply "$REPO_ROOT"/kube-system/traefik/traefik-external-ingress-route.txt
+  kapply "$REPO_ROOT"/kube-system/traefik/traefik-internal-ingress-route.txt
 }
 
 installValuesSecrets() {

@@ -11,6 +11,11 @@ spec:
     name: traefik
     version: 9.1.1
   values:
+    ingressRoute:
+      dashboard:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: traefik-internal
     providers:
       kubernetesCRD:
         enabled: false
@@ -33,5 +38,3 @@ spec:
       type: LoadBalancer
       spec:
         loadBalancerIP: 192.168.1.11
-  valueFileSecrets:
-  - name: "traefik-external-helm-values"
