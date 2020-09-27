@@ -72,8 +72,6 @@ installValuesSecrets() {
   ksecret pihole/pihole-values-secret.txt
   ksecret openfaas/openfaas-values-secret.txt
   ksecret bitwarden/bitwarden-values-secret.txt
-  ksecret kube-system/traefik/traefik-external-values-secret.txt
-  ksecret kube-system/traefik/traefik-internal-values-secret.txt
 }
 
 . "$REPO_ROOT"/setup/.env
