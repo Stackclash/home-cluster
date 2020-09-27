@@ -64,6 +64,7 @@ installValuesSecrets() {
   ksecret pihole/pihole-values-secret.txt
   ksecret openfaas/openfaas-values-secret.txt
   ksecret bitwarden/bitwarden-values-secret.txt
+  ksecret node-red/node-red-values-secret.txt
 }
 
 . "$REPO_ROOT"/setup/.env
