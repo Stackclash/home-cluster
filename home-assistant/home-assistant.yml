@@ -1,0 +1,33 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+spec:
+  releaseName: home-assistant
+  helmVersion: v3
+  chart:
+    repository: https://k8s-at-home.com/charts/
+    name: home-assistant
+    version: 2.4.0
+  values:
+    image:
+      tag: 0.112.0b1
+    hostNetwork: true
+    persistence:
+      storageClass: nfs-kube
+    monitoring:
+      enabled: true
+      serviceMonitor:
+        enabled: false
+    vscode:
+      enabled: true
+      image:
+        repository: linuxserver/code-server
+        tag: v3.5.0-ls48
+      extraEnv:
+        TZ: America/Chicago
+  valueFileSecrets:
+  - name: "home-assistant-helm-values"
+        
