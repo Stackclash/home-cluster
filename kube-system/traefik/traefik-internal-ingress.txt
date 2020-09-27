@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: traefik-internal
+  namespace: kube-system
+  annotations:
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  rules:
+  - host: traefik.internal.mysmarthome.space
+    http:
+      paths:
+      - backend:
+          serviceName: traefik-internal
+          servicePort: traefik
+        path: /
