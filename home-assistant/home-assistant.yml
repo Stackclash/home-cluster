@@ -10,7 +10,7 @@ spec:
   chart:
     repository: https://k8s-at-home.com/charts/
     name: home-assistant
-    version: 2.4.0
+    version: 2.5.1
   values:
     image:
       tag: 0.112.0b1
@@ -28,6 +28,7 @@ spec:
         tag: v3.5.0-ls48
       extraEnv:
         TZ: America/Chicago
+      args: ""
   valueFileSecrets:
   - name: "home-assistant-helm-values"
         
