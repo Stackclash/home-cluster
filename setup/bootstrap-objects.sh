@@ -66,6 +66,7 @@ installValuesSecrets() {
   ksecret bitwarden/bitwarden-values-secret.txt
   ksecret node-red/node-red-values-secret.txt
   ksecret home-assistant/home-assistant-values-secret.txt
+  ksecret stash/stash-values-secret.txt
 }
 
 . "$REPO_ROOT"/setup/.env
