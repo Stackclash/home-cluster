@@ -4,21 +4,22 @@ kind: HelmRelease
 metadata:
   name: bitwarden
   namespace: bitwarden
+  annotations: 
+    fluxcd.io/automated: true
+    fluxcd.io/tag.chart-image: semver:~1.16.0
 spec:
   releaseName: bitwarden
   helmVersion: v3
   chart:
-    repository: https://cdwv.github.io/bitwarden-k8s/
-    name: bitwarden-k8s
-    version: 0.1.5
+    repository: https://k8s-at-home.com/charts/
+    name: bitwardenrs
+    version: 1.0.0
   values:
     image:
       repository: bitwardenrs/server
-      tag: raspberry
+      tag: 1.16.3
     persistence:
       enabled: true
       storageClass: nfs-kube
-      accessMode: ReadWriteOnce
-      size: 800Mi
   valueFileSecrets:
   - name: "bitwarden-helm-values"

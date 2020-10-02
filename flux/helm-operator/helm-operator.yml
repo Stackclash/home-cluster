@@ -4,6 +4,9 @@ kind: HelmRelease
 metadata:
   name: helm-operator
   namespace: flux
+  annotations: 
+    fluxcd.io/automated: true
+    fluxcd.io/tag.chart-image: semver:~1.2.0
 spec:
   releaseName: helm-operator
   helmVersion: v3

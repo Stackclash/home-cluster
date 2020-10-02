@@ -4,6 +4,9 @@ kind: HelmRelease
 metadata:
   name: pihole
   namespace: pihole
+  annotations: 
+    fluxcd.io/automated: true
+    filter.fluxcd.io/chart-image: semver:~v5.1.0
 spec:
   releaseName: pihole
   helmVersion: v3
