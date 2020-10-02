@@ -3,6 +3,9 @@ kind: HelmRelease
 metadata:
   name: traefik-external
   namespace: kube-system
+  annotations: 
+    fluxcd.io/automated: true
+    filter.fluxcd.io/chart-image: semver:~2.2.0
 spec:
   releaseName: traefik-external
   helmVersion: v3

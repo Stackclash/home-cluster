@@ -4,22 +4,26 @@ kind: HelmRelease
 metadata:
   name: metallb
   namespace: kube-system
+  annotations: 
+    fluxcd.io/automated: false
+    filter.fluxcd.io/controller: semver:~0.9.0
+    filter.fluxcd.io/speaker: semver:~0.9.0
 spec:
   releaseName: metallb
   helmVersion: v3
   chart:
     repository: https://charts.bitnami.com/bitnami
     name: metallb
-    version: 0.1.23
+    version: 0.1.24
   values:
     controller:
       image:
         repository: metallb/controller
-        tag: v0.9
+        tag: v0.9.3
     speaker:
       image:
         repository: metallb/speaker
-        tag: v0.9
+        tag: v0.9.3
     configInline:
       address-pools:
       - name: default
