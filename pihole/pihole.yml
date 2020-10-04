@@ -43,14 +43,6 @@ spec:
       # - server=/foo.bar/192.168.178.10
       # - server=/bar.foo/192.168.178.11
 
-      customDnsEntries: []
-      # Here you can add custom dns entries to override the
-      # dns resolution with. All lines will be added to the
-      # pihole dnsmasq configuration.
-      # The format should be like:
-      # - address=/foo.bar/192.168.178.10
-      # - address=/bar.foo/192.168.178.11
-
       additionalHostsEntries: []
       # Dnsmasq reads the /etc/hosts file to resolve ips. You can add additional entries if you like
       # - 192.168.0.3     host4
