@@ -1,0 +1,39 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: node-feature-discovery
+  namespace: kube-system
+  annotations: 
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: semver:~v0
+spec:
+  releaseName: node-feature-discovery
+  helmVersion: v3
+  chart:
+    repository: https://k8s-at-home.com/charts/
+    name: node-feature-discovery
+    version: 2.0.0
+  values:
+    image:
+      repository: raspbernetes/node-feature-discovery
+      tag: "v0.6.0"
+    sources:
+      - cpu
+      # - custom
+      # - iommu
+      # - kernel
+      # - local
+      - memory
+      # - network
+      # - pci
+      # - storage
+      # - system
+      # - usb
+    master:
+      replicaCount: 1
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: "Equal"
+          value: ""
+          effect: "NoSchedule"
