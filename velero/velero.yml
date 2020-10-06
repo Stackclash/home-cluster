@@ -21,7 +21,7 @@ spec:
       - mountPath: /target
         name: plugins
       restoreResourcePriorities: persistentvolumes
-      logFormat: json
+      # logFormat: json
     configuration:
       provider: aws
       backupStorageLocation:
