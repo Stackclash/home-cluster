@@ -33,7 +33,7 @@ ksecret() {
       then
         NAMESPACE_READY=0
       fi
-      sleep 5
+      sleep 3
     done
     kubectl create secret generic -n "$NAMESPACE" "${APPLICATION_NAME}-helm-values" --from-literal=values.yaml="$output"
   fi
