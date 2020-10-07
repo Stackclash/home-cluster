@@ -5,8 +5,8 @@ metadata:
   name: bitwarden
   namespace: bitwarden
   annotations: 
-    fluxcd.io/automated: true
-    fluxcd.io/tag.chart-image: semver:~1.16.0
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: semver:~1.16.0
 spec:
   releaseName: bitwarden
   helmVersion: v3

@@ -5,7 +5,7 @@ metadata:
   name: node-red
   namespace: node-red
   annotations: 
-    fluxcd.io/automated: true
+    fluxcd.io/automated: "true"
     filter.fluxcd.io/chart-image: semver:~1.0.6-12
 spec:
   releaseName: node-red

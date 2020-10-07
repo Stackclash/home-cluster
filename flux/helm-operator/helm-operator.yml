@@ -5,8 +5,8 @@ metadata:
   name: helm-operator
   namespace: flux
   annotations: 
-    fluxcd.io/automated: true
-    fluxcd.io/tag.chart-image: semver:~1.2.0
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: semver:~1.2.0
 spec:
   releaseName: helm-operator
   helmVersion: v3
