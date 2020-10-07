@@ -15,6 +15,27 @@ message() {
   echo "######################################################################"
 }
 
+ksecret() {
+  NAMESPACE=$(echo "$1" | sed 's/^\([^/]*\)\/.*$/\1/')
+  APPLICATION_NAME=$(echo "$1" | sed 's/^.*\/\(.*\)-values-secret.txt$/\1/')
+
+  if output=$(envsubst < "${REPO_ROOT}/${1}"); then
+    kubectl create ns "$NAMESPACE"
+    kubectl create secret generic -n "$NAMESPACE" "${APPLICATION_NAME}-helm-values" --from-literal=values.yaml="$output"
+  fi
+}
+
+installValuesSecrets() {
+  message "creating helm values secrets"
+
+  ksecret pihole/pihole-values-secret.txt
+  ksecret openfaas/openfaas-values-secret.txt
+  ksecret bitwarden/bitwarden-values-secret.txt
+  ksecret node-red/node-red-values-secret.txt
+  ksecret home-assistant/home-assistant-values-secret.txt
+  ksecret stash/stash-values-secret.txt
+}
+
 installFlux() {
   message "installing flux"
   # install flux
@@ -38,6 +59,7 @@ installFlux() {
   "$REPO_ROOT"/setup/add-repo-key.sh "$FLUX_KEY"
 }
 
+installValuesSecrets
 installFlux
 "$REPO_ROOT"/setup/bootstrap-objects.sh
 

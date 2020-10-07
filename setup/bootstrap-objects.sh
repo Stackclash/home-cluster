@@ -20,25 +20,6 @@ kapply() {
   fi
 }
 
-ksecret() {
-  NAMESPACE=$(echo "$1" | sed 's/^\([^/]*\)\/.*$/\1/')
-  APPLICATION_NAME=$(echo "$1" | sed 's/^.*\/\(.*\)-values-secret.txt$/\1/')
-
-  if output=$(envsubst < "${REPO_ROOT}/${1}"); then
-    NAMESPACE_READY=1
-    while [ $NAMESPACE_READY != 0 ]; do
-      echo "waiting for $NAMESPACE namespace to be ready"
-      ready=$(kubectl get ns --output=name | grep "$NAMESPACE" | tr -d '\n')
-      if [ ${#ready} -ne 0 ]
-      then
-        NAMESPACE_READY=0
-      fi
-      sleep 3
-    done
-    kubectl create secret generic -n "$NAMESPACE" "${APPLICATION_NAME}-helm-values" --from-literal=values.yaml="$output"
-  fi
-}
-
 installManualObjects(){
   message "installing manual secrets and objects"
 
@@ -58,20 +39,8 @@ installManualObjects(){
   kapply "$REPO_ROOT"/kube-system/traefik/traefik-internal-ingress.txt
 }
 
-installValuesSecrets() {
-  message "creating helm values secrets"
-
-  ksecret pihole/pihole-values-secret.txt
-  ksecret openfaas/openfaas-values-secret.txt
-  ksecret bitwarden/bitwarden-values-secret.txt
-  ksecret node-red/node-red-values-secret.txt
-  ksecret home-assistant/home-assistant-values-secret.txt
-  ksecret stash/stash-values-secret.txt
-}
-
 . "$REPO_ROOT"/setup/.env
 
-installValuesSecrets
 installManualObjects
 
 message "all done!"

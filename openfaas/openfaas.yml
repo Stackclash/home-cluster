@@ -6,12 +6,12 @@ metadata:
   namespace: openfaas
   annotations:
     fluxcd.io/automated: "true"
-    filter.fluxcd.io/gateway: semver:~0.18.0-armhf
-    filter.fluxcd.io/fassnetes: semver:~0.12.0-armhf
-    filter.fluxcd.io/operator: semver:~0.12.0-armhf
-    filter.fluxcd.io/queueWorker: semver:~0.11.0-armhf
-    filter.fluxcd.io/faasIdler: semver:~0.3.0-armhf
-    filter.fluxcd.io/basicAuthPlugin: semver:~0.18.0-armhf
+    filter.fluxcd.io/gateway: glob:0.18.*-armhf
+    filter.fluxcd.io/fassnetes: glob:0.12.*-armhf
+    filter.fluxcd.io/operator: glob:0.12.*-armhf
+    filter.fluxcd.io/queueWorker: glob:0.11.*-armhf
+    filter.fluxcd.io/faasIdler: glob:0.3.*-armhf
+    filter.fluxcd.io/basicAuthPlugin: glob:0.18.*-armhf
 spec:
   releaseName: openfaas
   helmVersion: v3
@@ -27,25 +27,25 @@ spec:
     nodeSelector:
       beta.kubernetes.io/arch: arm
     gateway:
-      image: openfaas/gateway:0.18.18
+      image: openfaas/gateway:0.18.18-armhf
       directFunctions: true
     oauth2Plugin:
       enabled: false
     faasnetes:
-      image: openfaas/faas-netes:0.12.3-arm64
+      image: openfaas/faas-netes:0.12.3-armhf
     operator:
-      image: openfaas/faas-netes:0.12.3
+      image: openfaas/faas-netes:0.12.3-armhf
       create: true
     queueWorker:
-      image: openfaas/queue-worker:0.11.2
+      image: openfaas/queue-worker:0.11.2-armhf
     prometheus:
       create: false
     alertmanager:
       create: false
     faasIdler:
-      image: openfaas/faas-idler:0.3.0
+      image: openfaas/faas-idler:0.3.0-armhf
     basicAuthPlugin:
-      image: openfaas/basic-auth-plugin:0.18.18
+      image: openfaas/basic-auth-plugin:0.18.18-armhf
       replicas: 1
     ingressOperator:
       create: true

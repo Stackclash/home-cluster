@@ -7,6 +7,7 @@ metadata:
   annotations:
     fluxcd.io/automated: "true"
     filter.fluxcd.io/chart-image: semver:~0.115.0
+    filter.fluxcd.io/vscode: glob:version-v3.5.*
 spec:
   releaseName: home-assistant
   helmVersion: v3
@@ -29,7 +30,7 @@ spec:
       enabled: true
       image:
         repository: linuxserver/code-server
-        tag: arm64v8-latest
+        tag: version-v3.5.0
       extraEnv:
         TZ: America/Chicago
       args: ""
