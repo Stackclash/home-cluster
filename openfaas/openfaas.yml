@@ -15,6 +15,7 @@ metadata:
 spec:
   releaseName: openfaas
   helmVersion: v3
+  timeout: 60
   chart:
     repository: https://openfaas.github.io/faas-netes/
     name: openfaas

@@ -10,6 +10,7 @@ metadata:
 spec:
   releaseName: bitwarden
   helmVersion: v3
+  timeout: 60
   chart:
     repository: https://k8s-at-home.com/charts/
     name: bitwardenrs
