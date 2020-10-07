@@ -13,6 +13,8 @@ spec:
     name: stash
     version: v0.11.2
   values:
+    pushgateway:
+      tag: v1.3.0
     nodeSelector:
       beta.kubernetes.io/arch: "arm"
   valueFileSecrets:
