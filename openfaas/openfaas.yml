@@ -7,7 +7,7 @@ metadata:
   annotations:
     fluxcd.io/automated: "true"
     filter.fluxcd.io/gateway: glob:0.18.*-armhf
-    filter.fluxcd.io/fassnetes: glob:0.12.*-armhf
+    filter.fluxcd.io/faasnetes: glob:0.12.*-armhf
     filter.fluxcd.io/operator: glob:0.12.*-armhf
     filter.fluxcd.io/queueWorker: glob:0.11.*-armhf
     filter.fluxcd.io/faasIdler: glob:0.3.*-armhf
@@ -32,7 +32,7 @@ spec:
     oauth2Plugin:
       enabled: false
     faasnetes:
-      image: openfaas/faas-netes:0.12.3-arm64
+      image: openfaas/faas-netes:0.12.3-armhf
     operator:
       image: openfaas/faas-netes:0.12.3-armhf
       create: true
