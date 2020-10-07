@@ -59,6 +59,8 @@ installFlux() {
   "$REPO_ROOT"/setup/add-repo-key.sh "$FLUX_KEY"
 }
 
+. "$REPO_ROOT"/setup/.env
+
 installValuesSecrets
 installFlux
 "$REPO_ROOT"/setup/bootstrap-objects.sh
