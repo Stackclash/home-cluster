@@ -4,7 +4,7 @@ kind: HelmRelease
 metadata:
   name: home-assistant
   namespace: home-assistant
-  annotations: 
+  annotations:
     fluxcd.io/automated: "true"
     filter.fluxcd.io/chart-image: semver:~0.115.0
 spec:
@@ -29,7 +29,7 @@ spec:
       enabled: true
       image:
         repository: linuxserver/code-server
-        tag: v3.5.0-ls48
+        tag: arm64v8-latest
       extraEnv:
         TZ: America/Chicago
       args: ""
@@ -37,4 +37,3 @@ spec:
         port: 8443
   valueFileSecrets:
   - name: "home-assistant-helm-values"
-        
