@@ -4,7 +4,7 @@ kind: HelmRelease
 metadata:
   name: openfaas
   namespace: openfaas
-  annotations: 
+  annotations:
     fluxcd.io/automated: "true"
     filter.fluxcd.io/gateway: semver:~0.18.0-armhf
     filter.fluxcd.io/fassnetes: semver:~0.12.0-armhf
@@ -37,7 +37,7 @@ spec:
       image: openfaas/faas-netes:0.12.2-armhf
       create: true
     queueWorker:
-      image: openfaas/queue-worker:0.11.0-armhf
+      image: openfaas/queue-worker:0.11.2
     prometheus:
       create: false
     alertmanager:
