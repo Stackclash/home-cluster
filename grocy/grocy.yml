@@ -1,0 +1,22 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: grocy
+  namespace: grocy
+  annotations: 
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: semver:~v5.1.0
+spec:
+  releaseName: grocy
+  helmVersion: v3
+  timeout: 60
+  chart:
+    repository: https://k8s-at-home.com/charts/
+    name: grocy
+    version: 2.0.0
+  values:
+    timezone: America/Chicago
+    persistence:
+      config:
+        storageClass: nfs-kube
