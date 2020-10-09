@@ -33,6 +33,8 @@ installValuesSecrets() {
   ksecret bitwarden/bitwarden-values-secret.txt
   ksecret node-red/node-red-values-secret.txt
   ksecret home-assistant/home-assistant-values-secret.txt
+  ksecret grocy/grocy-values-secret.txt
+  ksecret velero/velero-values-secret.txt
 }
 
 installFlux() {
@@ -61,7 +63,7 @@ installFlux() {
 . "$REPO_ROOT"/setup/.env
 
 installValuesSecrets
-# installFlux
+installFlux
 "$REPO_ROOT"/setup/bootstrap-objects.sh
 
 message "all done!"
