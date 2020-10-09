@@ -20,3 +20,5 @@ spec:
     persistence:
       config:
         storageClass: nfs-kube
+  valueFileSecrets:
+  - name: "grocy-helm-values"
