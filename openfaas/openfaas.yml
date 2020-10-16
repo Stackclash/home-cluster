@@ -43,7 +43,7 @@ spec:
     alertmanager:
       create: false
     faasIdler:
-      image: openfaas/faas-idler:0.3.0-armhf
+      image: openfaas/faas-idler:0.3.1-armhf
     basicAuthPlugin:
       image: openfaas/basic-auth-plugin:0.18.11-armhf
       replicas: 1
