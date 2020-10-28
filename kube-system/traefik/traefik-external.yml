@@ -33,8 +33,6 @@ spec:
       general:
         format: json
         level: ERROR
-      access:
-        enabled: true
     service:
       enabled: true
       type: LoadBalancer
