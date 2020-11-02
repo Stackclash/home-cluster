@@ -2,10 +2,10 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: ingress-nginx-external
+  name: ingress-nginx-internal
   namespace: kube-system
 spec:
-  releaseName: ingress-nginx-external
+  releaseName: ingress-nginx-internal
   helmVersion: v3
   chart:
     repository: https://kubernetes.github.io/ingress-nginx

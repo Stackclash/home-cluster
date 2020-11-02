@@ -63,7 +63,7 @@ installFlux() {
 . "$REPO_ROOT"/setup/.env
 
 installValuesSecrets
-# installFlux
-# "$REPO_ROOT"/setup/bootstrap-objects.sh
+installFlux
+"$REPO_ROOT"/setup/bootstrap-objects.sh
 
 message "all done!"
