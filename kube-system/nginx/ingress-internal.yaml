@@ -1,0 +1,26 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx-external
+  namespace: kube-system
+spec:
+  releaseName: ingress-nginx-external
+  helmVersion: v3
+  chart:
+    repository: https://kubernetes.github.io/ingress-nginx
+    name: ingress-nginx
+    version: 3.7.1
+  values:
+    controller:
+      ingressClass: internal
+      service:
+        loadBalancerIP: 192.168.1.10
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: false
+        prometheusRule:
+          enabled: false
+      extraArgs:
+        default-ssl-certificate: "kube-system/acme-crt-secret"

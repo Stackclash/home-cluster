@@ -35,8 +35,6 @@ installManualObjects(){
     sleep 5
   done
   kapply "$REPO_ROOT"/kube-system/cert-manager/letsencrypt-issuer.txt
-  kapply "$REPO_ROOT"/kube-system/traefik/traefik-external-ingress.txt
-  kapply "$REPO_ROOT"/kube-system/traefik/traefik-internal-ingress.txt
 }
 
 . "$REPO_ROOT"/setup/.env
