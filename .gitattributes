@@ -1,1 +1,1 @@
-kube-system/sealed-secrets/master-key-secret.yml filter=git-crypt diff=git-crypt
+kube-system/sealed-secrets/my-sealed-secrets-key.yml filter=git-crypt diff=git-crypt
