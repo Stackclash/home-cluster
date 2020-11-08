@@ -5,6 +5,7 @@ metadata:
   name: openfaas
   namespace: openfaas
 spec:
+  interval: 5m
   chart:
     spec:
       chart: openfaas

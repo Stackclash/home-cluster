@@ -5,6 +5,7 @@ metadata:
   name: node-red
   namespace: node-red
 spec:
+  interval: 5m
   chart:
     spec:
       chart: node-red

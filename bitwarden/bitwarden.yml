@@ -5,6 +5,7 @@ metadata:
   name: bitwarden
   namespace: bitwarden
 spec:
+  interval: 5m
   chart:
     spec:
       chart: bitwardenrs

@@ -4,10 +4,8 @@ kind: HelmRelease
 metadata:
   name: nfs-client-provisioner
   namespace: kube-system
-  annotations: 
-    fluxcd.io/automated: "false"
-    filter.fluxcd.io/chart-image: semver:~v3.1.0
 spec:
+  interval: 5m
   chart:
     spec:
       chart: nfs-client-provisioner

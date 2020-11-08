@@ -5,6 +5,7 @@ metadata:
   name: pihole
   namespace: pihole
 spec:
+  interval: 5m
   chart:
     spec:
       chart: pihole
