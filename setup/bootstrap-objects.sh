@@ -35,6 +35,7 @@ installManualObjects(){
     sleep 5
   done
   kapply "$REPO_ROOT"/kube-system/cert-manager/letsencrypt-issuer.txt
+  kapply "$REPO_ROOT"/kube-system/cert-manager/certificate.txt
 }
 
 . "$REPO_ROOT"/setup/.env
