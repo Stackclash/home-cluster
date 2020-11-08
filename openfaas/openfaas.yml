@@ -1,25 +1,19 @@
 ---
-apiVersion: helm.fluxcd.io/v1
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: openfaas
   namespace: openfaas
-  annotations:
-    fluxcd.io/automated: "true"
-    filter.fluxcd.io/gateway: glob:0.18.*-armhf
-    filter.fluxcd.io/faasnetes: glob:0.12.*-armhf
-    filter.fluxcd.io/operator: glob:0.12.*-armhf
-    filter.fluxcd.io/queueWorker: glob:0.11.*-armhf
-    filter.fluxcd.io/faasIdler: glob:0.3.*-armhf
-    filter.fluxcd.io/basicAuthPlugin: glob:0.18.*-armhf
 spec:
-  releaseName: openfaas
-  helmVersion: v3
-  timeout: 60
   chart:
-    repository: https://openfaas.github.io/faas-netes/
-    name: openfaas
-    version: 6.0.3
+    spec:
+      chart: openfaas
+      version: 6.0.3
+      sourceRef:
+        kind: HelmRepository
+        name: faas-netes
+        namespace: flux-system
+      interval: 5m
   values:
     basic_auth: true
     generateBasicAuth: true
@@ -52,5 +46,6 @@ spec:
     nats:
       metrics:
         enabled: false
-  valueFileSecrets:
-  - name: "openfaas-helm-values"
+  valuesFrom:
+  - kind: Secret
+    name: "openfaas-helm-values"

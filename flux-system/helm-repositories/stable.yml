@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: stable
+  namespace: flux-system
+spec:
+  url: https://kubernetes-charts.storage.googleapis.com/
+  interval: 24h
