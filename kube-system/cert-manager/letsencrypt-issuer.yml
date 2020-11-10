@@ -4,14 +4,14 @@ metadata:
   name: letsencrypt-issuer
 spec:
   acme:
-    email: $EMAIL
+    email: cox.richard200@gmail.com
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-issuer-account-key
     solvers:
     - dns01:
         cloudflare:
-          email: $EMAIL
+          email: cox.richard200@gmail.com
           apiKeySecretRef:
             name: cloudflare-apikey-secret
             key: apikey

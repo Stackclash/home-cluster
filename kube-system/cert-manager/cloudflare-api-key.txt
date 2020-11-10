@@ -1,8 +1,0 @@
-kind: Secret
-apiVersion: v1
-metadata:
-  name: cloudflare-apikey-secret
-  namespace: kube-system
-data:
-  apikey: $CF_API_KEY
-type: Opaque
