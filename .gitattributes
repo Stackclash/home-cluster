@@ -1,2 +1,2 @@
-kube-system/sealed-secrets/my-sealed-secrets-key.yml filter=git-crypt diff=git-crypt
+deployments/kube-system/sealed-secrets/my-sealed-secrets-key.yml filter=git-crypt diff=git-crypt
 .secrets/sealed-secrets-private.key filter=git-crypt diff=git-crypt
