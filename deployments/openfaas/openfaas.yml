@@ -15,6 +15,9 @@ spec:
         name: faas-netes
         namespace: flux-system
       interval: 5m
+  dependsOn:
+    - name: sealed-secrets
+      namespace: kube-system
   values:
     basic_auth: true
     generateBasicAuth: true

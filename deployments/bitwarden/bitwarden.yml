@@ -15,6 +15,9 @@ spec:
         name: k8s-at-home
         namespace: flux-system
       interval: 5m
+  dependsOn:
+    - name: sealed-secrets
+      namespace: kube-system
   values:
     image:
       repository: bitwardenrs/server
