@@ -22,3 +22,5 @@ spec:
       servicemonitor:
         # enabled: true
         interval: 60s
+  install:
+    skipCRDs: true
