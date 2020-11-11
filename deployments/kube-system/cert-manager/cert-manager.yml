@@ -5,7 +5,8 @@ metadata:
   name: cert-manager
   namespace: kube-system
 spec:
-  skipCRDs: true
+  install:
+    skipCRDs: true
   interval: 5m
   chart:
     spec:
@@ -17,7 +18,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    installCRDs: true
+    installCRDs: false
     prometheus:
       enabled: true
       servicemonitor:
