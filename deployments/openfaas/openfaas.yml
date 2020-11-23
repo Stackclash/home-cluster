@@ -18,6 +18,8 @@ spec:
   dependsOn:
     - name: sealed-secrets
       namespace: kube-system
+    - name: ingress-nginx-external
+      namespace: kube-system
   values:
     basic_auth: true
     generateBasicAuth: true

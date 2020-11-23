@@ -9,7 +9,7 @@ spec:
   ref:
     branch: master
   secretRef:
-    name: flux-system
+    name: ssh-credentials
   url: ssh://git@github.com/RickCoxDev/k3s-gitops
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
