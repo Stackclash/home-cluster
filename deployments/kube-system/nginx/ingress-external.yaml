@@ -27,4 +27,4 @@ spec:
         prometheusRule:
           enabled: false
       extraArgs:
-        default-ssl-certificate: "kube-system/acme-crt-secret"
+        default-ssl-certificate: "cert-manager/acme-crt-secret"
