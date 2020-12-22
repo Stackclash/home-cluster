@@ -9,10 +9,10 @@ spec:
   chart:
     spec:
       chart: nfs-client-provisioner
-      version: 1.2.9
+      version: 1.0.2
       sourceRef:
         kind: HelmRepository
-        name: stable
+        name: ckotzbauer
         namespace: flux-system
       interval: 5m
   values:
@@ -24,5 +24,4 @@ spec:
       path: /export/k3s_nfs
     storageClass:
       name: nfs-kube
-      reclaimPolicy: Retain
       defaultClass: true

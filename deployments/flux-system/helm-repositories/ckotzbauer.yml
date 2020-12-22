@@ -1,0 +1,10 @@
+---
+# Temporary until official helm repo is created for nfs-client-provisioner
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: ckotzbauer
+  namespace: flux-system
+spec:
+  url: https://ckotzbauer.github.io/helm-charts
+  interval: 24h
