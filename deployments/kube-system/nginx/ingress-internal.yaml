@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: ingress-nginx
-      version: 3.7.1
+      version: 3.15.2
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
@@ -17,12 +17,25 @@ spec:
       interval: 5m
   values:
     controller:
-      ingressClass: internal
+      ingressClass: external
+      extraEnvs:
+      - name: TZ
+        value: America//Chicago
       service:
-        loadBalancerIP: 192.168.1.10
+        externalIPs: 
+          - 192.168.1.10
+        externalTrafficPolicy: Local
+      config:
+        ssl-protocols: "TLSv1.3 TLSv1.2"
+        # Setting use-proxy-protocol to true will break the proxy
+        use-proxy-protocol: "false"
+        proxy-body-size: "0"
+        use-forwarded-headers: "true"
       metrics:
         enabled: true
         serviceMonitor:
           enabled: false
         prometheusRule:
           enabled: false
+      extraArgs:
+        default-ssl-certificate: "cert-manager/acme-crt-secret"
