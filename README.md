@@ -26,11 +26,12 @@ This repo is my home Kubernetes cluster declared using yaml files. My entire clu
 
 ## To Do List
 - [x] Update to [Flux v2](https://fluxcd.io/)
-- [ ] Configure [pre-commit](https://pre-commit.com/) to lint yaml files
+- [x] Configure [pre-commit](https://pre-commit.com/) to lint yaml files
 - [ ] Find correct Helm Release settings for them to reconcile correctly with release dependencies
 - [ ] Migrate from nfs-client-provisioner and openmediavault to [Minio](https://min.io/)
 - [ ] Add [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/)
-- [ ] Add cluster notifications with [Flux Notifications](https://toolkit.fluxcd.io/components/notification/controller/)
+- [ ] Add [Flux Notifications](https://toolkit.fluxcd.io/components/notification/controller/)
+- [ ] Add cluster notifications with [botkube](https://www.botkube.io/)
 - [ ] Create script to autogenerate [Sealed-Secrets](https://github.com/bitnami-labs/sealed-secrets) based on environment variables
 - [ ] Configure [Renovate](https://www.whitesourcesoftware.com/) to update image versions
 
