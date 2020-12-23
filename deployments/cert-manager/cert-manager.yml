@@ -23,7 +23,7 @@ spec:
     remediation:
       retries: 3
       remediateLastFailure: true
-    # cleanupOnFail: true
+      # cleanupOnFail: true
   rollback:
     timeout: 10m
     recreate: true

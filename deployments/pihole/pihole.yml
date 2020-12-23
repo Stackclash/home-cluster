@@ -23,7 +23,7 @@ spec:
     remediation:
       retries: 3
       remediateLastFailure: true
-    # cleanupOnFail: true
+      # cleanupOnFail: true
   rollback:
     timeout: 10m
     recreate: true
@@ -69,20 +69,20 @@ spec:
 
 
     adlists: {}
-      # If you want to provide blocklists, add them here.
+    # If you want to provide blocklists, add them here.
       # - https://hosts-file.net/grm.txt
       # - https://reddestdream.github.io/Projects/MinimalHosts/etc/MinimalHostsBlocker/minimalhosts
 
     whitelist: {}
-      # If you want to provide whitelisted domains, add them here.
+    # If you want to provide whitelisted domains, add them here.
       # - clients4.google.com
 
     blacklist: {}
-      # If you want to have special domains blacklisted, add them here
+    # If you want to have special domains blacklisted, add them here
       # - *.blackist.com
 
     regex: {}
-      # Add regular expression blacklist items
+    # Add regular expression blacklist items
       # - (^|\.)facebook\.com$
 
 
@@ -91,5 +91,5 @@ spec:
     hostNetwork: "true"
     privileged: "true"
   valuesFrom:
-  - kind: Secret
-    name: "pihole-helm-values"
+    - kind: Secret
+      name: "pihole-helm-values"

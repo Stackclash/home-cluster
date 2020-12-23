@@ -23,7 +23,7 @@ spec:
     remediation:
       retries: 3
       remediateLastFailure: true
-    # cleanupOnFail: true
+      # cleanupOnFail: true
   rollback:
     timeout: 10m
     recreate: true
@@ -54,5 +54,5 @@ spec:
       service:
         port: 8443
   valuesFrom:
-  - kind: Secret
-    name: "home-assistant-helm-values"
+    - kind: Secret
+      name: "home-assistant-helm-values"

@@ -23,7 +23,7 @@ spec:
     remediation:
       retries: 3
       remediateLastFailure: true
-    # cleanupOnFail: true
+      # cleanupOnFail: true
   rollback:
     timeout: 10m
     recreate: true
@@ -39,5 +39,5 @@ spec:
       config:
         storageClass: nfs-kube
   valuesFrom:
-  - kind: Secret
-    name: "grocy-helm-values"
+    - kind: Secret
+      name: "grocy-helm-values"

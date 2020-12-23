@@ -23,7 +23,7 @@ spec:
     remediation:
       retries: 3
       remediateLastFailure: true
-    # cleanupOnFail: true
+      # cleanupOnFail: true
   rollback:
     timeout: 10m
     recreate: true
@@ -66,5 +66,5 @@ spec:
       metrics:
         enabled: false
   valuesFrom:
-  - kind: Secret
-    name: "openfaas-helm-values"
+    - kind: Secret
+      name: "openfaas-helm-values"
