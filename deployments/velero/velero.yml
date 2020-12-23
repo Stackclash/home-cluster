@@ -6,7 +6,6 @@ metadata:
   namespace: velero
 spec:
   interval: 5m
-  createNamespace: true
   chart:
     spec:
       chart: velero
@@ -17,6 +16,7 @@ spec:
         namespace: flux-system
       interval: 5m
   install:
+    createNamespace: true
     remediation:
       retries: 3
   upgrade:

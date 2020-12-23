@@ -6,7 +6,6 @@ metadata:
   namespace: openfaas
 spec:
   interval: 5m
-  createNamespace: false
   chart:
     spec:
       chart: openfaas
@@ -17,6 +16,7 @@ spec:
         namespace: flux-system
       interval: 5m
   install:
+    createNamespace: false
     remediation:
       retries: 3
   upgrade:
