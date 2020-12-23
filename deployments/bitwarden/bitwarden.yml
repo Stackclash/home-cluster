@@ -6,6 +6,7 @@ metadata:
   namespace: bitwarden
 spec:
   interval: 5m
+  createNamespace: true
   chart:
     spec:
       chart: bitwardenrs

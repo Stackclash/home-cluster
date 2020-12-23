@@ -6,6 +6,7 @@ metadata:
   namespace: grocy
 spec:
   interval: 5m
+  createNamespace: true
   chart:
     spec:
       chart: grocy
