@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: slack-url
+  namespace: flux-system
+spec:
+  encryptedData:
+    address: AgCCdnnHQnQd/izUwr4zw0mHRUqtItebYYL4m2COPj8AGWWm5n6j+EmVjyMPiGvXydzkVuhvX+CmoNwhi6M77+FH6mSIKqisvd9zL9YgSQzB+iFAgy2bBIaSum9hWhJZkBHHbWKNc7WeXOiRbx2PJqyvs4H109l25zRV2HKfjaNUs8CzgPU1H8tu/R9IhuME0TcvZ4Gh5OPvObKDsvit2pWytcwmcxRjlP9K+pdfY827IFwEJ5BtoxjsXmMUwnTE1JBzgqw9bKexR4upM6ULMccopnKgrqA7RTm6ucHJOdbHJFLpPAdiYF0z+B+22OoRL41Zsmh+9/82Dm8t4CAizuXAHewwxmIA/A2B4UT8xvJaE/iBjcxwTlNSC11f/s73wm65MnvP+BWnoIrWWEnifWATTbO1TKUZsS+MMoSznBgBs4I9mtmmslunNTh87+oQm3LZtIxrTCLGqLn+9LHdueGBPqFppCTOrjtfW9XA0Unk7kCzCJSxVhL4HbQ0l5/pdEVt/d3HkH1tnQVAk7toa3vBNjiVt9FuY7GNEAdI9TigOJD+PZujSv3o9j8AdrWG5NsdIEq6jKn24lJUFgH4AFhpiiEjw36SRmMJEHwbUVnJLJYSvZhbDplhOIW6KF3yCU8PtBQ+QaGcQzXJdr7ERjwoQlp9VlhtKdYKvaZhsVE1xCg4eJDWayf+wML9WYFgjU2oGNTClUo97fnp7TfJfr+ycY6yZMY4CmbFDmZ4mP2VhpSNmXODsNhwwE1kEU35bljXfHQe4KiHyI9fQsWLi2gIZz6NhSccTwHpHbcBLNsZTZI=
+  template:
+    metadata:
+      name: slack-url
+      namespace: flux-system
