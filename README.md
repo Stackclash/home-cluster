@@ -31,6 +31,7 @@ This repo is my home Kubernetes cluster declared using yaml files. My entire clu
 - [ ] Migrate from nfs-client-provisioner and openmediavault to [Minio](https://min.io/)
 - [ ] Add [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/)
 - [ ] Add cluster notifications with [Flux Notifications](https://toolkit.fluxcd.io/components/notification/controller/)
+- [ ] Create script to autogenerate [Sealed-Secrets](https://github.com/bitnami-labs/sealed-secrets) based on environment variables
 - [ ] Configure [Renovate](https://www.whitesourcesoftware.com/) to update image versions
 
 ## :clap:&nbsp; Thanks
