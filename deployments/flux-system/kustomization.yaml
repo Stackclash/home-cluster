@@ -10,5 +10,4 @@ resources:
 - ./helm-repositories/jetstack.yml
 - ./helm-repositories/k8s-at-home.yml
 - ./helm-repositories/mojo2600-pihole.yml
-- ./helm-repositories/stable.yml
 - ./helm-repositories/vmware-tanzu.yml
