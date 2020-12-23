@@ -24,6 +24,15 @@ This repo is my home Kubernetes cluster declared using yaml files. My entire clu
 | Raspberry Pi 2B |   1   |   1GB  |          K3s Worker         |                                                                      |
 | Raspberry Pi 4B |   1   |   2GB  | K3s Worker/Storage Provider | Has a 2TB SSD plugged in and runs openmediavault to provide storage. |
 
+## To Do List
+- [x] Update to [Flux v2](https://fluxcd.io/)
+- [ ] Configure [pre-commit](https://pre-commit.com/) to lint yaml files
+- [ ] Find correct Helm Release settings for them to reconcile correctly with release dependencies
+- [ ] Migrate from nfs-client-provisioner and openmediavault to [Minio](https://min.io/)
+- [ ] Add [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/)
+- [ ] Add cluster notifications with [Flux Notifications](https://toolkit.fluxcd.io/components/notification/controller/)
+- [ ] Configure [Renovate](https://www.whitesourcesoftware.com/) to update image versions
+
 ## :clap:&nbsp; Thanks
 I've used the following repos as inspiration and guidelines for this repo.
 
