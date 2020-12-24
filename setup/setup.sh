@@ -7,7 +7,6 @@ need() {
 }
 
 need "kubectl"
-need "helm"
 
 message() {
   echo -e "\n######################################################################"
@@ -15,55 +14,24 @@ message() {
   echo "######################################################################"
 }
 
-ksecret() {
-  NAMESPACE=$(echo "$1" | sed 's/^\([^/]*\)\/.*$/\1/')
-  APPLICATION_NAME=$(echo "$1" | sed 's/^.*\/\(.*\)-values-secret.txt$/\1/')
+message "installing flux"
+flux install \
+--version=latest \
+--components=source-controller,kustomize-controller,helm-controller,notification-controller \
+--namespace=flux-system \
+--network-policy=false \
+--arch=arm
 
-  if output=$(envsubst < "${REPO_ROOT}/${1}"); then
-    kubectl create ns "$NAMESPACE"
-    kubectl create secret generic -n "$NAMESPACE" "${APPLICATION_NAME}-helm-values" --from-literal=values.yaml="$output"
-  fi
-}
+message "adding CRDs"
+kubectl apply -f "${REPO_ROOT}"/crds
 
-installValuesSecrets() {
-  message "creating helm values secrets"
+message "adding helm repositories"
+kubectl apply -f "${REPO_ROOT}"/deployments/flux-system/helm-repositories
 
-  ksecret pihole/pihole-values-secret.txt
-  ksecret openfaas/openfaas-values-secret.txt
-  ksecret bitwarden/bitwarden-values-secret.txt
-  ksecret node-red/node-red-values-secret.txt
-  ksecret home-assistant/home-assistant-values-secret.txt
-  ksecret grocy/grocy-values-secret.txt
-  ksecret velero/velero-values-secret.txt
-}
+message "installing sealed-secrets"
+kubectl apply -f "${REPO_ROOT}"/.secrets/sealed-secrets/my-sealed-secrets-key.yml
+kubectl apply -f "${REPO_ROOT}"/deployments/kube-system/sealed-secrets/sealed-secrets.yml
 
-installFlux() {
-  message "installing flux"
-  # install flux
-  kubectl create ns flux
-  helm repo add fluxcd https://charts.fluxcd.io
-  helm upgrade --install flux --values "$REPO_ROOT"/flux/flux/flux-values.yml --namespace flux fluxcd/flux
-  helm upgrade --install helm-operator --values "$REPO_ROOT"/flux/helm-operator/helm-operator-values.yml --namespace flux fluxcd/helm-operator
-  
-  FLUX_READY=1
-  while [ $FLUX_READY != 0 ]; do
-    echo "waiting for flux pod to be fully ready..."
-    kubectl -n flux wait --for condition=available deployment/flux
-    FLUX_READY="$?"
-    sleep 5
-  done
-
-  # grab output the key
-  FLUX_KEY=$(kubectl -n flux logs deployment/flux | grep identity.pub | cut -d '"' -f2)
-
-  message "adding the key to github automatically"
-  "$REPO_ROOT"/setup/add-repo-key.sh "$FLUX_KEY"
-}
-
-. "$REPO_ROOT"/setup/.env
-
-installValuesSecrets
-installFlux
-"$REPO_ROOT"/setup/bootstrap-objects.sh
-
-message "all done!"
+message "setting up git repository"
+kubectl apply -f "${REPO_ROOT}"/.secrets/flux-system/ssh-credentials.yml
+kubectl apply -f "${REPO_ROOT}"/deployments/flux-system/gotk-sync.yaml
