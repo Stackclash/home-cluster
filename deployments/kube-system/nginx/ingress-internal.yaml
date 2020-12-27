@@ -37,17 +37,17 @@ spec:
         externalIPs:
         - 192.168.1.10
         externalTrafficPolicy: Local
-      config:
-        ssl-protocols: "TLSv1.3 TLSv1.2"
+      # config:
+        # ssl-protocols: "TLSv1.3 TLSv1.2"
         # Setting use-proxy-protocol to true will break the proxy
-        use-proxy-protocol: "false"
-        proxy-body-size: "0"
-        use-forwarded-headers: "true"
+        # use-proxy-protocol: "false"
+        # proxy-body-size: "0"
+        # use-forwarded-headers: "true"
       metrics:
         enabled: true
         serviceMonitor:
           enabled: false
         prometheusRule:
           enabled: false
-      extraArgs:
-        default-ssl-certificate: "cert-manager/acme-crt-secret"
+      # extraArgs:
+        # default-ssl-certificate: "cert-manager/acme-crt-secret"
