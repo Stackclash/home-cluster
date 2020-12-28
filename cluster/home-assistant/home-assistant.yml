@@ -34,7 +34,7 @@ spec:
       namespace: kube-system
   values:
     image:
-      tag: 0.112.0b1
+      tag: "2020.12.1"
     hostNetwork: true
     persistence:
       storageClass: nfs-kube
