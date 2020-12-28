@@ -7,7 +7,7 @@
 <br />
 <div align="center">
 
-[![Discord](https://img.shields.io/badge/discord-chat-7289DA.svg?maxAge=60&style=plastic&logo=discord)](https://discord.gg/DNCynrJ) [![k3s](https://img.shields.io/badge/k3s-v1.18.9-blue?style=plastic&logo=kubernetes)](https://k3s.io/) [![GitHub last commit](https://img.shields.io/github/last-commit/rickcoxdev/k3s-gitops?color=purple&style=plastic)](https://github.com/onedr0p/k3s-gitops/commits/master)
+[![Discord](https://img.shields.io/badge/discord-chat-7289DA.svg?maxAge=60&style=plastic&logo=discord)](https://discord.gg/DNCynrJ) [![k3s](https://img.shields.io/badge/k3s-v1.19.5-blue?style=plastic&logo=kubernetes)](https://k3s.io/) [![GitHub last commit](https://img.shields.io/github/last-commit/rickcoxdev/k3s-gitops?color=purple&style=plastic)](https://github.com/onedr0p/k3s-gitops/commits/master)
 
 </div>
 
