@@ -43,6 +43,6 @@ flux bootstrap github \
   --owner=RickCoxDev \
   --repository=k3s-gitops \
   --branch=master \
-  --path=deployments \
+  --path=cluster \
   --personal \
   --arch=arm

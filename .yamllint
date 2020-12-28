@@ -1,6 +1,6 @@
 ---
 ignore: |
-  deployments/flux-system/gotk-components.yaml
+  cluster/flux-system/gotk-components.yaml
   crds/*
 extends: default
 rules:
