@@ -37,9 +37,7 @@ spec:
     image:
       repository: pihole/pihole
       tag: v5.3.4
-    serviceTCP:
-      type: ClusterIP
-    serviceUDP:
+    serviceDns:
       type: LoadBalancer
       loadBalancerIP: 192.168.1.12
     virtualHost: ""
