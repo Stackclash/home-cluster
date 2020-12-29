@@ -37,11 +37,13 @@ spec:
     image:
       repository: nodered/node-red
       tag: 1.2.6-12-minimal
-    enableProjects: true
-    timezone: America/Chicago
+    env:
+      TZ: America/Chicago
+      NODE_RED_ENABLE_PROJECTS: "true"
     persistence:
-      enabled: true
-      storageClass: nfs-kube
+      data:
+        enabled: true
+        storageClass: nfs-kube
   valuesFrom:
     - kind: Secret
       name: "node-red-helm-values"

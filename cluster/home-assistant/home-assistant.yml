@@ -39,21 +39,9 @@ spec:
       tag: "2020.12.1"
     hostNetwork: true
     persistence:
-      storageClass: nfs-kube
-    monitoring:
-      enabled: true
-      serviceMonitor:
-        enabled: false
-    vscode:
-      enabled: true
-      image:
-        repository: linuxserver/code-server
-        tag: version-v3.5.0
-      extraEnv:
-        TZ: America/Chicago
-      args: ""
-      service:
-        port: 8443
+      config:
+        enabled: true
+        storageClass: nfs-kube
   valuesFrom:
     - kind: Secret
       name: "home-assistant-helm-values"
