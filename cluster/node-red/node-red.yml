@@ -44,6 +44,7 @@ spec:
       data:
         enabled: true
         storageClass: nfs-kube
+        accessMode: ReadWriteOnce
   valuesFrom:
     - kind: Secret
       name: "node-red-helm-values"
