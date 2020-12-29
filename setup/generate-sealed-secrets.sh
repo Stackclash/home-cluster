@@ -30,10 +30,10 @@ then
         if [[ "${file}" =~ "values" ]]
         then
             echo "[*] Generating helm secret '${secret_name}' in namespace '${namespace}'..."
-            secret_json=$(kubectl -n "${namespace}" create secret generic "${secret_name}" --from-literal=values.yaml="$contents" --dry-run=client -o json)
+            secret_json=$(kubectl -n "${namespace}" create secret generic "${namespace}-helm-values" --from-literal=values.yaml="$contents" --dry-run=client -o json)
         else
             echo "[*] Generating generic secret '${secret_name}' in namespace '${namespace}'..."
-            secret_json=$(kubectl -n "${namespace}" create secret generic "${namespace}-helm-values" --from-literal="$contents" --dry-run=client -o json)
+            secret_json=$(kubectl -n "${namespace}" create secret generic "${secret_name}" --from-literal="$contents" --dry-run=client -o json)
         fi
 
         echo "${secret_json}" |
