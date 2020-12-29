@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 shopt -s globstar
 
-REPO_ROOT=$(git rev-parse --show-toplevel)
-CLUSTER_ROOT="${REPO_ROOT}/cluster"
-HELM_REPOSITORIES="${CLUSTER_ROOT}/flux-system/helm-repositories"
+export REPO_ROOT=$(git rev-parse --show-toplevel)
+export CLUSTER_ROOT="${REPO_ROOT}/cluster"
+export HELM_REPOSITORIES="${CLUSTER_ROOT}/flux-system/helm-repositories"
+export GENERATED_SECRETS="${CLUSTER_ROOT}/_sealed-secrets.yml"
 
 . ${REPO_ROOT}/setup/.env
 

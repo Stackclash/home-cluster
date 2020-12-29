@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-source $(dirname "$0")/environment.sh
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${__dir}/environment.sh"
 
 need kubectl
 need flux
