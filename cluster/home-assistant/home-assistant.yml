@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: home-assistant
       version: 2.5.0
       sourceRef:
@@ -34,6 +35,7 @@ spec:
       namespace: kube-system
   values:
     image:
+      repository: homeassistant/home-assistant
       tag: "2020.12.1"
     hostNetwork: true
     persistence:

@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: grocy
       version: 2.0.0
       sourceRef:
@@ -34,6 +35,9 @@ spec:
       namespace: kube-system
   values:
     timezone: America/Chicago
+    image:
+      repository: linuxserver/grocy
+      tag: v2.6.1-ls51
     persistence:
       config:
         storageClass: nfs-kube

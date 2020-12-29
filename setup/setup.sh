@@ -1,18 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-REPO_ROOT=$(git rev-parse --show-toplevel)
-
-. ${REPO_ROOT}/setup/.env
-
-message() {
-  echo -e "\n######################################################################"
-  echo "# $1"
-  echo "######################################################################"
-}
-
-need() {
-    which "$1" &>/dev/null || die "Binary '$1' is missing but required"
-}
+source $(dirname "$0")/environment.sh
 
 need kubectl
 need flux
@@ -27,8 +15,8 @@ flux check --pre
 [[ $? -ne 0 ]] && echo "Prerequisites were not satisfied" && exit 1
 
 # Adding the CRDs is necessary because these custom resources live in the github repo
-# message "adding CRDs"
-# kubectl apply -f "${REPO_ROOT}"/crds
+message "adding CRDs"
+kubectl apply -f "${REPO_ROOT}"/crds
 
 # Adding the system-upgrade controller because the crd doesn't work without it
 message "adding system-upgrade controller"

@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://mojo2600.github.io/pihole-kubernetes
       chart: pihole
       version: 1.7.15
       sourceRef:
@@ -33,6 +34,9 @@ spec:
     - name: ingress-nginx-external
       namespace: kube-system
   values:
+    image:
+      repository: pihole/pihole
+      tag: v5.1.1
     serviceTCP:
       type: ClusterIP
     serviceUDP:

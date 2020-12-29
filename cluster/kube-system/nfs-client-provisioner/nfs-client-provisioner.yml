@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://www.ckotzbauer.de/helm-charts/
       chart: nfs-client-provisioner
       version: 1.0.2
       sourceRef:
