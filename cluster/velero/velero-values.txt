@@ -2,7 +2,6 @@ configuration:
   provider: aws
   backupStorageLocation:
     bucket: raspi-k3s-backup
-    caCert: $LETSENCRYPT_CACERT
     config:
       region: backblaze
       s3ForcePathStyle: true
