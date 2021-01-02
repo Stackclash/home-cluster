@@ -36,6 +36,14 @@ spec:
       registry: appscode
       repository: stash
       tag: v0.11.8
+    pushgateway:
+      registry: prom
+      repository: pushgateway
+      tag: v1.3.1
+    cleaner:
+      registry: raspbernetes
+      repository: kubectl
+      tag: v1.18.2
     nodeSelector: {}
   valuesFrom:
     - kind: Secret
