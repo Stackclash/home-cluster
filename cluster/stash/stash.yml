@@ -36,6 +36,7 @@ spec:
       registry: appscode
       repository: stash
       tag: v0.11.8
+    nodeSelector: {}
   valuesFrom:
     - kind: Secret
       name: "stash-helm-values"
