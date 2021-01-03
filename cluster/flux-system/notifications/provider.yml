@@ -1,10 +1,9 @@
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
 metadata:
-  name: slack
+  name: pushover
   namespace: flux-system
 spec:
-  type: slack
-  channel: flux-notifications
+  type: generic
   secretRef:
-    name: slack-url
+    name: webhook-url
