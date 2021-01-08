@@ -16,12 +16,11 @@ flux check --pre
 [[ $? -ne 0 ]] && echo "Prerequisites were not satisfied" && exit 1
 
 # Adding the CRDs is necessary because these custom resources live in the github repo
-message "adding CRDs"
 kubectl apply -f "${REPO_ROOT}"/crds
 
 # Adding the system-upgrade controller because the crd doesn't work without it
 message "adding system-upgrade controller"
-kubectl apply -f deployment/system-upgrade/system-upgrade-controller.yml
+kubectl apply -f cluster/system-upgrade/system-upgrade-controller.yml
 kubectl wait --for=condition=ready pod -n system-upgrade -l upgrade.cattle.io/controller=system-upgrade-controller
 
 message "adding personal sealed-secrets key"
