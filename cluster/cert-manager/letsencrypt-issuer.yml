@@ -14,5 +14,5 @@ spec:
         cloudflare:
           email: cox.richard200@gmail.com
           apiKeySecretRef:
-            name: cloudflare-apikey-secret
+            name: cloudflare-api-secret
             key: apikey
