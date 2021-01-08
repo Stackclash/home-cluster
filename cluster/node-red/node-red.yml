@@ -36,7 +36,7 @@ spec:
   values:
     image:
       repository: nodered/node-red
-      tag: 1.2.6-12-minimal
+      tag: 1.2.7-12-minimal
     env:
       TZ: America/Chicago
       NODE_RED_ENABLE_PROJECTS: "true"
