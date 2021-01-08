@@ -29,7 +29,7 @@ spec:
     # cleanupOnFail: true
   values:
     controller:
-      ingressClass: external
+      ingressClass: internal
       extraEnvs:
       - name: TZ
         value: America//Chicago
