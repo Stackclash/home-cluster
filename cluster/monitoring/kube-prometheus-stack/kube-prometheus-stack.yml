@@ -42,12 +42,25 @@ spec:
           tag: v0.21.0
         logFormat: json
         logLevel: info
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: nfs-kube
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 50Gi
+            selector: {}
     grafana:
       enabled: true
       image:
         repository: grafana/grafana
         tag: 7.3.5
       additionalDataSources: []
+      persistence:
+        type: pvc
+        enabled: true
+        storageClassName: nfs-kube
     prometheusOperator:
       image:
         repository: quay.io/prometheus-operator/prometheus-operator
@@ -64,6 +77,17 @@ spec:
         image:
           repository: quay.io/prometheus/prometheus
           tag: v2.22.1
+        logFormat: json
+        logLevel: info
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: nfs-kube
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 50Gi
+            selector: {}
     kubeControllerManager:
       enabled: false
     kubeScheduler:
