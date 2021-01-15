@@ -50,7 +50,6 @@ spec:
               resources:
                 requests:
                   storage: 50Gi
-            selector: {}
     grafana:
       enabled: true
       image:
@@ -87,7 +86,6 @@ spec:
               resources:
                 requests:
                   storage: 50Gi
-            selector: {}
     kubeControllerManager:
       enabled: false
     kubeScheduler:
