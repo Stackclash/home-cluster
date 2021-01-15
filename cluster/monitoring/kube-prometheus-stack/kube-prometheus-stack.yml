@@ -98,4 +98,4 @@ spec:
       enabled: false
   valuesFrom:
     - kind: Secret
-      name: "monitoring-helm-values"
+      name: "kube-prometheus-stack-values"
