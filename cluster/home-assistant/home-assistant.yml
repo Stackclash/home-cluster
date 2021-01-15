@@ -44,4 +44,4 @@ spec:
         storageClass: nfs-kube
   valuesFrom:
     - kind: Secret
-      name: "home-assistant-helm-values"
+      name: "home-assistant-values"

@@ -48,4 +48,4 @@ spec:
         size: 5Gi
   valuesFrom:
     - kind: Secret
-      name: "node-red-helm-values"
+      name: "node-red-values"

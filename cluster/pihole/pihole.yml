@@ -82,4 +82,4 @@ spec:
     privileged: "true"
   valuesFrom:
     - kind: Secret
-      name: "pihole-helm-values"
+      name: "pihole-values"

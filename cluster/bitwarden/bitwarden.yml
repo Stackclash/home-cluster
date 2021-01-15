@@ -42,4 +42,4 @@ spec:
       storageClass: nfs-kube
   valuesFrom:
     - kind: Secret
-      name: "bitwarden-helm-values"
+      name: "bitwarden-values"

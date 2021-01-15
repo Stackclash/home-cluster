@@ -45,4 +45,4 @@ spec:
         storageClass: nfs-kube
   valuesFrom:
     - kind: Secret
-      name: "grocy-helm-values"
+      name: "grocy-values"
