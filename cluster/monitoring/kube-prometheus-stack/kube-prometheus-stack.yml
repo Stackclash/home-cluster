@@ -96,6 +96,10 @@ spec:
       enabled: false
     kubeEtcd:
       enabled: false
+    kube-state-metrics:
+      image:
+        repository: carlosedp
+        tag: v1.9.6
   valuesFrom:
     - kind: Secret
       name: "kube-prometheus-stack-values"
