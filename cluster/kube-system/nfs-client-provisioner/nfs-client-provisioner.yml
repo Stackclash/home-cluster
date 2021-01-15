@@ -34,7 +34,7 @@ spec:
       tag: v3.1.0-k8s1.11
     nfs:
       server: 192.168.1.105
-      path: /export/k3s_nfs
+      path: /export/k3s-nfs
     storageClass:
       name: nfs-kube
       defaultClass: true
