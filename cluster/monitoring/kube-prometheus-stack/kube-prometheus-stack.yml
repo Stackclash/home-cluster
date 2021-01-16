@@ -96,7 +96,7 @@ spec:
       enabled: false
     kube-state-metrics:
       image:
-        repository: carlosedp/kube-status-metrics
+        repository: carlosedp/kube-state-metrics
         tag: v1.9.6
   valuesFrom:
     - kind: Secret
