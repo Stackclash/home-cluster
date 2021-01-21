@@ -36,7 +36,7 @@ spec:
   values:
     image:
       repository: linuxserver/grocy
-      tag: v2.6.1-ls51
+      tag: version-v3.0.1
     env:
       TZ: America/Chicago
     persistence:
