@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: bitwarden
+  name: bitwardenrs
   namespace: home
 spec:
   interval: 5m
@@ -42,4 +42,4 @@ spec:
       storageClass: nfs-kube
   valuesFrom:
     - kind: Secret
-      name: "bitwarden-values"
+      name: "bitwardenrs-values"
