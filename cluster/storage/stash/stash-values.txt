@@ -1,1 +1,0 @@
-license: $STASH_LICENSE
