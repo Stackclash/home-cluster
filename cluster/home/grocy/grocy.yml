@@ -3,7 +3,7 @@
 #kind: HelmRelease
 #metadata:
 #  name: grocy
-#  namespace: grocy
+#  namespace: home
 #spec:
 #  interval: 5m
 #  chart:

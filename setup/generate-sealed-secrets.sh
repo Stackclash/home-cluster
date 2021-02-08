@@ -32,8 +32,14 @@ then
             echo "[*] Generating helm secret '${secret_name}' in namespace '${namespace}'..."
             secret_json=$(kubectl -n "${namespace}" create secret generic "${secret_name}" --from-literal=values.yaml="$contents" --dry-run=client -o json)
         else
+            # This feels messy. I need to clean this up.
+            array=($contents)
+            keys=""
+            for line in "${array[@]}"; do keys="$keys --from-literal=$line "; done;
+            keys="$(echo -e "${keys}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+            keys=($keys)
             echo "[*] Generating generic secret '${secret_name}' in namespace '${namespace}'..."
-            secret_json=$(kubectl -n "${namespace}" create secret generic "${secret_name}" --from-literal="$contents" --dry-run=client -o json)
+            secret_json=$(kubectl -n "${namespace}" create secret generic "${secret_name}" "${keys[@]}" --dry-run=client -o json)
         fi
 
         echo "${secret_json}" |

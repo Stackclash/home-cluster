@@ -2,15 +2,15 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: bitwarden
-  namespace: bitwarden
+  name: home-assistant
+  namespace: home
 spec:
   interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: bitwardenrs
-      version: 2.0.0
+      chart: home-assistant
+      version: 5.5.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
@@ -35,11 +35,13 @@ spec:
       namespace: kube-system
   values:
     image:
-      repository: bitwardenrs/server
-      tag: 1.19.0
+      repository: homeassistant/home-assistant
+      tag: "2020.12.2"
+    hostNetwork: true
     persistence:
-      enabled: true
-      storageClass: nfs-kube
+      config:
+        enabled: true
+        storageClass: nfs-kube
   valuesFrom:
     - kind: Secret
-      name: "bitwarden-values"
+      name: "home-assistant-values"
