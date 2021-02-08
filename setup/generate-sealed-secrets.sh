@@ -43,7 +43,7 @@ then
         fi
 
         echo "${secret_json}" |
-            kubeseal --format=yaml --cert="${PUB_CERT}" |
+            kubeseal --format=yaml --cert="${__dir}/../.secrets/sealed-secrets/secret.pem" |
             # Remove null keys
             yq eval 'del(.metadata.creationTimestamp)' - |
             yq eval 'del(.spec.template.metadata.creationTimestamp)' - |
