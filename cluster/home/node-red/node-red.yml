@@ -2,15 +2,15 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: freshrss
-  namespace: freshrss
+  name: node-red
+  namespace: home
 spec:
   interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: freshrss
-      version: 2.4.0
+      chart: node-red
+      version: 5.4.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
@@ -35,14 +35,17 @@ spec:
       namespace: kube-system
   values:
     image:
-      repository: linuxserver/freshrss
-      tag: version-1.17.0
+      repository: nodered/node-red
+      tag: 1.2.9-12-minimal
     env:
       TZ: America/Chicago
+      NODE_RED_ENABLE_PROJECTS: "true"
     persistence:
-      config:
+      data:
         enabled: true
         storageClass: nfs-kube
+        accessMode: ReadWriteOnce
+        size: 5Gi
   valuesFrom:
     - kind: Secret
-      name: "freshrss-values"
+      name: "node-red-values"
