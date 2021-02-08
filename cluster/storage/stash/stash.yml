@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.appscode.com/stable/
       chart: stash
-      version: v0.11.8
+      version: v0.11.9
       sourceRef:
         kind: HelmRepository
         name: appscode
