@@ -1,0 +1,27 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupConfiguration
+metadata:
+  name: freshrss-backup
+  namespace: home
+spec:
+  driver: Restic
+  repository:
+    name: b2-repo
+  schedule: "10 6 * * *" # backup everyday at 0610
+  paused: false
+  backupHistoryLimit: 3
+  target:
+    alias: freshrss
+    ref:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: freshrss
+    volumeMounts:
+    - name: config
+      mountPath: /config
+    paths:
+    - /config
+  retentionPolicy:
+    name: 'keep-last-5'
+    keepLast: 5
+    prune: true

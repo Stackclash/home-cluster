@@ -1,0 +1,68 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: stash
+  namespace: storage
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.appscode.com/stable/
+      chart: stash
+      version: v0.11.9
+      sourceRef:
+        kind: HelmRepository
+        name: appscode
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+      # cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    # cleanupOnFail: true
+  dependsOn:
+    - name: sealed-secrets
+      namespace: kube-system
+  values:
+    operator:
+      registry: appscode
+      repository: stash
+      tag: v0.11.9
+    pushgateway:
+      registry: prom
+      repository: pushgateway
+      tag: v1.3.1
+    cleaner:
+      registry: raspbernetes
+      repository: kubectl
+      tag: v1.18.2
+    nodeSelector:
+    license: |
+      -----BEGIN CERTIFICATE-----
+      MIIDSDCCAjCgAwIBAgIIEh7O/WO79oMwDQYJKoZIhvcNAQELBQAwJTEWMBQGA1UE
+      ChMNQXBwc0NvZGUgSW5jLjELMAkGA1UEAxMCY2EwHhcNMjEwMjA4MjIzMDUwWhcN
+      MjIwMjA4MjIzMDUwWjBJMRgwFgYDVQQKEw9zdGFzaC1jb21tdW5pdHkxLTArBgNV
+      BAMTJDk2ZTcxYjY4LTA1NjYtNDFiNi1iZDY5LTA5NDRmYzcwN2VhZDCCASIwDQYJ
+      KoZIhvcNAQEBBQADggEPADCCAQoCggEBALtgVzzGFz3HRe+ioIa5qzAQ265QveF7
+      2vTVVvYXX6YAnMrCl+BowHVaZr64ocy7wHooItx0gfKJATbqpxaVWJ789AgiLOWl
+      Yun/Sig5oWhv3fIZhMQiSoFrRMETl4l3mlTIciKCwtu+5itkhGzWU2uJ6NkIxwmH
+      MHjW/sypt/c8MWzMngIB7hVVa6xEzsMNUrIAFn8hYClmQ9IJsPPLCued57Uu2TjV
+      1SeO43tb76T76EU+n14qDW1KNlXFMBItabj6hCpPmQ3bPomPOKD1ftczU90plXsA
+      sPy6XjjL9jOeTIN3TZK+yUPqYZ/W/z78lddaVoG2LlGt/ONqsZi3tM8CAwEAAaNY
+      MFYwDgYDVR0PAQH/BAQDAgWgMBMGA1UdJQQMMAoGCCsGAQUFBwMCMC8GA1UdEQQo
+      MCaCJDk2ZTcxYjY4LTA1NjYtNDFiNi1iZDY5LTA5NDRmYzcwN2VhZDANBgkqhkiG
+      9w0BAQsFAAOCAQEARJT/JYd7m2HIUrou0TXpa/bdyeMrkLawhL+z/ccrjP7evzYe
+      7DoO/dTbfv2xByoJUddAbruWAY6xrUnwFrBkepixGBlTG938FqVNMdk95eqhgnTT
+      ZcNwGDbJO3WZveDxQdhloMOQKN4arz7F3hjVy/W/NeNHdJjpsg4fQ5wRTsv+y4m4
+      n78AWZWnOkfTCZs/ITmwA4VSulWwcx3ZRidYdyK2flR7kBTOUQzZNhUGIEdaU9/i
+      Enx+sOMbKwZ0fpxoeL/Ubp0/tErumH0pMDkvDuJStXkUsBLjXhLWKEChPmQPecPu
+      yGAi8SCGbI5/Ru9ekaLa3su3y8uRDy+rGxwvZg==
+      -----END CERTIFICATE-----

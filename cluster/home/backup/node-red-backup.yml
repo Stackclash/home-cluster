@@ -1,0 +1,27 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupConfiguration
+metadata:
+  name: node-red-backup
+  namespace: home
+spec:
+  driver: Restic
+  repository:
+    name: b2-repo
+  schedule: "30 6 * * *" # backup everyday at 0630
+  paused: false
+  backupHistoryLimit: 3
+  target:
+    alias: node-red
+    ref:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: node-red
+    volumeMounts:
+    - name: data
+      mountPath: /data
+    paths:
+    - /data
+  retentionPolicy:
+    name: 'keep-last-5'
+    keepLast: 5
+    prune: true
