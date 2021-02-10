@@ -1,5 +1,9 @@
 bitwardenrs:
   domain: https://bitwarden.$DOMAIN
+  yubico:
+    enabled: true
+    clientId: $YUBICO_CLIENT_ID
+    secretKey: $YUBICO_SECRET_KEY
 ingress:
   enabled: true
   annotations:
