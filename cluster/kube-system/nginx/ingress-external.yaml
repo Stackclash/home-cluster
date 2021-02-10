@@ -27,6 +27,9 @@ spec:
     timeout: 10m
     recreate: true
     # cleanupOnFail: true
+  dependsOn:
+  - name: ingress-nginx-internal
+    namespace: kube-system
   values:
     controller:
       ingressClass: external
