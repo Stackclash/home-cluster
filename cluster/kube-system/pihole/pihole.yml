@@ -2,18 +2,18 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: node-red
+  name: pihole
   namespace: home
 spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: node-red
-      version: 5.4.0
+      # renovate: registryUrl=https://mojo2600.github.io/pihole-kubernetes
+      chart: pihole
+      version: 2.0.0
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: mojo2600-pihole
         namespace: flux-system
       interval: 5m
   install:
@@ -35,17 +35,16 @@ spec:
       namespace: kube-system
   values:
     image:
-      repository: nodered/node-red
-      tag: 1.2.9-12-minimal
-    env:
-      TZ: America/Chicago
-      NODE_RED_ENABLE_PROJECTS: "true"
-    persistence:
-      data:
-        enabled: true
-        storageClass: nfs-kube
-        accessMode: ReadWriteOnce
-        size: 5Gi
+      repository: "pihole/pihole"
+      tag: v5.5.1
+    serviceDns:
+      type: LoadBalancer
+      loadBalancerIP: 192.168.1.12
+    persistentVolumeClaim:
+      enabled: true
+      storageClass: nfs-kube
+    DNS1: "1.1.1.1"
+    DNS2: "1.0.0.1"
   valuesFrom:
     - kind: Secret
-      name: "node-red-values"
+      name: "pihole-values"
