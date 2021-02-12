@@ -47,6 +47,8 @@ spec:
       storageClass: nfs-kube
     DNS1: "1.1.1.1"
     DNS2: "1.0.0.1"
+    adlists:
+      - https://raw.githubusercontent.com/kboghdady/youTube_ads_4_pi-hole/master/youtubelist.txt
   valuesFrom:
     - kind: Secret
       name: "pihole-values"
