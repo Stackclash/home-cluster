@@ -7,7 +7,7 @@ spec:
   driver: Restic
   repository:
     name: b2-repo
-  schedule: "20 6 * * *" # backup everyday at 0620
+  schedule: "20 6 * * 6" # backup everyday at 0620
   paused: false
   backupHistoryLimit: 3
   target:
