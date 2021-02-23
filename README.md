@@ -7,7 +7,7 @@
 <br />
 <div align="center">
 
-[![Discord](https://img.shields.io/badge/discord-chat-7289DA.svg?maxAge=60&style=plastic&logo=discord)](https://discord.gg/DNCynrJ) [![k3s](https://img.shields.io/badge/k3s-v1.19.5-blue?style=plastic&logo=kubernetes)](https://k3s.io/) [![GitHub last commit](https://img.shields.io/github/last-commit/rickcoxdev/k3s-gitops?color=purple&style=plastic)](https://github.com/onedr0p/k3s-gitops/commits/master)
+[![Discord](https://img.shields.io/badge/discord-chat-7289DA.svg?maxAge=60&style=plastic&logo=discord)](https://discord.gg/DNCynrJ) [![k3s](https://img.shields.io/badge/k3s-v1.20.2-blue?style=plastic&logo=kubernetes)](https://k3s.io/) [![GitHub last commit](https://img.shields.io/github/last-commit/rickcoxdev/k3s-gitops?color=purple&style=plastic)](https://github.com/onedr0p/k3s-gitops/commits/master)
 
 </div>
 
@@ -28,7 +28,7 @@ This repo is my home Kubernetes cluster declared using yaml files. My entire clu
 - [x] Update to [Flux v2](https://fluxcd.io/)
 - [x] Configure [pre-commit](https://pre-commit.com/) to lint yaml files
 - [x] Find correct Helm Release settings for them to reconcile correctly with release dependencies
-- [ ] Migrate from nfs-client-provisioner and openmediavault to [Minio](https://min.io/)
+- [ ] Add [Minio](https://min.io/)
 - [ ] Add [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/)
 - [x] Add [Flux Notifications](https://toolkit.fluxcd.io/components/notification/controller/)
 - [ ] Add cluster notifications with [botkube](https://www.botkube.io/)
