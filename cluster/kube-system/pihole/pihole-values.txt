@@ -12,3 +12,4 @@ dnsmasq:
   customDnsEntries:
   - address=/pihole.internal.$DOMAIN/192.168.1.10
   - address=/red.internal.$DOMAIN/192.168.1.10
+  - address=/heimdall.internal.$DOMAIN/192.168.1.10
