@@ -8,7 +8,7 @@ spec:
   repository:
     name: b2-repo
   schedule: "10 6 * * 6" # backup everyday at 0610
-  paused: false
+  paused: true
   backupHistoryLimit: 3
   target:
     alias: freshrss

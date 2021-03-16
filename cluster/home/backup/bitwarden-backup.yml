@@ -8,7 +8,7 @@ spec:
   repository:
     name: b2-repo
   schedule: "0 6 * * 6" # backup everyday at 0600
-  paused: false
+  paused: true
   backupHistoryLimit: 3
   target:
     alias: bitwarden

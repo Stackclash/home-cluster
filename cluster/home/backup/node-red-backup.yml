@@ -8,7 +8,7 @@ spec:
   repository:
     name: b2-repo
   schedule: "30 6 * * 6" # backup everyday at 0630
-  paused: false
+  paused: true
   backupHistoryLimit: 3
   target:
     alias: node-red
