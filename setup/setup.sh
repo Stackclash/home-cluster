@@ -17,7 +17,7 @@ flux check --pre
 
 # Adding the CRDs is necessary because instances of these custom resources live in the github repo
 message "adding crds"
-kubectl apply -f "${REPO_ROOT}"/crds
+# kubectl apply -f "${REPO_ROOT}"/crds
 
 # Adding the system-upgrade controller because the crd doesn't work without it
 message "adding system-upgrade controller"
@@ -33,5 +33,6 @@ flux bootstrap github \
   --repository=k3s-gitops \
   --branch=master \
   --path=cluster \
-  --personal \
-  --arch=arm
+  --private=false \
+  --personal=true \
+  --network-policy=false
