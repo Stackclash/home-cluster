@@ -53,4 +53,4 @@ spec:
         mountPath: /podcasts
   valuesFrom:
     - kind: Secret
-      name: "booksonic-values"
+      name: "booksonic-air-values"
