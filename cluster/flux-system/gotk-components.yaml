@@ -2105,7 +2105,6 @@ spec:
                 - quay
                 - gcr
                 - nexus
-                - acr
                 type: string
             required:
             - resources
@@ -2698,4 +2697,3 @@ spec:
         name: data
       - emptyDir: {}
         name: tmp
----
