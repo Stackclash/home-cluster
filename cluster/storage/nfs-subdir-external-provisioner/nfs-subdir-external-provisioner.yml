@@ -2,18 +2,18 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: nfs-client-provisioner
+  name: nfs-subdir-external-provisioner
   namespace: kube-system
 spec:
   interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://www.ckotzbauer.de/helm-charts/
-      chart: nfs-client-provisioner
-      version: 1.0.2
+      chart: nfs-subdir-external-provisioner
+      version: 4.0.6
       sourceRef:
         kind: HelmRepository
-        name: ckotzbauer
+        name: nfs-subdir-external-provisioner
         namespace: flux-system
       interval: 5m
   install:
@@ -30,11 +30,11 @@ spec:
     # cleanupOnFail: true
   values:
     image:
-      repository: quay.io/external_storage/nfs-client-provisioner-arm
-      tag: v3.1.0-k8s1.11
+      repository: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner
+      tag: v4.0.1
     nfs:
       server: 192.168.1.105
       path: /export/k3s-nfs
     storageClass:
       name: nfs-kube
-      defaultClass: true
+      defaultClass: false
