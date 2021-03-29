@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner
-      tag: v4.0.1
+      tag: v4.0.2
     nfs:
       server: 192.168.1.105
       path: /export/k3s-nfs
