@@ -43,9 +43,7 @@ spec:
     persistence:
       data:
         enabled: true
-        storageClass: nfs-kube
-        accessMode: ReadWriteOnce
-        size: 5Gi
+        existingClaim: node-red
   valuesFrom:
     - kind: Secret
       name: "node-red-values"

@@ -42,7 +42,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: nfs-kube
+        existingClaim: freshrss
   valuesFrom:
     - kind: Secret
       name: "freshrss-values"

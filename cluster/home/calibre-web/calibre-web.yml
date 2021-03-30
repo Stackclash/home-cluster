@@ -42,7 +42,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: nfs-kube
+        existingClaim: calibre-web
       books:
         enabled: true
         existingClaim: books

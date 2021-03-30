@@ -41,7 +41,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: nfs-kube
+        existingClaim: home-assistant
   valuesFrom:
     - kind: Secret
       name: "home-assistant-values"

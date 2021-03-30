@@ -42,7 +42,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: nfs-kube
+        existingClaim: heimdall
   valuesFrom:
     - kind: Secret
       name: "heimdall-values"
