@@ -10,7 +10,7 @@ spec:
   nfs:
     path: /export/FreshRSS
     server: 192.168.1.105
-  storageClassName: manual
+  storageClassName: freshrss
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
 ---
@@ -25,5 +25,5 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: manual
+  storageClassName: freshrss
   volumeMode: Filesystem

@@ -10,7 +10,7 @@ spec:
   nfs:
     path: /export/Home-Assistant
     server: 192.168.1.105
-  storageClassName: manual
+  storageClassName: home-assistant
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
 ---
@@ -25,5 +25,5 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: manual
+  storageClassName: home-assistant
   volumeMode: Filesystem

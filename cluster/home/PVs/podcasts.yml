@@ -10,7 +10,7 @@ spec:
   nfs:
     path: /export/Podcasts
     server: 192.168.1.105
-  storageClassName: manual
+  storageClassName: podcasts
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
 ---
@@ -25,5 +25,5 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  storageClassName: manual
+  storageClassName: podcasts
   volumeMode: Filesystem
