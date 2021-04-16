@@ -1,3 +1,19 @@
+externalDatabase:
+  enabled: true
+  type: postgresql
+  host: 192.168.1.105
+  port: 49154
+  database: bitwardenrs
+  user: bitwardenrs
+  password: $PASSWORD
+smtp:
+  enabled: true
+  host: smtp.gmail.com
+  from: "no-reply@$DOMAIN"
+  ssl: true
+  port: 465
+  user: $EMAIL
+  password: $GOOGLE_APP_PASSWORD
 bitwardenrs:
   domain: https://bitwarden.$DOMAIN
   yubico:

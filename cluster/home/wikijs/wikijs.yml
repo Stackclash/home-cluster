@@ -38,8 +38,6 @@ spec:
       repository: linuxserver/wikijs
       pullPolicy: IfNotPresent
       tag: version-2.5.191
-    env:
-      TZ: America/Chicago
     persistence:
       data:
         enabled: true
