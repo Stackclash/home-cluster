@@ -1,0 +1,12 @@
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: "external"
+  tls:
+    - hosts:
+        - wiki.$DOMAIN
+  hosts:
+    - host: wiki.$DOMAIN
+      paths:
+        - path: /
+          pathType: Prefix
