@@ -17,7 +17,7 @@ bitwardenrs:
     host: smtp.gmail.com
     from: "no-reply@$DOMAIN"
     ssl: true
-    port: 465
+    port: 587
     user: $EMAIL
     password: $GOOGLE_APP_PASSWORD
 ingress:
