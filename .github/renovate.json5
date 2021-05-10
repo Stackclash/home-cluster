@@ -7,6 +7,7 @@
   // Do not notify on closed unmerged PRs
   "suppressNotifications": ["prIgnoreNotification"],
   "assignees": ["@RickCoxDev"],
+  "rebaseWhen": "conflicted",
   "helm-values": {
     "fileMatch": ["cluster/.+\\.yml$"]
   },
@@ -26,60 +27,42 @@
       "commitMessageTopic": "Helm chart {{depName}}",
       "separateMinorPatch": true
     },
+    {
+      "matchDatasources": ["docker"],
+      "commitMessageTopic": "Container Image {{depName}}",
+      "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
+      "matchUpdateTypes": ["major", "minor", "patch"],
+    },
     // Add labels according to package and update types
     {
       "datasources": ["docker"],
       "updateTypes": ["major"],
-      "labels": ["renovate/image-release", "dependency/major"]
+      "labels": ["renovate/image-release", "dep/major"]
     },
     {
       "datasources": ["docker"],
       "updateTypes": ["minor"],
-      "labels": ["renovate/image-release", "dependency/minor"]
+      "labels": ["renovate/image-release", "dep/minor"]
     },
     {
       "datasources": ["docker"],
       "updateTypes": ["patch"],
-      "labels": ["renovate/image-release", "dependency/patch"]
+      "labels": ["renovate/image-release", "dep/patch"]
     },
     {
       "datasources": ["helm"],
       "updateTypes": ["major"],
-      "labels": ["renovate/helm-release", "dependency/major"]
+      "labels": ["renovate/helm-release", "dep/major"]
     },
     {
       "datasources": ["helm"],
       "updateTypes": ["minor"],
-      "labels": ["renovate/helm-release", "dependency/minor"]
+      "labels": ["renovate/helm-release", "dep/minor"]
     },
     {
       "datasources": ["helm"],
       "updateTypes": ["patch"],
-      "labels": ["renovate/helm-release", "dependency/patch"]
-    },
-    // Custom version schemes
-    {
-      "datasources": ["docker"],
-      "versionScheme": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$",
-      "packageNames": ["blakeblackshear/frigate"]
-    },
-    // Pin package versions
-    // {
-    //   "datasources": ["docker"],
-    //   "allowedVersions": "<4.3.0",
-    //   "packageNames": ["k8sathome/qbittorrent"]
-    // },
-    // Version strategies
-    // Enable auto-merge
-    // {
-    //   "datasources": ["docker"],
-    //   "automerge": true,
-    //   "requiredStatusChecks": null,
-    //   "updateTypes": ["minor", "patch"],
-    //   "packageNames": [
-    //     "k8sathome/ombi",
-    //     "k8sathome/jackett"
-    //   ]
-    // }
+      "labels": ["renovate/helm-release", "dep/patch"]
+    }
   ]
 }
