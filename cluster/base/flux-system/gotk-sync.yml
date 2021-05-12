@@ -18,8 +18,8 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
-  interval: 60m0s
-  path: ./cluster
+  interval: 10m0s
+  path: ./cluster/base
   prune: true
   sourceRef:
     kind: GitRepository
