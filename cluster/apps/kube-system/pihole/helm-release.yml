@@ -1,0 +1,61 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: kube-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://mojo2600.github.io/pihole-kubernetes
+      chart: pihole
+      version: 1.8.34
+      sourceRef:
+        kind: HelmRepository
+        name: mojo2600-pihole
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+      # cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    # cleanupOnFail: true
+  values:
+    image:
+      repository: "pihole/pihole"
+      tag: v5.8.1
+    serviceDns:
+      type: LoadBalancer
+      loadBalancerIP: 192.168.1.12
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+    persistentVolumeClaim:
+      enabled: true
+      existingClaim: pihole
+    DNS1: "1.1.1.1"
+    DNS2: "1.0.0.1"
+    adlists:
+      - https://raw.githubusercontent.com/kboghdady/youTube_ads_4_pi-hole/master/youtubelist.txt
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "internal"
+      hosts:
+        - "pihole.internal.${DOMAIN}"
+      tls:
+        - hosts:
+            - "pihole.internal.${DOMAIN}"
+    adminPassword: $PASSWORD
+    dnsmasq:
+      customDnsEntries:
+        - "address=/pihole.internal.${DOMAIN}/192.168.1.10"
+        - "address=/red.internal.${DOMAIN}/192.168.1.10"
+        - "address=/heimdall.internal.${DOMAIN}/192.168.1.10"

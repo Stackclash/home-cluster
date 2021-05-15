@@ -1,0 +1,70 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: bitwardenrs
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: bitwardenrs
+      version: 2.1.11
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+      # cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    # cleanupOnFail: true
+  values:
+    image:
+      repository: bitwardenrs/server
+      tag: 1.21.0
+    persistence:
+      enabled: true
+      existingClaim: bitwardenrs
+    bitwardenrs:
+      domain: "https://bitwarden.${DOMAIN}"
+      yubico:
+        enabled: true
+        clientId: "${YUBICO_CLIENT_ID}"
+        secretKey: "${YUBICO_SECRET_KEY}"
+      externalDatabase:
+        enabled: true
+        type: postgresql
+        host: 192.168.1.105
+        port: 49154
+        database: bitwardenrs
+        user: bitwardenrs
+        password: "${PASSWORD}"
+      smtp:
+        enabled: true
+        host: smtp.gmail.com
+        from: "no-reply@${DOMAIN}"
+        ssl: true
+        port: 587
+        user: "${EMAIL}"
+        password: "${GOOGLE_APP_PASSWORD}"
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "external"
+      hosts:
+        - host: "bitwarden.${DOMAIN}"
+          paths:
+            - /
+      tls:
+        - hosts:
+            - "bitwarden.${DOMAIN}"
