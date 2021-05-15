@@ -1,0 +1,53 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: node-red
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: node-red
+      version: 7.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+      # cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    # cleanupOnFail: true
+  values:
+    image:
+      repository: nodered/node-red
+      tag: 1.3.4-12-minimal
+    env:
+      TZ: America/Chicago
+      NODE_RED_ENABLE_PROJECTS: "true"
+    persistence:
+      data:
+        enabled: true
+        existingClaim: node-red
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "internal"
+      tls:
+      - hosts:
+        - "red.internal.${DOMAIN}"
+      hosts:
+      - host: "red.internal.${DOMAIN}"
+        paths:
+        - path: /
+          pathType: Prefix
