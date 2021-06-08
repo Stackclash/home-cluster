@@ -36,7 +36,7 @@ spec:
         value: America//Chicago
       service:
         externalIPs:
-        - 192.168.1.10
+        - "${INTERNAL_INGRESS_NGINX_LB}"
         externalTrafficPolicy: Local
       config:
         ssl-protocols: "TLSv1.3 TLSv1.2"
