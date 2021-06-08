@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - cert-manager
   - kube-system
-  - monitoring
   - namespaces
   - storage
   - system-upgrade
