@@ -1,103 +1,103 @@
 ---
-#apiVersion: helm.toolkit.fluxcd.io/v2beta1
-#kind: HelmRelease
-#metadata:
-#  name: kube-prometheus-stack
-#  namespace: monitoring
-#spec:
-#  interval: 5m
-#  chart:
-#    spec:
-#      # renovate: registryUrl=https://prometheus-community.github.io/helm-charts/
-#      chart: kube-prometheus-stack
-#      version: 12.12.1
-#      sourceRef:
-#        kind: HelmRepository
-#        name: prometheus-community
-#        namespace: flux-system
-#      interval: 5m
-#  install:
-#    remediation:
-#      retries: 3
-#  upgrade:
-#    remediation:
-#      retries: 3
-#      remediateLastFailure: true
-#      # cleanupOnFail: true
-#  rollback:
-#    timeout: 10m
-#    recreate: true
-#    # cleanupOnFail: true
-#  dependsOn:
-#    - name: sealed-secrets
-#      namespace: kube-system
-#    - name: ingress-nginx-internal
-#      namespace: kube-system
-#  values:
-#    alertmanager:
-#      enabled: true
-#      alertmanagerSpec:
-#        image:
-#          repository: quay.io/prometheus/alertmanager
-#          tag: v0.21.0
-#        logFormat: json
-#        logLevel: info
-#        storageSpec:
-#          volumeClaimTemplate:
-#            spec:
-#              storageClassName: nfs-kube
-#              accessModes: ["ReadWriteOnce"]
-#              resources:
-#                requests:
-#                  storage: 50Gi
-#    grafana:
-#      enabled: true
-#      image:
-#        repository: grafana/grafana
-#        tag: 7.3.7
-#      additionalDataSources: []
-#      persistence:
-#        type: pvc
-#        enabled: true
-#        storageClassName: nfs-kube
-#    prometheusOperator:
-#      image:
-#        repository: quay.io/prometheus-operator/prometheus-operator
-#        tag: v0.45.0
-#      configmapReloadImage:
-#        repository: docker.io/jimmidyson/configmap-reload
-#        tag: v0.4.0
-#      prometheusConfigReloaderImage:
-#        repository: quay.io/prometheus-operator/prometheus-config-reloader
-#        tag: v0.44.0
-#    prometheus:
-#      enabled: true
-#      prometheusSpec:
-#        image:
-#          repository: quay.io/prometheus/prometheus
-#          tag: v2.24.0
-#        logFormat: json
-#        logLevel: info
-#        storageSpec:
-#          volumeClaimTemplate:
-#            spec:
-#              storageClassName: nfs-kube
-#              accessModes: ["ReadWriteOnce"]
-#              resources:
-#                requests:
-#                  storage: 50Gi
-#    kubeControllerManager:
-#      enabled: false
-#    kubeScheduler:
-#      enabled: false
-#    kubeProxy:
-#      enabled: false
-#    kubeEtcd:
-#      enabled: false
-#    kube-state-metrics:
-#      image:
-#        repository: carlosedp/kube-state-metrics
-#        tag: v1.9.6
-#  valuesFrom:
-#    - kind: Secret
-#      name: "kube-prometheus-stack-values"
+# apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# kind: HelmRelease
+# metadata:
+#   name: kube-prometheus-stack
+#   namespace: monitoring
+# spec:
+#   interval: 5m
+#   chart:
+#     spec:
+#       # renovate: registryUrl=https://prometheus-community.github.io/helm-charts/
+#       chart: kube-prometheus-stack
+#       version: 12.12.1
+#       sourceRef:
+#         kind: HelmRepository
+#         name: prometheus-community
+#         namespace: flux-system
+#       interval: 5m
+#   install:
+#     remediation:
+#       retries: 3
+#   upgrade:
+#     remediation:
+#       retries: 3
+#       remediateLastFailure: true
+#       # cleanupOnFail: true
+#   rollback:
+#     timeout: 10m
+#     recreate: true
+#     # cleanupOnFail: true
+#   dependsOn:
+#     - name: sealed-secrets
+#       namespace: kube-system
+#     - name: ingress-nginx-internal
+#       namespace: kube-system
+#   values:
+#     alertmanager:
+#       enabled: true
+#       alertmanagerSpec:
+#         image:
+#           repository: quay.io/prometheus/alertmanager
+#           tag: v0.21.0
+#         logFormat: json
+#         logLevel: info
+#         storageSpec:
+#           volumeClaimTemplate:
+#             spec:
+#               storageClassName: nfs-kube
+#               accessModes: ["ReadWriteOnce"]
+#               resources:
+#                 requests:
+#                   storage: 50Gi
+#     grafana:
+#       enabled: true
+#       image:
+#         repository: grafana/grafana
+#         tag: 7.3.7
+#       additionalDataSources: []
+#       persistence:
+#         type: pvc
+#         enabled: true
+#         storageClassName: nfs-kube
+#     prometheusOperator:
+#       image:
+#         repository: quay.io/prometheus-operator/prometheus-operator
+#         tag: v0.45.0
+#       configmapReloadImage:
+#         repository: docker.io/jimmidyson/configmap-reload
+#         tag: v0.4.0
+#       prometheusConfigReloaderImage:
+#         repository: quay.io/prometheus-operator/prometheus-config-reloader
+#         tag: v0.44.0
+#     prometheus:
+#       enabled: true
+#       prometheusSpec:
+#         image:
+#           repository: quay.io/prometheus/prometheus
+#           tag: v2.24.0
+#         logFormat: json
+#         logLevel: info
+#         storageSpec:
+#           volumeClaimTemplate:
+#             spec:
+#               storageClassName: nfs-kube
+#               accessModes: ["ReadWriteOnce"]
+#               resources:
+#                 requests:
+#                   storage: 50Gi
+#     kubeControllerManager:
+#       enabled: false
+#     kubeScheduler:
+#       enabled: false
+#     kubeProxy:
+#       enabled: false
+#     kubeEtcd:
+#       enabled: false
+#     kube-state-metrics:
+#       image:
+#         repository: carlosedp/kube-state-metrics
+#         tag: v1.9.6
+#   valuesFrom:
+#     - kind: Secret
+#       name: "kube-prometheus-stack-values"
