@@ -6,5 +6,4 @@ metadata:
   namespace: flux-system
 spec:
   type: generic
-  secretRef:
-    name: webhook-url
+  address: "${WEBHOOK_URL}"

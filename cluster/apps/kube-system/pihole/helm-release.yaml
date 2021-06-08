@@ -53,7 +53,7 @@ spec:
       tls:
         - hosts:
             - "pihole.internal.${DOMAIN}"
-    adminPassword: $PASSWORD
+    adminPassword: "${PASSWORD}"
     dnsmasq:
       customDnsEntries:
         - "address=/pihole.internal.${DOMAIN}/192.168.1.10"
