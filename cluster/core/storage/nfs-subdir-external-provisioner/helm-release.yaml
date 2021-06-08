@@ -8,9 +8,8 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://www.ckotzbauer.de/helm-charts/
       chart: nfs-subdir-external-provisioner
-      version: 4.0.6
+      version: 4.0.10
       sourceRef:
         kind: HelmRepository
         name: nfs-subdir-external-provisioner
@@ -30,8 +29,8 @@ spec:
     # cleanupOnFail: true
   values:
     image:
-      repository: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner
-      tag: v4.0.1
+      repository: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner
+      tag: v4.0.2
     nfs:
       server: 192.168.1.105
       path: /export/k3s-nfs
