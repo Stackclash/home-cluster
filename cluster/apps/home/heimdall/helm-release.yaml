@@ -37,7 +37,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: heimdall
+        storageClass: nfs-kube
     ingress:
       enabled: true
       annotations:

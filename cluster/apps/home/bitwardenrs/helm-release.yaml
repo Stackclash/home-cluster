@@ -34,7 +34,7 @@ spec:
       tag: 1.21.0
     persistence:
       enabled: true
-      existingClaim: bitwardenrs
+      storageClass: nfs-kube
     bitwardenrs:
       domain: "https://bitwarden.${DOMAIN}"
       yubico:
