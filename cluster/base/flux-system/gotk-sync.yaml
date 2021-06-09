@@ -8,8 +8,6 @@ spec:
   interval: 1m0s
   ref:
     branch: master
-  secretRef:
-    name: flux-system
   url: https://github.com/RickCoxDev/home-cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
