@@ -44,8 +44,8 @@ spec:
       externalDatabase:
         enabled: true
         type: postgresql
-        host: 192.168.1.105
-        port: 49154
+        host: "${POSTGRESQL_HOST}"
+        port: "${POSTGRESQL_PORT}"
         database: bitwardenrs
         user: bitwardenrs
         password: "${PASSWORD}"
