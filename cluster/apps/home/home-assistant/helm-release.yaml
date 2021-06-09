@@ -36,7 +36,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: home-assistant
+        storageClass: nfs-kube
     ingress:
       enabled: true
       annotations:

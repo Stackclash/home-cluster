@@ -37,8 +37,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: booksonic
-        mountPath: /config
+        storageClass: nfs-kube
       audiobooks:
         enabled: true
         existingClaim: audiobooks

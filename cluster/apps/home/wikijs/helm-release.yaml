@@ -36,7 +36,7 @@ spec:
     persistence:
       data:
         enabled: true
-        existingClaim: wikijs
+        storageClass: nfs-kube
     env:
       TZ: America/Chicago
       DB_TYPE: postgres
