@@ -41,7 +41,8 @@ spec:
       address-pools:
       - name: default
         protocol: layer2
-        addresses: "${METALLB_LB_RANGE}"
+        addresses: 
+          - "${METALLB_LB_RANGE}"
     prometheus:
       enabled: true
       serviceMonitor:
