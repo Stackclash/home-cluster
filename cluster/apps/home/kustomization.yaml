@@ -6,7 +6,6 @@ resources:
   - booksonic-air
   - calibre-web
   - freshrss
-  - heimdall
   - home-assistant
   - node-red
   - PVs
