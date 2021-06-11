@@ -1,0 +1,17 @@
+- name: "set timezone to {{ timezone }}"
+  timezone:
+    name: "{{ timezone }}"
+
+- name: Update /etc/hostname
+  notify: reboot
+  copy:
+    dest: /etc/hostname
+    content: "{{inventory_hostname}}"
+    mode: preserve
+
+- name: Update /etc/hosts
+  notify: reboot
+  replace:
+    path: /etc/hosts
+    regexp: ^127\.0\.1\.1.*$
+    replace: "127.0.1.1       {{inventory_hostname}}"

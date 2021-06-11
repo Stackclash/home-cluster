@@ -1,0 +1,8 @@
+- hosts: master
+  vars_prompt:
+    - name: username
+      prompt: What username do you want to create for the Dashboard?
+      private: no
+      default: admin
+  roles:
+    - dashboard
