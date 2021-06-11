@@ -1,0 +1,63 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: vaultwarden
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: vaultwarden
+      version: 2.1.11
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+      # cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    # cleanupOnFail: true
+  values:
+    image:
+      repository: vaultwarden/server
+      tag: 1.21.0
+    persistence:
+      config:
+        enabled: true
+        storageClass: nfs-kube
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "external"
+      hosts:
+        - host: "vault.${DOMAIN}"
+          paths:
+            - /
+      tls:
+        - hosts:
+            - "vault.${DOMAIN}"
+    env:
+      DATABASE_URL: "postgresql://bitwardenrs:${PASSWORD}@${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/bitwardenrs"
+      DISABLE_2FA_REMEMBER: true
+      SIGNUPS_ALLOWED: false
+      SIGNUPS_VERIFY: true
+      DOMAIN: "vault.${DOMAIN}"
+      YUBICO_CLIENT_ID: "${YUBICO_CLIENT_ID}"
+      YUBICO_SECRET_KEY: "${YUBICO_SECRET_KEY}"
+      SMTP_HOST: smtp.gmail.com
+      SMTP_FROM: "no-reply@${DOMAIN}"
+      SMTP_FROM_NAME: Vaultwarden
+      SMTP_PORT: 587
+      SMTP_USERNAME: "${EMAIL}"
+      SMTP_PASSWORD: "${GOOGLE_APP_PASSWORD}"
