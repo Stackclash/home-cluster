@@ -2,3 +2,5 @@
 bin/
 ansible/roles/xanmanning.k3s
 ansible/venv
+ansible/kubeconfig/*
+!**/.gitkeep
