@@ -2,3 +2,7 @@
 ansible_host: 192.168.1.104
 ansible_user: pi
 k3s_node_ip_address: "{{ ansible_host }}"
+connection:
+  interface: eth0
+  ip_address: 192.168.1.104
+  router: 192.168.1.1
