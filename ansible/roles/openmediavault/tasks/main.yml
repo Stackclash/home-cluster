@@ -1,0 +1,12 @@
+- name: Download OpenMediaVault install script
+  get_url:
+    url: https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install
+    dest: /tmp/install.sh
+    mode: 0775
+- name: Execute install script
+  become: yes
+  command: /tmp/install.sh
+- name: Delete install script
+  file:
+    path: /tmp/install.sh
+    state: absent

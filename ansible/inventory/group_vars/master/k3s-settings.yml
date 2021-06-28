@@ -1,0 +1,13 @@
+---
+k3s_control_node: true
+k3s_server:
+  disable:
+  - traefik
+  - servicelb
+  - local-storage
+  - metrics-server
+  node-label:
+  - k3s-upgrade=true
+  tls-san:
+    - 24.217.162.29
+k3s_kubeconfig_context_name: raspi

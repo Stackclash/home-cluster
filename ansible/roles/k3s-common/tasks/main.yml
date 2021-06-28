@@ -1,0 +1,39 @@
+- name: "set timezone to {{ timezone }}"
+  timezone:
+    name: "{{ timezone }}"
+
+- name: Update /etc/hostname
+  notify: reboot
+  copy:
+    dest: /etc/hostname
+    content: "{{inventory_hostname}}"
+    mode: preserve
+
+- name: Update /etc/hosts
+  notify: reboot
+  replace:
+    path: /etc/hosts
+    regexp: ^127\.0\.1\.1.*$
+    replace: "127.0.1.1       {{inventory_hostname}}"
+
+- name: Enable container features
+  replace:
+    path: /boot/cmdline.txt
+    regexp: '^([\w](?!.*\b{{ item }}\b).*)$'
+    replace: '\1 {{ item }}'
+  with_items:
+  - "cgroup_enable=cpuset"
+  - "cgroup_memory=1"
+  - "cgroup_enable=memory"
+
+- name: Configure static IP in  /etc/dhcpcd.conf
+  notify: reboot
+  lineinfile:
+    dest:  /etc/dhcpcd.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - { regexp: "^interface eth[0-9]$", line: "interface {{ connection.interface }}" }
+    - { regexp: "^static ip_address", line: "static ip_address={{ connection.ip_address }}" }
+    - { regexp: "^static routers", line: "static routers={{ connection.router }}" }
