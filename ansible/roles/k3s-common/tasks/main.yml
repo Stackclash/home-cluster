@@ -26,13 +26,14 @@
   - "cgroup_memory=1"
   - "cgroup_enable=memory"
 
-- name: Configure static IP in  /etc/dhcpcd.conf
+- name: Configure static IP in /etc/dhcpcd.conf
   notify: reboot
   lineinfile:
     dest:  /etc/dhcpcd.conf
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
+  when: "'storage' not in group_names"
   with_items:
     - { regexp: "^interface eth[0-9]$", line: "interface {{ connection.interface }}" }
     - { regexp: "^static ip_address", line: "static ip_address={{ connection.ip_address }}" }
