@@ -1,14 +1,18 @@
-- hosts: all
-  vars_prompt:
-    - name: timezone
-      prompt: What timezone do you want to use?
-      private: no
-      default: America/Chicago
-  roles:
-    - k3s-common
+# - hosts: all
+#   vars_prompt:
+#     - name: timezone
+#       prompt: What timezone do you want to use?
+#       private: no
+#       default: America/Chicago
+#   roles:
+#     - k3s-common
+# - hosts:
+#     - master
+#     - worker
+#   roles:
+#     - xanmanning.k3s
+#     - k3s
 - hosts:
-    - master
-    - worker
+    - storage
   roles:
-    - xanmanning.k3s
-    - k3s
+    - openmediavault
