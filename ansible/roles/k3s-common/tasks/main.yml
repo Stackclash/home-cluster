@@ -33,7 +33,6 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
-  when: "'storage' not in group_names"
   with_items:
     - { regexp: "^interface eth[0-9]$", line: "interface {{ connection.interface }}" }
     - { regexp: "^static ip_address", line: "static ip_address={{ connection.ip_address }}" }
