@@ -5,7 +5,7 @@
     mode: 0775
 - name: Execute install script
   become: yes
-  command: /tmp/install.sh
+  command: /tmp/install.sh -n
 - name: Delete install script
   file:
     path: /tmp/install.sh

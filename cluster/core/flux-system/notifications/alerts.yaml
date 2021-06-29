@@ -7,7 +7,7 @@ metadata:
 spec:
   providerRef:
     name: pushover
-  eventSeverity: info
+  eventSeverity: error
   eventSources:
     - kind: GitRepository
       name: '*'
