@@ -48,7 +48,7 @@ spec:
         - hosts:
             - "vault.${DOMAIN}"
     env:
-      DATABASE_URL: "postgresql://bitwardenrs:${PASSWORD}@${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/bitwardenrs"
+      DATABASE_URL: "postgresql://vaultwarden:${PASSWORD}@${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/vaultwarden"
       DISABLE_2FA_REMEMBER: true
       SIGNUPS_ALLOWED: false
       SIGNUPS_VERIFY: true
