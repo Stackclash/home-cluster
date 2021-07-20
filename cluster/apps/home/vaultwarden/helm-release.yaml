@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: vaultwarden
-      version: 2.2.0
+      version: 2.3.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
@@ -37,21 +37,19 @@ spec:
         enabled: true
         storageClass: nfs-kube
     ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: "external"
-      hosts:
-        - host: "vault.${DOMAIN}"
-          paths:
-            - /
-      tls:
-        - hosts:
-            - "vault.${DOMAIN}"
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: "external"
+        hosts:
+          - host: "vault.${DOMAIN}"
+            paths:
+              - /
+        tls:
+          - hosts:
+              - "vault.${DOMAIN}"
     env:
-      DATABASE_URL: "postgresql://vaultwarden:${PASSWORD}@${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/vaultwarden"
-      DISABLE_2FA_REMEMBER: true
-      SIGNUPS_ALLOWED: false
-      SIGNUPS_VERIFY: true
+      DATA_FOLDER: "config"
       DOMAIN: "vault.${DOMAIN}"
       YUBICO_CLIENT_ID: "${YUBICO_CLIENT_ID}"
       YUBICO_SECRET_KEY: "${YUBICO_SECRET_KEY}"
