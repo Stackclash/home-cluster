@@ -37,17 +37,18 @@ spec:
         enabled: true
         storageClass: nfs-kube
     ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: "external"
-      hosts:
-        - host: "vault.${DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - hosts:
-            - "vault.${DOMAIN}"
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: "external"
+        hosts:
+          - host: "vault.${DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "vault.${DOMAIN}"
     env:
       DATA_FOLDER: "config"
       DOMAIN: "vault.${DOMAIN}"
