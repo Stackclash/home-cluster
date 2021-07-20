@@ -51,7 +51,7 @@ spec:
               - "vault.${DOMAIN}"
     env:
       DATA_FOLDER: "config"
-      DOMAIN: "vault.${DOMAIN}"
+      DOMAIN: "https://vault.${DOMAIN}"
       YUBICO_CLIENT_ID: "${YUBICO_CLIENT_ID}"
       YUBICO_SECRET_KEY: "${YUBICO_SECRET_KEY}"
       SMTP_HOST: smtp.gmail.com
