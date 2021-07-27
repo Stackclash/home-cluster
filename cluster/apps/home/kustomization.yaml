@@ -6,6 +6,7 @@ resources:
   - calibre-web
   - freshrss
   - home-assistant
+  - homer
   - node-red
   - PVs
   - vaultwarden
