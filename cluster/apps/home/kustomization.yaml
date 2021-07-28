@@ -5,6 +5,7 @@ resources:
   - booksonic-air
   - calibre-web
   - freshrss
+  - grocy
   - home-assistant
   - homer
   - node-red
