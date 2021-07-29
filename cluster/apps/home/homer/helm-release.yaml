@@ -129,3 +129,7 @@ spec:
                 url: "https://grocy.${DOMAIN}"
                 target: "_blank"
                 icon: "fas fa-shopping-cart"
+              - name: "OpenFaaS"
+                url: "https://openfaas.mysmarthome.space"
+                target: "_blank"
+                icon: "fas fa-atom"
