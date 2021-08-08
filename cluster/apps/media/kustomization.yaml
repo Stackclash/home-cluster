@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - booksonic-air
   - calibre-web
+  - PVs

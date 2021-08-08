@@ -7,5 +7,4 @@ resources:
   - home-assistant
   - homer
   - node-red
-  - PVs
   - vaultwarden
