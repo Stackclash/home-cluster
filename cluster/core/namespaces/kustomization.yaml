@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - home.yaml
+  - media.yaml
   - monitoring.yaml
   - openfaas.yaml
   - storage.yaml

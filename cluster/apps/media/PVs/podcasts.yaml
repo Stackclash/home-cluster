@@ -19,7 +19,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: podcasts
-  namespace: home
+  namespace: media
 spec:
   accessModes:
   - ReadWriteMany
