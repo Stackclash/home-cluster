@@ -84,6 +84,10 @@ spec:
             text-subtitle: "#f5f5f5"
             card-shadow: rgba(0, 0, 0, 0.4)
             link-hover: "#ffdd57"
+        tags:
+          Disabled: &Disabled
+            - tag: "Disabled"
+              tagstyle: "is-danger"
         links:
           - name: "Github"
             icon: "fab fa-github"
@@ -143,6 +147,7 @@ spec:
                 icon: "fas fa-book-reader"
               - name: "Booksonic"
                 url: "https://booksonic.${DOMAIN}"
+                <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-podcast"
               - name: "FreshRSS"
@@ -155,9 +160,11 @@ spec:
                 icon: "fas fa-lock"
               - name: "Grocy"
                 url: "https://grocy.${DOMAIN}"
+                <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-shopping-cart"
               - name: "OpenFaaS"
                 url: "https://openfaas.mysmarthome.space"
+                <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-atom"
