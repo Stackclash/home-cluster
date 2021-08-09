@@ -4,4 +4,9 @@ kind: Kustomization
 resources:
   - booksonic-air
   - calibre-web
+  - jackett
+  - ombi
   - PVs
+  - radarr
+  - readarr
+  - sonarr

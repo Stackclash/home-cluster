@@ -1,0 +1,57 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: readarr
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: readarr
+      version: 5.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+      # cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    # cleanupOnFail: true
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/readarr
+      tag: v0.1.0.715
+    env:
+      TZ: America/Chicago
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: "internal"
+        hosts:
+          - host: "readarr.internal.mysmarthome.space"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "readarr.internal.mysmarthome.space"
+    persistence:
+      config:
+        enabled: true
+        storageClass: nfs-kube
+      media:
+        enabled: true
+        mountPath: /books
+        existingClaim: books

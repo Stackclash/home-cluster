@@ -4,4 +4,6 @@ kind: Kustomization
 resources:
   - audiobooks.yaml
   - books.yaml
+  - movies.yaml
   - podcasts.yaml
+  - tv-shows.yaml

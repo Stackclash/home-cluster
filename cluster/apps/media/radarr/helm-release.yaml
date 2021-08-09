@@ -1,0 +1,91 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: radarr
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: radarr
+      version: 12.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+      # cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    # cleanupOnFail: true
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/radarr
+      tag: v3.2.2.5080
+    env:
+      TZ: America/Chicago
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: "internal"
+        hosts:
+          - host: "radarr.internal.mysmarthome.space"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "radarr.internal.mysmarthome.space"
+    # -- Configure persistence settings for the chart under this key.
+    # @default -- See values.yaml
+    persistence:
+      config:
+        enabled: true
+        storageClass: nfs-kube
+      media:
+        enabled: true
+        mountPath: /movies
+        existingClaim: movies
+
+    prometheus:
+      # -- Enable and configure a Prometheus podMonitor for the chart under this key.
+      # See also the notes under `additionalContainers`.
+      # @default -- See values.yaml
+      podMonitor:
+        enabled: false
+        interval: 3m
+        scrapeTimeout: 1m
+        additionalLabels: {}
+
+    # # When using the prometheus.podMonitor the following
+    # # container is required
+    # additionalContainers:
+    # - name: exportarr
+    #   image: ghcr.io/onedr0p/exportarr:v0.6.0
+    #   imagePullPolicy: IfNotPresent
+    #   args: ["exportarr", "radarr"]
+    #   env:
+    #   - name: PORT
+    #     value: "32123"
+    #   - name: URL
+    #     value: "http://localhost"
+    #   - name: CONFIG
+    #     value: "/config/config.xml"
+    #   ports:
+    #   - name: exportarr
+    #     containerPort: 32123
+    #   volumeMounts:
+    #   - name: config
+    #     mountPath: /config
+    #     readOnly: true
