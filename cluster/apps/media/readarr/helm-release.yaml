@@ -30,8 +30,8 @@ spec:
     # cleanupOnFail: true
   values:
     image:
-      repository: ghcr.io/k8s-at-home/readarr
-      tag: v0.1.0.919
+      repository: linuxserver/readarr
+      tag: nightly-version-0.1.0.904
     env:
       TZ: America/Chicago
     ingress:
