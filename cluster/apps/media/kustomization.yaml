@@ -2,11 +2,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # - booksonic-air
-  # - calibre-web
-  - jackett
+  - booksonic-air
+  - calibre-web
+  # - jackett
   - ombi
   - PVs
-  - radarr
+  # - radarr
   # - readarr
-  - sonarr
+  # - sonarr

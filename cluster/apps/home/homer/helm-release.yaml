@@ -108,14 +108,17 @@ spec:
                 icon: "fas fa-shield-alt"
               - name: "Jackett"
                 url: "https://jackett.internal.${DOMAIN}"
+                <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-user-secret"
               - name: "Sonarr"
                 url: "https://sonarr.internal.${DOMAIN}"
+                <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-tv"
               - name: "Radarr"
                 url: "https://radarr.internal.${DOMAIN}"
+                <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-film"
               - name: "Readarr"
@@ -144,12 +147,10 @@ spec:
                 icon: "fas fa-link"
               - name: "Calibre"
                 url: "https://calibre.${DOMAIN}"
-                <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-book-reader"
               - name: "Booksonic"
                 url: "https://booksonic.${DOMAIN}"
-                <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-podcast"
               - name: "FreshRSS"
@@ -162,7 +163,6 @@ spec:
                 icon: "fas fa-lock"
               - name: "Grocy"
                 url: "https://grocy.${DOMAIN}"
-                <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-shopping-cart"
               - name: "OpenFaaS"
