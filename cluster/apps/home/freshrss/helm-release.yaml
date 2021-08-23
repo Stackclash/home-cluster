@@ -42,6 +42,8 @@ spec:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: "external"
+        nginx.ingress.kubernetes.io/enable-cors: "true"
+        nginx.ingress.kubernetes.io/cors-allow-origin: "https://homer.${DOMAIN}"
       tls:
         - hosts:
             - "rss.${DOMAIN}"
