@@ -102,47 +102,34 @@ spec:
                 url: "https://red.internal.${DOMAIN}"
                 target: "_blank"
                 icon: "fas fa-project-diagram"
-                type: "Ping"
-                refreshInterval: 60
               - name: "Pihole"
                 url: "https://pihole.internal.${DOMAIN}/admin"
                 target: "_blank"
                 icon: "fas fa-shield-alt"
-                type: "PiHole"
               - name: "Jackett"
                 url: "https://jackett.internal.${DOMAIN}"
                 <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-user-secret"
-                type: "Ping"
-                refreshInterval: 60
               - name: "Sonarr"
                 url: "https://sonarr.internal.${DOMAIN}"
                 <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-tv"
-                type: "Ping"
-                refreshInterval: 60
               - name: "Radarr"
                 url: "https://radarr.internal.${DOMAIN}"
                 <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-film"
-                type: "Ping"
-                refreshInterval: 60
               - name: "Readarr"
                 url: "https://readarr.internal.${DOMAIN}"
                 <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-book"
-                type: "Ping"
-                refreshInterval: 60
               - name: "OpenMediaVault"
                 url: "http://192.168.1.105"
                 target: "_blank"
                 icon: "fas fa-hdd"
-                type: "Ping"
-                refreshInterval: 60
           - name: "External Applications"
             icon: "fas fa-cloud"
             items:
@@ -150,54 +137,36 @@ spec:
                 url: "https://${DOMAIN}"
                 target: "_blank"
                 icon: "fas fa-house-user"
-                type: "Ping"
-                refreshInterval: 60
               - name: "Plex"
                 url: "https://app.plex.tv"
                 target: "_blank"
                 icon: "fas fa-video"
-                type: "Ping"
-                refreshInterval: 60
               - name: "Ombi"
                 url: "https://ombi.${DOMAIN}"
                 target: "_blank"
                 icon: "fas fa-link"
-                type: "Ping"
-                refreshInterval: 60
               - name: "Calibre"
                 url: "https://calibre.${DOMAIN}"
                 target: "_blank"
                 icon: "fas fa-book-reader"
-                type: "Ping"
-                refreshInterval: 60
               - name: "Booksonic"
                 url: "https://booksonic.${DOMAIN}"
                 target: "_blank"
                 icon: "fas fa-podcast"
-                type: "Ping"
-                refreshInterval: 60
               - name: "FreshRSS"
                 url: "https://rss.${DOMAIN}"
                 target: "_blank"
                 icon: "fas fa-rss"
-                type: "Ping"
-                refreshInterval: 60
               - name: "Bitwarden"
                 url: "https://vault.${DOMAIN}"
                 target: "_blank"
                 icon: "fas fa-lock"
-                type: "Ping"
-                refreshInterval: 60
               - name: "Grocy"
                 url: "https://grocy.${DOMAIN}"
                 target: "_blank"
                 icon: "fas fa-shopping-cart"
-                type: "Ping"
-                refreshInterval: 60
               - name: "OpenFaaS"
                 url: "https://openfaas.mysmarthome.space"
                 <<: *Disabled
                 target: "_blank"
                 icon: "fas fa-atom"
-                type: "Ping"
-                refreshInterval: 60
