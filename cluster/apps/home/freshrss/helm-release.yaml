@@ -39,16 +39,17 @@ spec:
         enabled: true
         storageClass: nfs-kube
     ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: "external"
-        nginx.ingress.kubernetes.io/enable-cors: "true"
-        nginx.ingress.kubernetes.io/cors-allow-origin: "https://homer.${DOMAIN}"
-      tls:
-        - hosts:
-            - "rss.${DOMAIN}"
-      hosts:
-        - host: "rss.${DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
+      main:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/enable-cors: "true"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://homer.${DOMAIN}"
+        ingressClassName: external
+        tls:
+          - hosts:
+              - "rss.${DOMAIN}"
+        hosts:
+          - host: "rss.${DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
