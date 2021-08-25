@@ -9,11 +9,11 @@
   "assignees": ["@RickCoxDev"],
   "rebaseWhen": "conflicted",
   "helm-values": {
-    "fileMatch": ["cluster/.+\\.yml$"]
+    "fileMatch": ["cluster/.+\\.yaml$"]
   },
   "regexManagers": [
     {
-      "fileMatch": ["cluster/.+\\.yml$"],
+      "fileMatch": ["cluster/.+\\.yaml$"],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
       ],
