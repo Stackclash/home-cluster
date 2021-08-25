@@ -43,10 +43,5 @@ spec:
         protocol: layer2
         addresses: 
           - "${METALLB_LB_RANGE}"
-    prometheus:
-      enabled: true
-      serviceMonitor:
-        # enabled: true
-        interval: 30s
-      prometheusRule:
-        enabled: false
+    prometheusRule:
+      enabled: false
