@@ -33,6 +33,7 @@ spec:
       repository: homeassistant/home-assistant
       tag: "2021.6.3"
     hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
     persistence:
       config:
         enabled: true
