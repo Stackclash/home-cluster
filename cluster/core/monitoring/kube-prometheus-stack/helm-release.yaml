@@ -83,7 +83,7 @@ spec:
         tag: v0.5.0
       prometheusConfigReloaderImage:
         repository: quay.io/prometheus-operator/prometheus-config-reloader
-        tag: v0.44.0
+        tag: v0.50.0
     prometheus:
       enabled: true
       prometheusSpec:
