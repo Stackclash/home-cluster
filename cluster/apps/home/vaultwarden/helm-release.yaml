@@ -48,6 +48,14 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+              - path: /notifications/hub/negotiate
+                pathType: Prefix
+                service:
+                  port: 80
+              - path: /notifications/hub
+                pathType: Prefix
+                service:
+                  port: 3012
         tls:
           - hosts:
               - "vault.${DOMAIN}"
