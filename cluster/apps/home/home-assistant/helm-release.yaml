@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: home-assistant
-      version: 8.3.1
+      version: 10.0.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
@@ -33,6 +33,7 @@ spec:
       repository: homeassistant/home-assistant
       tag: "2021.8.8"
     hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
     persistence:
       config:
         enabled: true
