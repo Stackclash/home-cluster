@@ -83,8 +83,7 @@ spec:
           enabled: true
           annotations:
             metallb.universe.tf/address-pool: default
-          loadBalancerIP: 
-            - "${INTERNAL_INGRESS_NGINX_LB}"
+          loadBalancerIP: "${INTERNAL_INGRESS_NGINX_LB}"
           loadBalancerSourceRanges:
             - "${INTERNAL_INGRESS_NGINX_LB}"
       admissionWebhooks:
