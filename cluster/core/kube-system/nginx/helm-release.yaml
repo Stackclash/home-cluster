@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ingress-nginx-external
+  name: ingress-nginx
   namespace: kube-system
 spec:
   interval: 5m
@@ -28,9 +28,6 @@ spec:
     timeout: 10m
     recreate: true
     # cleanupOnFail: true
-  dependsOn:
-  - name: ingress-nginx-internal
-    namespace: kube-system
   values:
     controller:
       name: controller
