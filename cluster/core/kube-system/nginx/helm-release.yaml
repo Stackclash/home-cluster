@@ -69,7 +69,7 @@ spec:
           - "${EXTERNAL_INGRESS_NGINX_LB}"
         loadBalancerIP: "${EXTERNAL_INGRESS_NGINX_LB}"
         loadBalancerSourceRanges:
-          - "${EXTERNAL_INGRESS_NGINX_LB}"
+          - "${EXTERNAL_INGRESS_NGINX_LB}/32"
         enableHttp: true
         enableHttps: true
         targetPorts:
@@ -82,7 +82,7 @@ spec:
             metallb.universe.tf/address-pool: default
           loadBalancerIP: "${INTERNAL_INGRESS_NGINX_LB}"
           loadBalancerSourceRanges:
-            - "${INTERNAL_INGRESS_NGINX_LB}"
+            - "${INTERNAL_INGRESS_NGINX_LB}/32"
       admissionWebhooks:
         annotations: {}
         enabled: true
