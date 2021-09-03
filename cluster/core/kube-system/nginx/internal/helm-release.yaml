@@ -1,0 +1,175 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx-internal
+  namespace: kube-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://kubernetes.github.io/ingress-nginx
+      chart: ingress-nginx
+      version: 4.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+      # cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    # cleanupOnFail: true
+  values:
+    controller:
+      name: controller
+      image:
+        registry: k8s.gcr.io
+        image: ingress-nginx/controller
+        tag: "v1.0.0"
+      config:
+        ssl-protocols: "TLSv1.3 TLSv1.2"
+        # Setting use-proxy-protocol to true will break the proxy
+        use-proxy-protocol: "false"
+        proxy-body-size: "0"
+        use-forwarded-headers: "true"
+      ingressClassResource:
+        name: external
+        enabled: true
+        default: false
+        controllerValue: "k8s.io/ingress-nginx"
+      publishService:
+        enabled: true
+      extraEnvs:
+      - name: TZ
+        value: America/Chicago
+      extraArgs:
+        default-ssl-certificate: "cert-manager/acme-crt-secret"
+      kind: Deployment
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+      service:
+        enabled: true
+        annotations:
+          metallb.universe.tf/address-pool: default
+        externalIPs:
+          - "${INTERNAL_INGRESS_NGINX_LB}"
+        loadBalancerIP: "${INTERNAL_INGRESS_NGINX_LB}"
+        loadBalancerSourceRanges:
+          - "${INTERNAL_INGRESS_NGINX_LB}/32"
+        enableHttp: true
+        enableHttps: true
+        targetPorts:
+          http: http
+          https: https
+        type: LoadBalancer
+        internal:
+          enabled: false
+      admissionWebhooks:
+        annotations: {}
+        enabled: true
+        failurePolicy: Fail
+        port: 8443
+        certificate: "/usr/local/certificates/cert"
+        key: "/usr/local/certificates/key"
+        service:
+          annotations: {}
+          # clusterIP: ""
+          externalIPs: []
+          # loadBalancerIP: ""
+          loadBalancerSourceRanges: []
+          servicePort: 443
+          type: ClusterIP
+        patch:
+          enabled: true
+          image:
+            registry: k8s.gcr.io
+            image: ingress-nginx/kube-webhook-certgen
+            tag: v1.0
+          nodeSelector:
+            beta.kubernetes.io/os: linux
+      metrics:
+        enabled: false
+        service:
+          annotations: {}
+          # prometheus.io/scrape: "true"
+          # prometheus.io/port: "10254"
+          externalIPs: []
+          # loadBalancerIP: ""
+          loadBalancerSourceRanges: []
+          type: ClusterIP
+
+        serviceMonitor:
+          enabled: false
+          namespace: ""
+          scrapeInterval: 30s
+
+        prometheusRule:
+          enabled: false
+          rules: []
+            # # These are just examples rules, please adapt them to your needs
+            # - alert: NGINXConfigFailed
+            #   expr: count(nginx_ingress_controller_config_last_reload_successful == 0) > 0
+            #   for: 1s
+            #   labels:
+            #     severity: critical
+            #   annotations:
+            #     description: bad ingress config - nginx config test failed
+            #     summary: uninstall the latest ingress changes to allow config reloads to resume
+            # - alert: NGINXCertificateExpiry
+            #   expr: (avg(nginx_ingress_controller_ssl_expire_time_seconds) by (host) - time()) < 604800
+            #   for: 1s
+            #   labels:
+            #     severity: critical
+            #   annotations:
+            #     description: ssl certificate(s) will expire in less then a week
+            #     summary: renew expiring certificates to avoid downtime
+            # - alert: NGINXTooMany500s
+            #   expr: 100 * ( sum( nginx_ingress_controller_requests{status=~"5.+"} ) / sum(nginx_ingress_controller_requests) ) > 5
+            #   for: 1m
+            #   labels:
+            #     severity: warning
+            #   annotations:
+            #     description: Too many 5XXs
+            #     summary: More than 5% of all requests returned 5XX, this requires your attention
+            # - alert: NGINXTooMany400s
+            #   expr: 100 * ( sum( nginx_ingress_controller_requests{status=~"4.+"} ) / sum(nginx_ingress_controller_requests) ) > 5
+            #   for: 1m
+            #   labels:
+            #     severity: warning
+            #   annotations:
+            #     description: Too many 4XXs
+            #     summary: More than 5% of all requests returned 4XX, this requires your attention
+
+    ## Default 404 backend
+    defaultBackend:
+      enabled: false
+      name: defaultbackend
+      image:
+        registry: k8s.gcr.io
+        image: defaultbackend-amd64
+        tag: "1.5"
+        runAsNonRoot: true
+        readOnlyRootFilesystem: true
+        allowPrivilegeEscalation: false
+      serviceAccount:
+        create: true
+        name: ""
+        automountServiceAccountToken: true
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+      service:
+        annotations: {}
+        externalIPs: []
+        # loadBalancerIP: ""
+        loadBalancerSourceRanges: []
+        servicePort: 80
+        type: ClusterIP

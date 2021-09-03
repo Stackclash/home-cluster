@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ingress-nginx
+  name: ingress-nginx-external
   namespace: kube-system
 spec:
   interval: 5m
@@ -78,12 +78,7 @@ spec:
           https: https
         type: LoadBalancer
         internal:
-          enabled: true
-          annotations:
-            metallb.universe.tf/address-pool: default
-          loadBalancerIP: "${INTERNAL_INGRESS_NGINX_LB}"
-          loadBalancerSourceRanges:
-            - "${INTERNAL_INGRESS_NGINX_LB}/32"
+          enabled: false
       admissionWebhooks:
         annotations: {}
         enabled: true
