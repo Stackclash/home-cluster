@@ -29,21 +29,32 @@ spec:
     recreate: true
     # cleanupOnFail: true
   values:
+    replicaCount: 1
+    strategyType: RollingUpdate
+    # -- The maximum number of Pods that can be created over the desired number of `ReplicaSet` during updating.
+    maxSurge: 1
+    # -- The maximum number of Pods that can be unavailable during updating
+    maxUnavailable: 0
     image:
       repository: "pihole/pihole"
       tag: v5.8.1
     serviceDns:
+      mixedService: true
       type: LoadBalancer
       loadBalancerIP: 192.168.1.12
       annotations:
+        metallb.universe.tf/address-pool: default
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+    serviceDhcp:
+      enabled: true
+      type: LoadBalancer
+      loadBalancerIP: 192.168.1.12
+      annotations:
+        metallb.universe.tf/address-pool: default
         metallb.universe.tf/allow-shared-ip: pihole-svc
     persistentVolumeClaim:
       enabled: true
       storageClass: nfs-kube
-    DNS1: "1.1.1.1"
-    DNS2: "1.0.0.1"
-    adlists:
-      - https://raw.githubusercontent.com/kboghdady/youTube_ads_4_pi-hole/master/youtubelist.txt
     ingress:
       enabled: true
       annotations:
@@ -55,8 +66,13 @@ spec:
       tls:
         - hosts:
             - "pihole.internal.${DOMAIN}"
+    extraEnvVars:
+      TZ: America/Chicago
+    DNS1: "1.1.1.1"
+    DNS2: "1.0.0.1"
     adminPassword: "${PASSWORD}"
     dnsmasq:
+        # -- Add custom dns entries to override the dns resolution. All lines will be added to the pihole dnsmasq configuration.
       customDnsEntries:
         - "address=/pihole.internal.${DOMAIN}/192.168.1.10"
         - "address=/red.internal.${DOMAIN}/192.168.1.10"
@@ -64,3 +80,56 @@ spec:
         - "address=/radarr.internal.${DOMAIN}/192.168.1.10"
         - "address=/readarr.internal.${DOMAIN}/192.168.1.10"
         - "address=/sonarr.internal.${DOMAIN}/192.168.1.10"
+
+      # -- Add upstream dns servers. All lines will be added to the pihole dnsmasq configuration
+      upstreamServers: []
+      # - server=/foo.bar/192.168.178.10
+      # - server=/bar.foo/192.168.178.11
+
+      # -- Dnsmasq reads the /etc/hosts file to resolve ips. You can add additional entries if you like
+      additionalHostsEntries: []
+      # - 192.168.0.3     host4
+      # - 192.168.0.4     host5
+
+      # -- Static DHCP config
+      staticDhcpEntries: []
+      # staticDhcpEntries:
+      # - dhcp-host=MAC_ADDRESS,IP_ADDRESS,HOSTNAME
+
+      # -- Other options
+      customSettings:
+      # otherSettings:
+      # - rebind-domain-ok=/plex.direct/
+
+      # -- Here we specify custom cname entries that should point to `A` records or
+      # elements in customDnsEntries array.
+      # The format should be:
+      #  - cname=cname.foo.bar,foo.bar
+      #  - cname=cname.bar.foo,bar.foo
+      #  - cname=cname record,dns record
+      customCnameEntries: []
+      # Here we specify custom cname entries that should point to `A` records or
+      # elements in customDnsEntries array.
+      # The format should be:
+      #   - cname=cname.foo.bar,foo.bar
+      #   - cname=cname.bar.foo,bar.foo
+      #   - cname=cname record,dns record
+
+    # -- list of adlists to import during initial start of the container
+    adlists:
+      - https://raw.githubusercontent.com/kboghdady/youTube_ads_4_pi-hole/master/youtubelist.txt
+
+    # -- list of whitelisted domains to import during initial start of the container
+    whitelist: {}
+      # If you want to provide whitelisted domains, add them here.
+      # - clients4.google.com
+
+    # -- list of blacklisted domains to import during initial start of the container
+    blacklist: {}
+      # If you want to have special domains blacklisted, add them here
+      # - *.blackist.com
+
+    # -- list of blacklisted regex expressions to import during initial start of the container
+    regex: {}
+      # Add regular expression blacklist items
+      # - (^|\.)facebook\.com$
