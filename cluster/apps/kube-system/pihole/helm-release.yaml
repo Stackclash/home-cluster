@@ -119,9 +119,9 @@ spec:
       - https://raw.githubusercontent.com/kboghdady/youTube_ads_4_pi-hole/master/youtubelist.txt
 
     # -- list of whitelisted domains to import during initial start of the container
-    whitelist: {}
-      # If you want to provide whitelisted domains, add them here.
-      # - clients4.google.com
+    whitelist:
+      - s.youtube.com
+      
 
     # -- list of blacklisted domains to import during initial start of the container
     blacklist: {}
