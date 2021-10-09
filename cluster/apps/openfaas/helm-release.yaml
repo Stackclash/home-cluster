@@ -54,7 +54,7 @@ spec:
     faasIdler:
       image: openfaas/faas-idler:0.3.1-armhf
     basicAuthPlugin:
-      image: openfaas/basic-auth-plugin:0.18.11-armhf
+      image: openfaas/basic-auth-plugin:0.20.2-armhf
       replicas: 1
     ingressOperator:
       create: true
