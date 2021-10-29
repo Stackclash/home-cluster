@@ -14,7 +14,7 @@ jobs:
         fetch-depth: 1
 
     - name: Renovate Helm Releases
-      uses: k8s-at-home/renovate-helm-releases@v1
+      uses: k8s-at-home/renovate-helm-releases@v1.4.5
       with:
         cluster-path: "./cluster"
 
