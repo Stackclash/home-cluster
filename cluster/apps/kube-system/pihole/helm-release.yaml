@@ -71,7 +71,7 @@ spec:
     DNS2: "1.0.0.1"
     adminPassword: "${PASSWORD}"
     dnsmasq:
-        # -- Add custom dns entries to override the dns resolution. All lines will be added to the pihole dnsmasq configuration.
+      # -- Add custom dns entries to override the dns resolution. All lines will be added to the pihole dnsmasq configuration.
       customDnsEntries:
         - "address=/pihole.internal.${DOMAIN}/192.168.1.10"
         - "address=/red.internal.${DOMAIN}/192.168.1.10"
@@ -121,14 +121,14 @@ spec:
     # -- list of whitelisted domains to import during initial start of the container
     whitelist:
       - s.youtube.com
-      
+
 
     # -- list of blacklisted domains to import during initial start of the container
     blacklist: {}
-      # If you want to have special domains blacklisted, add them here
-      # - *.blackist.com
+    # If you want to have special domains blacklisted, add them here
+    # - *.blackist.com
 
     # -- list of blacklisted regex expressions to import during initial start of the container
     regex: {}
-      # Add regular expression blacklist items
-      # - (^|\.)facebook\.com$
+    # Add regular expression blacklist items
+    # - (^|\.)facebook\.com$

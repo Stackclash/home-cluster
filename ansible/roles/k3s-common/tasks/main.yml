@@ -1,3 +1,4 @@
+---
 - name: "set timezone to {{ timezone }}"
   timezone:
     name: "{{ timezone }}"
@@ -29,11 +30,11 @@
 - name: Configure static IP in /etc/dhcpcd.conf
   notify: reboot
   lineinfile:
-    dest:  /etc/dhcpcd.conf
+    dest: /etc/dhcpcd.conf
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
   with_items:
-    - { regexp: "^interface eth[0-9]$", line: "interface {{ connection.interface }}" }
-    - { regexp: "^static ip_address", line: "static ip_address={{ connection.ip_address }}" }
-    - { regexp: "^static routers", line: "static routers={{ connection.router }}" }
+  - {regexp: "^interface eth[0-9]$", line: "interface {{ connection.interface }}"}
+  - {regexp: "^static ip_address", line: "static ip_address={{ connection.ip_address }}"}
+  - {regexp: "^static routers", line: "static routers={{ connection.router }}"}
