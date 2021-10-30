@@ -36,3 +36,6 @@ spec:
     service:
       type: LoadBalancer
       loadBalancerIP: "${MARIADB_LB}"
+    persistence:
+      enabled: true
+      storageClass: nfs-kube
