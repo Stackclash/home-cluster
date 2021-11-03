@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://rickcoxdev.github.io/arm-charts/
       chart: mariadb
       version: 1.1.1
       sourceRef:
