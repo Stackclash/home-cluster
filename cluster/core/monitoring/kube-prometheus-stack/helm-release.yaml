@@ -89,7 +89,7 @@ spec:
       prometheusSpec:
         image:
           repository: quay.io/prometheus/prometheus
-          tag: v2.31.0
+          tag: v2.31.1
         logFormat: json
         logLevel: info
         storageSpec:
