@@ -77,7 +77,7 @@ spec:
     prometheusOperator:
       image:
         repository: quay.io/prometheus-operator/prometheus-operator
-        tag: v0.51.2
+        tag: v0.52.0
       configmapReloadImage:
         repository: docker.io/jimmidyson/configmap-reload
         tag: v0.5.0
