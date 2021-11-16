@@ -21,6 +21,7 @@ metadata:
   name: webhook-receiver
   namespace: flux-system
 spec:
+  ingressClassName: external
   rules:
     - host: "flux-webhook.${DOMAIN}"
       http:
