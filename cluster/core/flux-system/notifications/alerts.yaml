@@ -7,49 +7,12 @@ metadata:
 spec:
   providerRef:
     name: pushover
-  eventSeverity: error
+  eventSeverity: info
   eventSources:
     - kind: GitRepository
       name: '*'
     - kind: Kustomization
       name: '*'
-  suspend: false
----
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
-kind: Alert
-metadata:
-  name: helmreleases
-  namespace: flux-system
-spec:
-  providerRef:
-    name: pushover
-  eventSeverity: error
-  eventSources:
     - kind: HelmRelease
-      namespace: 'bitwarden'
-      name: '*'
-    - kind: HelmRelease
-      namespace: 'cert-manager'
-      name: '*'
-    - kind: HelmRelease
-      namespace: 'grocy'
-      name: '*'
-    - kind: HelmRelease
-      namespace: 'home-assistant'
-      name: '*'
-    - kind: HelmRelease
-      namespace: 'kube-system'
-      name: '*'
-    - kind: HelmRelease
-      namespace: 'node-red'
-      name: '*'
-    - kind: HelmRelease
-      namespace: 'openfaas'
-      name: '*'
-    - kind: HelmRelease
-      namespace: 'pihole'
-      name: '*'
-    - kind: HelmRelease
-      namespace: 'velero'
       name: '*'
   suspend: false
