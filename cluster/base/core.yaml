@@ -5,7 +5,7 @@ metadata:
   name: core
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 60m0s
   dependsOn:
   - name: crds
   path: ./cluster/core
