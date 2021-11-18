@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: linuxserver/mariadb
-      tag: 10.5.12
+      tag: 10.5.13
     db:
       rootPassword: "${PASSWORD}"
     service:
