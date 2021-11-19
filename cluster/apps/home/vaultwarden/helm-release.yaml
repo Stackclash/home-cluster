@@ -64,10 +64,10 @@ spec:
       DOMAIN: "https://vault.${DOMAIN}"
       YUBICO_CLIENT_ID: "${YUBICO_CLIENT_ID}"
       YUBICO_SECRET_KEY: "${YUBICO_SECRET_KEY}"
-      SMTP_HOST: smtp.gmail.com
+      SMTP_HOST: mail.privateemail.com
       SMTP_FROM: "no-reply@${DOMAIN}"
       SMTP_FROM_NAME: Vaultwarden
-      SMTP_PORT: 587
+      SMTP_PORT: 465
       SMTP_USERNAME: "${EMAIL}"
-      SMTP_PASSWORD: "${GOOGLE_APP_PASSWORD}"
+      SMTP_PASSWORD: "${EMAIL_PASSWORD}"
       ADMIN_TOKEN: "${VAULTWARDEN_ADMIN_TOKEN}"
