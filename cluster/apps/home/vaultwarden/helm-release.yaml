@@ -70,4 +70,7 @@ spec:
       SMTP_PORT: 465
       SMTP_USERNAME: "${EMAIL}"
       SMTP_PASSWORD: "${EMAIL_PASSWORD}"
+      SMTP_SSL: "true"
+      SMTP_EXPLICIT_TLS: "true"
       ADMIN_TOKEN: "${VAULTWARDEN_ADMIN_TOKEN}"
+      SIGNUPS_ALLOWED: "false"
