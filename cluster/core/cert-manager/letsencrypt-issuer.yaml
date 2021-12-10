@@ -5,7 +5,7 @@ metadata:
   name: letsencrypt-issuer
 spec:
   acme:
-    email: "${EMAIL}"
+    email: "${CF_EMAIL}"
     server: https://acme-v02.api.letsencrypt.org/directory
     preferredChain: "ISRG Root X1"
     privateKeySecretRef:
@@ -13,7 +13,7 @@ spec:
     solvers:
     - dns01:
         cloudflare:
-          email: "${EMAIL}"
+          email: "${CF_EMAIL}"
           apiKeySecretRef:
             name: cloudflare-api-secret
             key: apikey
