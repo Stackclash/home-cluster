@@ -7,7 +7,7 @@
 <br />
 <div align="center">
 
-[![Discord](https://img.shields.io/badge/discord-chat-7289DA.svg?maxAge=60&style=plastic&logo=discord)](https://discord.gg/DNCynrJ) [![k3s](https://img.shields.io/badge/k3s-v1.20.2-blue?style=plastic&logo=kubernetes)](https://k3s.io/) [![GitHub last commit](https://img.shields.io/github/last-commit/rickcoxdev/k3s-gitops?color=purple&style=plastic)](https://github.com/onedr0p/k3s-gitops/commits/master)
+[![Discord](https://img.shields.io/badge/discord-chat-7289DA.svg?maxAge=60&style=plastic&logo=discord)](https://discord.gg/DNCynrJ) [![k3s](https://img.shields.io/badge/k3s-v1.21.7-blue?style=plastic&logo=kubernetes)](https://k3s.io/) [![GitHub last commit](https://img.shields.io/github/last-commit/rickcoxdev/k3s-gitops?color=purple&style=plastic)](https://github.com/onedr0p/k3s-gitops/commits/master)
 
 </div>
 
@@ -23,6 +23,44 @@ This repo is my home Kubernetes cluster declared using yaml files. My entire clu
 | Raspberry Pi 4B |   2   |   4GB  |          K3s Worker         |                                                                      |
 | Raspberry Pi 2B |   1   |   1GB  |          K3s Worker         |                                                                      |
 | Raspberry Pi 4B |   1   |   2GB  | K3s Worker/Storage Provider | Has a 2TB SSD plugged in and runs openmediavault to provide storage. |
+
+## :building_construction:&nbsp; Project Layout
+
+### Setup
+1. Setup Python virtual environment and activate
+   ```bash
+   python3 -m venv venv
+   . venv/bin/activate.fish
+   ```
+2. Install Python dependencies
+   ```bash
+   pip install -r ./ansible/requirements.txt
+   ```
+3. Install Ansible-Galaxy Roles
+   ```bash
+   ansible-galaxy install -r ./ansible/requirements.yml
+   ```
+### Ansible
+
+#### Playbooks
+| Playbooks | Description                                                                                                      |
+|-----------|------------------------------------------------------------------------------------------------------------------|
+| k3s       | Does general setup of the Raspberry Pis, installs and setups k3s, and copies kubeconfig to the kubeconfig folder |
+| k3s-nuke  | Uninstalls k3 and deletes related files                                                                          |
+
+#### Roles
+| Playbooks | Description                                                                                                      |
+|-----------|------------------------------------------------------------------------------------------------------------------|
+| k3s       | Does general setup of the Raspberry Pis, installs and setups k3s, and copies kubeconfig to the kubeconfig folder |
+| k3s-nuke  | Uninstalls k3 and deletes related files                                                                          |
+
+### OMV Setup
+After setup, connect a usb drive to the node running OMV. Setup up Shares and activate NFS service.
+
+For each NFS share use the following options:
+```
+all_squash,insecure,async,no_subtree_check,anonuid=0,anongid=0
+```
 
 ## :clap:&nbsp; Thanks
 I've used the following repos as inspiration and guidelines for this repo.
