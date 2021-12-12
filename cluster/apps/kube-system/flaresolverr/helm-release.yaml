@@ -31,6 +31,6 @@ spec:
   values:
     image:
       repository: ghcr.io/flaresolverr/flaresolverr
-      tag: v2.0.2
+      tag: v2.1.0
     env:
       TZ: America/Chicago
