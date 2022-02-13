@@ -37,7 +37,7 @@ spec:
     maxUnavailable: 0
     image:
       repository: "pihole/pihole"
-      tag: 2022.01.1
+      tag: 2022.02.1
     serviceDns:
       mixedService: false
       type: LoadBalancer
