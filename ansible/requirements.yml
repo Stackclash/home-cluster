@@ -1,4 +1,5 @@
 ---
 roles:
-- src: xanmanning.k3s
-  version: v3.1.1
+- name: xanmanning.k3s
+  src: https://github.com/PyratLabs/ansible-role-k3s.git
+  version: v3.3.0
