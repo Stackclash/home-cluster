@@ -34,7 +34,7 @@ spec:
       tag: v4.0.2
     nfs:
       server: "${NFS_SERVER_IP}"
-      path: /export/k3s-nfs
+      path: "${NFS_SERVER_PATH}"
     storageClass:
       name: nfs-kube
       defaultClass: false

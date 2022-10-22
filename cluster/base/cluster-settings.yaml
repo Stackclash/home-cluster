@@ -12,4 +12,5 @@ data:
   PIHOLE_DHCP_LB: "192.168.1.13"
   MARIADB_LB: "192.168.1.14"
   NFS_SERVER_IP: "192.168.1.107"
+  NFS_SERVER_PATH: "/mnt/data"
   NFS_PATH_PATTERN: "${.PVC.namespace}-${.PVC.name}"
