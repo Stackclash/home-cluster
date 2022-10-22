@@ -10,4 +10,4 @@ k3s_server:
   - k3s-upgrade=true
   tls-san:
   - 24.217.162.29
-k3s_kubeconfig_context_name: raspi
+k3s_kubeconfig_context_name: k3s
