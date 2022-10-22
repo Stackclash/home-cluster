@@ -13,7 +13,7 @@
   roles:
     - xanmanning.k3s
     - k3s
-- hosts:
-    - storage
-  roles:
-    - openmediavault
+# - hosts:
+#     - storage
+#   roles:
+#     - openmediavault
