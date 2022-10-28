@@ -52,7 +52,7 @@ spec:
       - name: TZ
         value: America/Chicago
       extraArgs:
-        default-ssl-certificate: "cert-manager/self-signed-secret"
+        default-ssl-certificate: "cert-manager/acme-crt-secret"
       kind: Deployment
       nodeSelector:
         beta.kubernetes.io/os: linux
