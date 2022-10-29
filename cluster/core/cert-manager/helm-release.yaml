@@ -32,7 +32,7 @@ spec:
     installCRDs: false
     image:
       repository: quay.io/jetstack/cert-manager-controller
-      tag: v1.6.1
+      tag: v1.7.1
     prometheus:
       enabled: true
       servicemonitor:
