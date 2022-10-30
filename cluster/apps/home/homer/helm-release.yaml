@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: homer
-      version: 7.1.0
+      version: 8.0.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: b4bz/homer
-      tag: 22.02.1
+      tag: 22.10.1
     persistence:
       config:
         enabled: true
