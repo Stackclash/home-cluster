@@ -38,9 +38,7 @@ spec:
     persistence:
       data:
         enabled: true
-        storageClass: nfs-kube
-        accessMode: ReadWriteOnce
-        size: 1Gi
+        existingClaim: node-red
     ingress:
       main:
         enabled: true

@@ -71,10 +71,9 @@ spec:
       persistence:
         config:
           enabled: true
-          storageClass: nfs-kube
+          existingClaim: adguard
         data:
           enabled: false
-          storageClass: nfs-kube
     config: |
       bind_host: 0.0.0.0
       bind_port: 3000
