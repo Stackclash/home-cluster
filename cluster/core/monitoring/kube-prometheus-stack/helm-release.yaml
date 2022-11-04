@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://prometheus-community.github.io/helm-charts/
       chart: kube-prometheus-stack
-      version: 30.0.1
+      version: 34.0.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
@@ -58,7 +58,7 @@ spec:
       enabled: true
       image:
         repository: grafana/grafana
-        tag: 8.3.3
+        tag: 8.4.3
       additionalDataSources: []
       persistence:
         type: pvc
@@ -77,19 +77,19 @@ spec:
     prometheusOperator:
       image:
         repository: quay.io/prometheus-operator/prometheus-operator
-        tag: v0.53.1
+        tag: v0.55.0
       configmapReloadImage:
         repository: docker.io/jimmidyson/configmap-reload
-        tag: v0.6.1
+        tag: v0.7.1
       prometheusConfigReloaderImage:
         repository: quay.io/prometheus-operator/prometheus-config-reloader
-        tag: v0.53.1
+        tag: v0.55.0
     prometheus:
       enabled: true
       prometheusSpec:
         image:
           repository: quay.io/prometheus/prometheus
-          tag: v2.32.1
+          tag: v2.34.0
         logFormat: json
         logLevel: info
         storageSpec:

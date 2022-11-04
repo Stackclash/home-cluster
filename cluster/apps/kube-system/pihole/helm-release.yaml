@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://mojo2600.github.io/pihole-kubernetes
       chart: pihole
-      version: 2.5.3
+      version: 2.5.8
       sourceRef:
         kind: HelmRepository
         name: mojo2600-pihole
@@ -37,7 +37,7 @@ spec:
     maxUnavailable: 0
     image:
       repository: "pihole/pihole"
-      tag: 2022.01.1
+      tag: 2022.02.1
     serviceDns:
       mixedService: false
       type: LoadBalancer

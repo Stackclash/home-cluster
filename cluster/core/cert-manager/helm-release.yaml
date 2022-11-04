@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.jetstack.io
       chart: cert-manager
-      version: v1.6.1
+      version: v1.7.1
       sourceRef:
         kind: HelmRepository
         name: jetstack
@@ -32,7 +32,7 @@ spec:
     installCRDs: false
     image:
       repository: quay.io/jetstack/cert-manager-controller
-      tag: v1.6.1
+      tag: v1.7.1
     prometheus:
       enabled: true
       servicemonitor:

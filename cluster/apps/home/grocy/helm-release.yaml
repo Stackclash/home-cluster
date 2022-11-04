@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: grocy
-      version: 8.1.0
+      version: 8.3.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: linuxserver/grocy
-      tag: version-v3.0.1
+      tag: version-v3.3.1
     persistence:
       config:
         enabled: true
