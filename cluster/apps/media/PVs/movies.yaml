@@ -9,8 +9,8 @@ spec:
   capacity:
     storage: 100Gi
   nfs:
-    path: /export/Movies
-    server: 192.168.1.105
+    path: "${NFS_BASE_PATH}/Movies"
+    server: "${NFS_SERVER_IP}"
   storageClassName: movies
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain

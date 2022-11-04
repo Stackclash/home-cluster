@@ -9,8 +9,8 @@ spec:
   capacity:
     storage: 100Gi
   nfs:
-    path: /export/TV-Shows
-    server: 192.168.1.105
+    path: "${NFS_BASE_PATH}/TV-Shows"
+    server: "${NFS_SERVER_IP}"
   storageClassName: tv-shows
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain

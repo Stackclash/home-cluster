@@ -9,8 +9,8 @@ spec:
   capacity:
     storage: 20Gi
   nfs:
-    path: /export/AudioBooks
-    server: 192.168.1.105
+    path: "${NFS_BASE_PATH}/AudioBooks"
+    server: "${NFS_SERVER_IP}"
   storageClassName: audiobooks
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
