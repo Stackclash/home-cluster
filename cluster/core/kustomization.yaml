@@ -8,4 +8,4 @@ resources:
   # - monitoring
   - namespaces
   - storage
-  - system-upgrade
+  # - system-upgrade
