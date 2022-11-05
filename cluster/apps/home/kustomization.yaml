@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - freshrss
   - grocy
+  - hajimari
   - home-assistant
   - node-red
   - vaultwarden
