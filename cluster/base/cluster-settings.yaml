@@ -12,5 +12,6 @@ data:
   DNS_LB_IP: "192.168.1.12"
   MARIADB_LB: "192.168.1.14"
   NFS_SERVER_IP: "192.168.1.107"
-  NFS_SERVER_PATH: "/mnt/data/k3s-nfs"
+  NFS_BASE_PATH: "/mnt/data"
+  NFS_STORAGE_CLASS_PATH: "/k3s-nfs"
   NFS_PATH_PATTERN: "${.PVC.namespace}-${.PVC.name}"

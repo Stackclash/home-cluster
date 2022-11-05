@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: adguard
+  name: adguard-home
   namespace: kube-system
 spec:
   interval: 5m
@@ -68,13 +68,27 @@ spec:
             protocol: UDP
             targetPort: 53
         externalTrafficPolicy: Local
-      persistence:
-        config:
-          enabled: true
-          storageClass: nfs-kube
-        data:
-          enabled: false
-          storageClass: nfs-kube
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/enable-cors: "true"
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://homer.${DOMAIN}"
+        ingressClassName: internal
+        tls:
+        - hosts:
+          - "dns.internal.${DOMAIN}"
+        hosts:
+        - host: "dns.internal.${DOMAIN}"
+          paths:
+          - path: /
+            pathType: Prefix
+    persistence:
+      config:
+        enabled: true
+        existingClaim: adguard
+      data:
+        enabled: false
     config: |
       bind_host: 0.0.0.0
       bind_port: 3000

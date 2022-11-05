@@ -35,7 +35,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: nfs-kube
+        existingClaim: grocy
     ingress:
       main:
         enabled: true

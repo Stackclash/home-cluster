@@ -9,8 +9,8 @@ spec:
   capacity:
     storage: 20Gi
   nfs:
-    path: /export/Podcasts
-    server: 192.168.1.105
+    path: "${NFS_BASE_PATH}/Podcasts"
+    server: "${NFS_SERVER_IP}"
   storageClassName: podcasts
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain

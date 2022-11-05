@@ -2,29 +2,29 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: tv-shows
+  name: home-assistant
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   capacity:
-    storage: 100Gi
+    storage: 1Gi
   nfs:
-    path: "${NFS_BASE_PATH}/TV-Shows"
+    path: "${NFS_BASE_PATH}/Apps/home-assistant"
     server: "${NFS_SERVER_IP}"
-  storageClassName: tv-shows
+  storageClassName: home-assistant
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: tv-shows
-  namespace: media
+  name: home-assistant
+  namespace: home
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   resources:
     requests:
-      storage: 100Gi
-  storageClassName: tv-shows
+      storage: 1Gi
+  storageClassName: home-assistant
   volumeMode: Filesystem
