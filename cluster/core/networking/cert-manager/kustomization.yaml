@@ -5,6 +5,4 @@ resources:
   - certificate.yaml
   - cloudflare-api-secret.yaml
   - helm-release.yaml
-  - letsencrypt-issuer.yaml
-  - self-signed-cert.yaml
-  - self-signed-issuer.yaml
+  - issuers.yaml

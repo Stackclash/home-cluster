@@ -1,0 +1,43 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-issuer
+spec:
+  acme:
+    email: "${CF_EMAIL}"
+    server: https://acme-v02.api.letsencrypt.org/directory
+    preferredChain: "ISRG Root X1"
+    privateKeySecretRef:
+      name: letsencrypt-production
+    solvers:
+    - dns01:
+        cloudflare:
+          email: "${CF_EMAIL}"
+          apiKeySecretRef:
+            name: cloudflare-api-secret
+            key: apikey
+      selector:
+          dnsZones:
+            - ${DOMAIN}
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    email: "${CF_EMAIL}"
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+      - dns01:
+          cloudflare:
+            email: "${CF_EMAIL}"
+            apiKeySecretRef:
+              name: cloudflare-api-key
+              key: api-key
+        selector:
+          dnsZones:
+            - ${DOMAIN}
