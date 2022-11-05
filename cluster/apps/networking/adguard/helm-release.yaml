@@ -71,9 +71,6 @@ spec:
     ingress:
       main:
         enabled: true
-        annotations:
-          nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "https://homer.${DOMAIN}"
         ingressClassName: internal
         tls:
         - hosts:
