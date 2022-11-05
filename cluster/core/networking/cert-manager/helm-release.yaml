@@ -29,12 +29,21 @@ spec:
     recreate: true
     # cleanupOnFail: true
   values:
-    installCRDs: false
+    installCRDs: true
     image:
       repository: quay.io/jetstack/cert-manager-controller
       tag: v1.7.1
+    extraArgs:
+      - --dns01-recursive-nameservers=1.1.1.1:53,9.9.9.9:53
+      - --dns01-recursive-nameservers-only
+    replicaCount: 1
+    podDnsPolicy: "None"
+    podDnsConfig:
+      nameservers:
+        - "1.1.1.1"
+        - "9.9.9.9"
     prometheus:
-      enabled: true
+      enabled: false
       servicemonitor:
         # enabled: true
         interval: 60s
