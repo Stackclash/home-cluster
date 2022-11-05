@@ -83,12 +83,12 @@ spec:
           paths:
           - path: /
             pathType: Prefix
-      persistence:
-        config:
-          enabled: true
-          existingClaim: adguard
-        data:
-          enabled: false
+    persistence:
+      config:
+        enabled: true
+        existingClaim: adguard
+      data:
+        enabled: false
     config: |
       bind_host: 0.0.0.0
       bind_port: 3000
