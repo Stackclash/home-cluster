@@ -8,7 +8,6 @@ resources:
   - ingress-nginx-charts.yaml
   - jetstack-charts.yaml
   - k8s-at-home-charts.yaml
-  - mojo2600-pihole-charts.yaml
   - metrics-server-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
   - prometheus-community-charts.yaml
