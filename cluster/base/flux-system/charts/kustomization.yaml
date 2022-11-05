@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - bitnami-charts.yaml
   - faas-netes-charts.yaml
+  - k8s-gateway-charts.yaml
   - ingress-nginx-charts.yaml
   - jetstack-charts.yaml
   - k8s-at-home-charts.yaml
