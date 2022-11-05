@@ -33,7 +33,7 @@ spec:
       repository: linuxserver/freshrss
       tag: version-1.17.0
     env:
-      TZ: America/Chicago
+      TZ: "${TIMEZONE}"
     persistence:
       config:
         enabled: true

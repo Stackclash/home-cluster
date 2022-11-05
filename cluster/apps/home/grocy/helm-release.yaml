@@ -52,4 +52,4 @@ spec:
           - hosts:
               - "grocy.mysmarthome.space"
     env:
-      TZ: America/Chicago
+      TZ: "${TIMEZONE}"

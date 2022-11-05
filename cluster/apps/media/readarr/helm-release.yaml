@@ -33,7 +33,7 @@ spec:
       repository: linuxserver/readarr
       tag: nightly-version-0.1.0.904
     env:
-      TZ: America/Chicago
+      TZ: "${TIMEZONE}"
     ingress:
       main:
         enabled: true

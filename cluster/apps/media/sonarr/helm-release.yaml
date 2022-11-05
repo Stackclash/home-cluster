@@ -33,7 +33,7 @@ spec:
       repository: linuxserver/sonarr
       tag: develop-version-3.0.6.1301
     env:
-      TZ: America/Chicago
+      TZ: "${TIMEZONE}"
     ingress:
       main:
         enabled: true

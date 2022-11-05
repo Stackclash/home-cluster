@@ -50,7 +50,7 @@ spec:
         enabled: true
       extraEnvs:
       - name: TZ
-        value: America/Chicago
+        value: "${TIMEZONE}"
       extraArgs:
         default-ssl-certificate: "cert-manager/acme-crt-secret"
       kind: Deployment

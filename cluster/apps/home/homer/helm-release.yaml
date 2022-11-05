@@ -49,7 +49,7 @@ spec:
           - hosts:
               - "homer.${DOMAIN}"
     env:
-      TZ: America/Chicago
+      TZ: "${TIMEZONE}"
     configmap:
       enabled: true
       config: |

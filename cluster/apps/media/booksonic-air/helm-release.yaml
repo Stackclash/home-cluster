@@ -33,7 +33,7 @@ spec:
       repository: linuxserver/booksonic-air
       tag: v2009.1.0-ls2
     env:
-      TZ: America/Chicago
+      TZ: "${TIMEZONE}"
     persistence:
       config:
         enabled: true

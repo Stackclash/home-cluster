@@ -33,7 +33,7 @@ spec:
       repository: linuxserver/calibre-web
       tag: version-0.6.9
     env:
-      TZ: America/Chicago
+      TZ: "${TIMEZONE}"
     persistence:
       config:
         enabled: true

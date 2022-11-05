@@ -33,7 +33,7 @@ spec:
       repository: linuxserver/radarr
       tag: nightly-version-4.0.0.5216
     env:
-      TZ: America/Chicago
+      TZ: "${TIMEZONE}"
     ingress:
       main:
         enabled: true

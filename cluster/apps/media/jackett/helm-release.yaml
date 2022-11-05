@@ -33,7 +33,7 @@ spec:
       repository: linuxserver/jackett
       tag: development-version-v0.18.532
     env:
-      TZ: America/Chicago
+      TZ: "${TIMEZONE}"
     ingress:
       main:
         enabled: true

@@ -33,7 +33,7 @@ spec:
       repository: adguard/adguardhome
       tag: v0.107.7
     env:
-      TZ: America/Chicago
+      TZ: "${TIMEZONE}"
     service:
       main:
         primary: true
