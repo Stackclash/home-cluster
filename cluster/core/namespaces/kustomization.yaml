@@ -6,5 +6,6 @@ resources:
   - home.yaml
   - media.yaml
   - monitoring.yaml
+  - networking.yaml
   - openfaas.yaml
   - storage.yaml

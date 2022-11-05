@@ -7,5 +7,6 @@ resources:
   - kube-system
   # - monitoring
   - namespaces
+  - networking
   - storage
   # - system-upgrade
