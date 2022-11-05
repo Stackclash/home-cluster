@@ -7,7 +7,7 @@ metadata:
 spec:
   secretName: acme-crt-secret
   issuerRef:
-    name: letsencrypt-issuer
+    name: letsencrypt-staging
     kind: ClusterIssuer
   dnsNames:
   - "${DOMAIN}"
