@@ -5,6 +5,5 @@ resources:
   - freshrss
   - grocy
   - home-assistant
-  # - homer
   - node-red
   - vaultwarden
