@@ -79,3 +79,28 @@
       path: "{{ k3s_server_manifests_dir }}/{{ item.filename }}"
       state: absent
     loop: "{{ k3s_server_manifests_urls | default([]) }}"
+
+- hosts:
+  - storage
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  tasks:
+  - name: Get USB drive info
+    ansible.builtin.command:
+      cmd: "blkid -t LABEL={{ usb_drive_label }} -s TYPE -o value"
+    register: usb_drive_type
+
+  - name: Mount USB drive
+    ansible.posix.mount:
+      path: "{{ nfs_mount_path }}"
+      src: "LABEL={{ usb_drive_label }}"
+      fstype: "{{ usb_drive_type.stdout }}"
+      opts: defaults
+      boot: true
+      state: mounted
+
+  - name: Setup NFS server
+    ansible.builtin.include_role:
+      name: geerlingguy.nfs
+      public: true

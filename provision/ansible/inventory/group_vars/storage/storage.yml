@@ -1,0 +1,6 @@
+---
+usb_drive_label: Personal
+nfs_mount_path: /mnt/data
+nfs_exports:
+  - /mnt/data 192.168.1.0/24(rw,all_squash,insecure,async,no_subtree_check,anonuid=0,anongid=0)
+  - /mnt/data 10.42.0.0/16(rw,all_squash,insecure,async,no_subtree_check,anonuid=0,anongid=0)
