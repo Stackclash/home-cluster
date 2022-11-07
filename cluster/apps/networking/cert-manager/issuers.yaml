@@ -19,7 +19,7 @@ spec:
             key: apikey
       selector:
         dnsZones:
-          - ${DOMAIN}
+        - ${DOMAIN}
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer

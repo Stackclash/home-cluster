@@ -41,8 +41,8 @@
       dest: "{{ repo_abs_path.stdout }}/provision/kubeconfig"
       flat: true
     when:
-      - k3s_control_node is defined
-      - k3s_control_node
+    - k3s_control_node is defined
+    - k3s_control_node
 
   - name: Update kubeconfig with the correct IPv4 address
     delegate_to: localhost

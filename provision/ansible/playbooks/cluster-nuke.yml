@@ -6,10 +6,10 @@
   gather_facts: true
   any_errors_fatal: true
   vars_prompt:
-    - name: "run_confirmation"
-      prompt: "This will DESTROY your cluster. Do you wish to continue? [Y/n]"
-      default: "n"
-      private: false
+  - name: "run_confirmation"
+    prompt: "This will DESTROY your cluster. Do you wish to continue? [Y/n]"
+    default: "n"
+    private: false
 
   pre_tasks:
   - name: cluster-nuke | check confirmation
