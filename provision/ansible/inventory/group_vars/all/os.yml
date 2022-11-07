@@ -20,4 +20,4 @@ packages:
   - nvme-cli
   - socat
   - python3-libselinux
-  - nfs-server
+  - nfs-utils

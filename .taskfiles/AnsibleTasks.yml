@@ -33,7 +33,7 @@ tasks:
     desc: Install Kubernetes on the nodes
     dir: provision/ansible
     cmds:
-      - ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/cluster-installation.yml
+      - ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/cluster-install.yml
 
   nuke:
     desc: Uninstall Kubernetes on the nodes
