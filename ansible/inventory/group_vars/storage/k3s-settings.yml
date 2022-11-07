@@ -1,4 +1,0 @@
-k3s_agent:
-  node-label:
-  - k3s-upgrade=true
-  - storage=true

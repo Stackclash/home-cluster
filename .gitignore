@@ -1,6 +1,5 @@
-.env
+.config.env
 venv/
-ansible/roles/xanmanning.k3s
-ansible/venv
-ansible/kubeconfig/*
+provision/ansible/roles/xanmanning.k3s
+provision/kubeconfig
 !**/.gitkeep

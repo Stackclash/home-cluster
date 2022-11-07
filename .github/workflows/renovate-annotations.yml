@@ -1,6 +1,6 @@
 ---
 name: annotate-helm-releases
-on:
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
   schedule:
   - cron: '0 */6 * * *'

@@ -1,7 +1,7 @@
 ---
 ignore: |
-  cluster/flux-system/gotk-components.yaml
-  *secret*.yml
+  *.sops.yaml
+  *.sops.yml
 extends: default
 rules:
     comments:
