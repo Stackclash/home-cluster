@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: rickcoxdev-arm-charts
+  namespace: flux-system
+spec:
+  url: https://rickcoxdev.github.io/arm-charts/
+  interval: 24h
