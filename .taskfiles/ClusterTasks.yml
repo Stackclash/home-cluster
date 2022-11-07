@@ -11,9 +11,9 @@ tasks:
   install:
     desc: Install Flux into your cluster
     cmds:
-      - kubectl apply -f {{.CLUSTER_DIR}}/base/flux-system/gotk-components.yaml
+      - kubectl apply -k {{.CLUSTER_DIR}}/bootstrap/
       - gpg --export-secret-keys --armor {{.SOPS_KEY}} | kubectl create secret generic sops-gpg -n flux-system --from-file=sops.asc=/dev/stdin
-      - kubectl apply --kustomize {{.CLUSTER_DIR}}/base/flux-system/
+      - kubectl apply -k {{.CLUSTER_DIR}}/flux/flux-system
       - task: reconcile
     vars:
       SOPS_KEY:
