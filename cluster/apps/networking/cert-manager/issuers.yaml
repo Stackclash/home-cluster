@@ -18,8 +18,8 @@ spec:
             name: cloudflare-api-secret
             key: apikey
       selector:
-          dnsZones:
-            - ${DOMAIN}
+        dnsZones:
+          - ${DOMAIN}
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -32,12 +32,12 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-staging
     solvers:
-      - dns01:
-          cloudflare:
-            email: "${CF_EMAIL}"
-            apiKeySecretRef:
-              name: cloudflare-api-key
-              key: api-key
-        selector:
-          dnsZones:
-            - ${DOMAIN}
+    - dns01:
+        cloudflare:
+          email: "${CF_EMAIL}"
+          apiKeySecretRef:
+            name: cloudflare-api-key
+            key: api-key
+      selector:
+        dnsZones:
+        - ${DOMAIN}
