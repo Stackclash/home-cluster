@@ -97,7 +97,7 @@
       src: "LABEL={{ usb_drive_label }}"
       fstype: "{{ usb_drive_type.stdout }}"
       opts: defaults
-      boot: yes
+      boot: true
       state: mounted
 
   - name: Setup NFS server

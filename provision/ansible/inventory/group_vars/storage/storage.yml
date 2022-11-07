@@ -1,3 +1,4 @@
+---
 usb_drive_label: Personal
 nfs_mount_path: /mnt/data
 nfs_exports:
