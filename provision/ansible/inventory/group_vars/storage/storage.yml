@@ -1,0 +1,16 @@
+usb_drive_label: Personal
+nfs_mount_path: /mnt/data
+nfs_server_exports:
+  - export:
+    access:
+      - hostname: '192.168.250.0/24'
+        options:
+          - 'rw'
+          - 'all_squash'
+          - 'insecure'
+          - 'async'
+          - 'no_subtree_check'
+          - 'annonuid=0'
+          - 'anongid=0'
+    mode: "u=rwx,g=rwx,o=rwx"
+    path: "{{ nfs_mount_path }}"
