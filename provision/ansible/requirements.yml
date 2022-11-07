@@ -12,5 +12,6 @@ roles:
 - name: xanmanning.k3s
   src: https://github.com/PyratLabs/ansible-role-k3s.git
   version: v3.3.0
-- name: mrlesmithjr.nfs-server
-  src: https://github.com/mrlesmithjr/ansible-nfs-server
+- name: geerlingguy.nfs
+  src: https://github.com/geerlingguy/ansible-role-nfs
+  version: 2.0.0
