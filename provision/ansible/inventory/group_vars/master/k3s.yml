@@ -30,6 +30,8 @@ k3s_server:
   - servicelb
   # Disable metrics-server - installed with Flux
   - metrics-server
+  # Disable local-storage - replaced with nfs-subdir-provisioner
+  - local-storage
   disable-network-policy: true
   disable-cloud-controller: true
   write-kubeconfig-mode: "644"
