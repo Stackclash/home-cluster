@@ -57,3 +57,4 @@ spec:
         tls:
         - hosts:
           - "red.${DOMAIN}"
+          secretName: node-red-tls

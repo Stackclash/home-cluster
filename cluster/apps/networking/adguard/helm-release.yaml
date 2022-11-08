@@ -85,6 +85,7 @@ spec:
         tls:
         - hosts:
           - "dns.${DOMAIN}"
+          secretName: dns-tls
     persistence:
       config:
         enabled: true

@@ -65,6 +65,7 @@ spec:
         tls:
           - hosts:
               - "vault.${DOMAIN}"
+            secretName: vault-tls
     env:
       DATA_FOLDER: "config"
       DOMAIN: "https://vault.${DOMAIN}"

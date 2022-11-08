@@ -59,3 +59,4 @@ spec:
         tls:
           - hosts:
               - "rss.${DOMAIN}"
+            secretName: rss-tls
