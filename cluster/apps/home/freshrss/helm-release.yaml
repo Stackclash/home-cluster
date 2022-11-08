@@ -28,6 +28,9 @@ spec:
     timeout: 10m
     recreate: true
     # cleanupOnFail: true
+  dependsOn:
+    - name: nfs-subdir-external-provisioner
+      namespace: storage
   values:
     image:
       repository: linuxserver/freshrss
