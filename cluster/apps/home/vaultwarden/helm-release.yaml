@@ -35,7 +35,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: vaultwarden
+        storageClass: nfs-kube
     ingress:
       main:
         enabled: true
