@@ -31,6 +31,10 @@ spec:
   dependsOn:
     - name: nfs-subdir-external-provisioner
       namespace: storage
+    - name: cert-manager
+      namespace: networking
+    - name: ingress-nginx
+      namespace: networking
   values:
     image:
       repository: ghcr.io/linuxserver/ombi

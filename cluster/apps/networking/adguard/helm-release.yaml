@@ -28,6 +28,15 @@ spec:
     timeout: 10m
     recreate: true
     # cleanupOnFail: true
+  dependsOn:
+    - name: cert-manager
+      namespace: networking
+    - name: metallb
+      namespace: networking
+    - name: nfs-subdir-external-provisioner
+      namespace: storage
+    - name: k8s-gateway
+      namespace: networking
   values:
     image:
       repository: adguard/adguardhome

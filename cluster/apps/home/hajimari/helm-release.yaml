@@ -23,6 +23,11 @@ spec:
   upgrade:
     remediation:
       retries: 5
+  dependsOn:
+    - name: k8s-gateway
+      namespace: networking
+    - name: cert-manager
+      namespace: networking
   values:
     hajimari:
       defaultEnable: false
