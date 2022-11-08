@@ -40,15 +40,15 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: external
+        ingressClassName: nginx
         hosts:
-          - host: "ombi.mysmarthome.space"
+          - host: "ombi.${DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "ombi.mysmarthome.space"
+              - "ombi.${DOMAIN}"
     persistence:
       config:
         enabled: true

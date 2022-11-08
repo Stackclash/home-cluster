@@ -71,12 +71,11 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
         tls:
         - hosts:
-          - "dns.internal.${DOMAIN}"
+          - "dns.${DOMAIN}"
         hosts:
-        - host: "dns.internal.${DOMAIN}"
+        - host: "dns.${DOMAIN}"
           paths:
           - path: /
             pathType: Prefix

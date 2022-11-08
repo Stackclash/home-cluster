@@ -45,12 +45,11 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
         tls:
         - hosts:
-          - "red.internal.${DOMAIN}"
+          - "red.${DOMAIN}"
         hosts:
-        - host: "red.internal.${DOMAIN}"
+        - host: "red.${DOMAIN}"
           paths:
           - path: /
             pathType: Prefix

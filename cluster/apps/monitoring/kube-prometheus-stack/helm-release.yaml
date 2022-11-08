@@ -47,13 +47,11 @@ spec:
                   storage: 50Gi
       ingress:
         enabled: true
-        annotations:
-          kubernetes.io/ingress.class: "internal"
         hosts:
-          - "alertmanager.internal.${DOMAIN}"
+          - "alertmanager.${DOMAIN}"
         tls:
           - hosts:
-              - "alertmanager.internal.${DOMAIN}"
+              - "alertmanager.${DOMAIN}"
     grafana:
       enabled: true
       image:
@@ -105,10 +103,10 @@ spec:
         annotations:
           kubernetes.io/ingress.class: "internal"
         hosts:
-          - "prometheus.internal.${DOMAIN}"
+          - "prometheus.${DOMAIN}"
         tls:
           - hosts:
-              - "prometheus.internal.${DOMAIN}"
+              - "prometheus.${DOMAIN}"
     kubeControllerManager:
       enabled: false
     kubeScheduler:

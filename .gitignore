@@ -3,3 +3,5 @@ venv/
 provision/ansible/roles/xanmanning.k3s
 provision/kubeconfig
 !**/.gitkeep
+terraform.tfstate*
+.terraform*

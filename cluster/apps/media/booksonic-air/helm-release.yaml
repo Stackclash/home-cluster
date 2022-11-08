@@ -52,7 +52,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: external
+        ingressClassName: nginx
         tls:
           - hosts:
               - "booksonic.${DOMAIN}"

@@ -40,15 +40,14 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
         hosts:
-          - host: "sonarr.internal.mysmarthome.space"
+          - host: "sonarr.${DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "sonarr.internal.mysmarthome.space"
+              - "sonarr.${DOMAIN}"
     persistence:
       config:
         enabled: true

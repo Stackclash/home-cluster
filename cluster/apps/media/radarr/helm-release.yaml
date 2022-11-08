@@ -40,15 +40,14 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
         hosts:
-          - host: "radarr.internal.mysmarthome.space"
+          - host: "radarr.${DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "radarr.internal.mysmarthome.space"
+              - "radarr.${DOMAIN}"
     # -- Configure persistence settings for the chart under this key.
     # @default -- See values.yaml
     persistence:
