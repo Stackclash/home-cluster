@@ -46,7 +46,7 @@ spec:
         loadBalancerIP: "${DNS_LB_IP}"
         annotations:
           metallb.universe.tf/address-pool: default
-          metallb.universe.tf/allow-shared-ip: adguard-svc
+          metallb.universe.tf/allow-shared-ip: adguard-dns-svc
         ports:
           dns-tcp:
             enabled: true
@@ -60,13 +60,31 @@ spec:
         loadBalancerIP: "${DNS_LB_IP}"
         annotations:
           metallb.universe.tf/address-pool: default
-          metallb.universe.tf/allow-shared-ip: adguard-svc
+          metallb.universe.tf/allow-shared-ip: adguard-dns-svc
         ports:
           dns-udp:
             enabled: true
             port: 53
             protocol: UDP
             targetPort: 53
+        externalTrafficPolicy: Local
+      dhcp:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: "${DHCP_LB_IP}"
+        annotations:
+          metallb.universe.tf/address-pool: default
+        ports:
+          dhcp-udp:
+            enabled: true
+            port: 68
+            protocol: UDP
+            targetPort: 68
+          dhcp-tcp:
+            enabled: true
+            port: 68
+            protocol: TCP
+            targetPort: 68
         externalTrafficPolicy: Local
     ingress:
       main:
