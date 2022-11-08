@@ -45,11 +45,15 @@ spec:
     ingress:
       main:
         enabled: true
-        tls:
-        - hosts:
-          - "red.${DOMAIN}"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-staging"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "connection"
         hosts:
         - host: "red.${DOMAIN}"
           paths:
           - path: /
             pathType: Prefix
+        tls:
+        - hosts:
+          - "red.${DOMAIN}"

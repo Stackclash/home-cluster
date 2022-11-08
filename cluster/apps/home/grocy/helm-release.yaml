@@ -43,6 +43,12 @@ spec:
       main:
         enabled: true
         ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-staging"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${DOMAIN}"
+          external-dns/is-public: "true"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "cart"
         hosts:
           - host: "grocy.${DOMAIN}"
             paths:

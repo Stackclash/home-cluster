@@ -44,12 +44,18 @@ spec:
     ingress:
       main:
         enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-staging"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${DOMAIN}"
+          external-dns/is-public: "true"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "rss"
         ingressClassName: nginx
-        tls:
-          - hosts:
-              - "rss.${DOMAIN}"
         hosts:
           - host: "rss.${DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
+        tls:
+          - hosts:
+              - "rss.${DOMAIN}"
