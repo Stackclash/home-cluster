@@ -41,6 +41,8 @@ spec:
     image:
       repository: adguard/adguardhome
       tag: v0.107.7
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "adguard-home-config"
     env:
       TZ: "${TIMEZONE}"
     service:
@@ -194,9 +196,9 @@ spec:
         use_private_ptr_resolvers: true
         local_ptr_upstreams: []
       tls:
-        enabled: false
-        server_name: ""
-        force_https: false
+        enabled: true
+        server_name: "dns.mysmarthome.space"
+        force_https: true
         port_https: 443
         port_dns_over_tls: 853
         port_dns_over_quic: 853
@@ -220,14 +222,14 @@ spec:
       whitelist_filters: []
       user_rules: []
       dhcp:
-        enabled: false
-        interface_name: ""
+        enabled: true
+        interface_name: "eth0"
         local_domain_name: lan
         dhcpv4:
-          gateway_ip: ""
-          subnet_mask: ""
-          range_start: ""
-          range_end: ""
+          gateway_ip: "192.168.1.13"
+          subnet_mask: "255.255.255.0"
+          range_start: "192.168.1.0"
+          range_end: "192.168.1.255"
           lease_duration: 86400
           icmp_timeout_msec: 1000
           options: []
