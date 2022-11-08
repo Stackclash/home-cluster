@@ -46,6 +46,7 @@ spec:
       data:
         enabled: true
         storageClass: nfs-kube
+        accessMode: ReadWriteOnce
     ingress:
       main:
         enabled: true
