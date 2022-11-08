@@ -83,7 +83,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: adguard
+        storageClass: nfs-kube
       data:
         enabled: false
     config: |

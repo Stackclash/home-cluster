@@ -38,7 +38,7 @@ spec:
     persistence:
       data:
         enabled: true
-        existingClaim: node-red
+        storageClass: nfs-kube
     ingress:
       main:
         enabled: true

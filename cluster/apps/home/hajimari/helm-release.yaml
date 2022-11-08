@@ -118,4 +118,4 @@ spec:
     persistence:
       data:
         enabled: true
-        existingClaim: hajimari
+        storageClass: nfs-kube
