@@ -46,6 +46,7 @@ spec:
         enabled: true
         storageClass: nfs-kube
         accessMode: ReadWriteOnce
+        size: 1Gi
     ingress:
       main:
         enabled: true
