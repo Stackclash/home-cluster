@@ -56,7 +56,7 @@ spec:
       enabled: true
       image:
         repository: grafana/grafana
-        tag: 8.4.3
+        tag: 9.2.4
       additionalDataSources: []
       persistence:
         type: pvc
