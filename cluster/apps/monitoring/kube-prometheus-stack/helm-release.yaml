@@ -34,7 +34,7 @@ spec:
       alertmanagerSpec:
         image:
           repository: quay.io/prometheus/alertmanager
-          tag: v0.23.0
+          tag: v0.24.0
         logFormat: json
         logLevel: info
         storageSpec:
