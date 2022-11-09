@@ -75,9 +75,9 @@ spec:
       replicaCount: 1
       extraEnvs:
         - name: TEMPLATE_NAME
-          value: lost-in-space
+          value: matrix
         - name: SHOW_DETAILS
-          value: "false"
+          value: "true"
   valuesFrom:
     # Cloudflare Networks
     # https://www.cloudflare.com/ips/
