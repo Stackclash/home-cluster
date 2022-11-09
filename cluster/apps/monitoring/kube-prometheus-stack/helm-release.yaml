@@ -78,7 +78,7 @@ spec:
         tag: v0.55.0
       configmapReloadImage:
         repository: docker.io/jimmidyson/configmap-reload
-        tag: v0.7.1
+        tag: v0.8.0
       prometheusConfigReloaderImage:
         repository: quay.io/prometheus-operator/prometheus-config-reloader
         tag: v0.55.0
