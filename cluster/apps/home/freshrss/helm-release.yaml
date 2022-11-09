@@ -37,8 +37,8 @@ spec:
       namespace: networking
   values:
     image:
-      repository: linuxserver/freshrss
-      tag: version-1.17.0
+      repository: freshrss/freshrss
+      tag: 1.20.0
     env:
       TZ: "${TIMEZONE}"
     persistence:
