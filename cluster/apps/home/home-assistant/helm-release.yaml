@@ -38,7 +38,7 @@ spec:
   values:
     image:
       repository: homeassistant/home-assistant
-      tag: "2022.3.5"
+      tag: "2022.11"
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
     persistence:
