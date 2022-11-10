@@ -32,11 +32,11 @@ spec:
     controller:
       image:
         repository: bitnami/metallb-controller
-        tag: v0.13.7
+        tag: 0.13.7
     speaker:
       image:
         repository: bitnami/metallb-speaker
-        tag: v0.13.7
+        tag: 0.13.7
     configInline:
       address-pools:
       - name: default
