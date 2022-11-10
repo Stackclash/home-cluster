@@ -31,11 +31,11 @@ spec:
   values:
     controller:
       image:
-        repository: quay.io/metallb/controller
+        repository: bitnami/metallb-controller
         tag: v0.13.7
     speaker:
       image:
-        repository: quay.io/metallb/speaker
+        repository: bitnami/metallb-speaker
         tag: v0.13.7
     configInline:
       address-pools:
