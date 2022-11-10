@@ -31,11 +31,11 @@ spec:
   values:
     controller:
       image:
-        repository: metallb/controller
+        repository: quay.io/metallb/controller
         tag: v0.13.7
     speaker:
       image:
-        repository: metallb/speaker
+        repository: quay.io/metallb/speaker
         tag: v0.13.7
     configInline:
       address-pools:
