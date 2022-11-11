@@ -14,7 +14,7 @@ tasks:
       - kubectl apply -k {{.CLUSTER_DIR}}/bootstrap/
       - gpg --export-secret-keys --armor {{.SOPS_KEY}} | kubectl create secret generic sops-gpg -n flux-system --from-file=sops.asc=/dev/stdin
       - kubectl apply -k {{.CLUSTER_DIR}}/flux/flux-system
-      - sleep 5
+      - sleep 10
       - task: reconcile
     vars:
       SOPS_KEY:
