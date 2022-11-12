@@ -32,8 +32,8 @@ spec:
     controller:
       image:
         repository: bitnami/metallb-controller
-        tag: 0.13.4-debian-11-r3
+        tag: 0.13.7-debian-11-r3
     speaker:
       image:
         repository: bitnami/metallb-speaker
-        tag: 0.13.4-debian-11-r3
+        tag: 0.13.7-debian-11-r3

@@ -40,7 +40,7 @@ spec:
   values:
     image:
       repository: adguard/adguardhome
-      tag: v0.107.7
+      tag: v0.107.18
     podAnnotations:
       configmap.reloader.stakater.com/reload: "adguard-home-config"
     env:
