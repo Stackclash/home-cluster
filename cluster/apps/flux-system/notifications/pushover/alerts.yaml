@@ -9,10 +9,6 @@ spec:
     name: pushover
   eventSeverity: info
   eventSources:
-    - kind: GitRepository
-      name: '*'
-    - kind: Kustomization
-      name: '*'
     - kind: HelmRelease
       name: '*'
   suspend: false
