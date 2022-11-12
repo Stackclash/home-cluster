@@ -5,4 +5,3 @@ resources:
   - cloudflare-api-secret.sops.yaml
   - helm-release.yaml
   - issuers
-  - certificates

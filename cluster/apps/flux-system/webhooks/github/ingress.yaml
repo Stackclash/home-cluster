@@ -5,7 +5,7 @@ metadata:
   name: webhook-receiver
   namespace: flux-system
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
     external-dns.alpha.kubernetes.io/target: "ipv4.${DOMAIN}"
     external-dns/is-public: "true"
 spec:
@@ -24,3 +24,4 @@ spec:
   tls:
     - hosts:
         - "flux-webhook.${DOMAIN}"
+      secretName: flux-webhook-tls

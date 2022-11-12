@@ -102,7 +102,7 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-staging"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
           hajimari.io/enable: "true"
           hajimari.io/icon: "dns"
         hosts:
@@ -113,6 +113,7 @@ spec:
         tls:
           - hosts:
               - "dns.${DOMAIN}"
+            secretName: dns-tls
     persistence:
       config:
         enabled: true
@@ -222,14 +223,14 @@ spec:
       whitelist_filters: []
       user_rules: []
       dhcp:
-        enabled: true
+        enabled: false
         interface_name: "eth0"
         local_domain_name: lan
         dhcpv4:
-          gateway_ip: "192.168.1.13"
-          subnet_mask: "255.255.255.0"
-          range_start: "192.168.1.0"
-          range_end: "192.168.1.255"
+          gateway_ip: ""
+          subnet_mask: ""
+          range_start: ""
+          range_end: ""
           lease_duration: 86400
           icmp_timeout_msec: 1000
           options: []

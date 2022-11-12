@@ -37,9 +37,3 @@ spec:
       image:
         repository: bitnami/metallb-speaker
         tag: 0.13.4-debian-11-r3
-    configInline:
-      address-pools:
-      - name: default
-        protocol: layer2
-        addresses:
-        - "${METALLB_LB_RANGE}"

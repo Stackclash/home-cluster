@@ -52,7 +52,7 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-staging"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
           external-dns.alpha.kubernetes.io/target: "ipv4.${DOMAIN}"
           external-dns/is-public: "true"
           hajimari.io/enable: "true"
@@ -65,3 +65,4 @@ spec:
         tls:
           - hosts:
               - "status.${DOMAIN}"
+            secretName: status-tls
