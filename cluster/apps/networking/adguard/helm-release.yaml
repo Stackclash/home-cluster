@@ -106,14 +106,14 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "dns"
         hosts:
-        - host: "dns.${DOMAIN}"
-          paths:
-          - path: /
-            pathType: Prefix
+          - host: "dns.${DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
-        - hosts:
-          - "dns.${DOMAIN}"
-          secretName: dns-tls
+          - hosts:
+              - "dns.${DOMAIN}"
+            secretName: dns-tls
     persistence:
       config:
         enabled: true

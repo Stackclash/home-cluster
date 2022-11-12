@@ -108,13 +108,13 @@ spec:
           repeat_interval: 12h
           receiver: 'null'
           routes:
-          - receiver: 'null'
-            matchers:
-              - alertname =~ "InfoInhibitor|Watchdog"
+            - receiver: 'null'
+              matchers:
+                - alertname =~ "InfoInhibitor|Watchdog"
         receivers:
-        - name: 'null'
+          - name: 'null'
         templates:
-        - '/etc/alertmanager/config/*.tmpl'
+          - '/etc/alertmanager/config/*.tmpl'
 
       ingress:
         enabled: true
@@ -285,7 +285,7 @@ spec:
 
         ## Annotations for Grafana Ingress
         ##
-        annotations: 
+        annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           hajimari.io/enable: "true"
           hajimari.io/icon: "chart-box-outline"
@@ -295,7 +295,7 @@ spec:
         ##
         # hosts:
         #   - grafana.domain.com
-        hosts: 
+        hosts:
           - "grafana.${DOMAIN}"
 
         ## Path for grafana ingress
@@ -306,7 +306,7 @@ spec:
         ##
         tls:
           - hosts:
-            - "grafana.${DOMAIN}"
+              - "grafana.${DOMAIN}"
             secretName: grafana-tls
 
       sidecar:
@@ -353,8 +353,8 @@ spec:
           ## Field with internal link pointing to existing data source in Grafana.
           ## Can be provisioned via additionalDataSources
           exemplarTraceIdDestinations: {}
-            # datasourceUid: Jaeger
-            # traceIdLabelName: trace_id
+          # datasourceUid: Jaeger
+          # traceIdLabelName: trace_id
 
     ## Component scraping the kube api server
     ##
@@ -695,8 +695,8 @@ spec:
         skydns:
           port: 10055
           targetPort: 10055
-        # selector:
-        #   k8s-app: kube-dns
+          # selector:
+          #   k8s-app: kube-dns
       serviceMonitor:
         ## Scrape interval. If not set, the Prometheus default scrape interval is used.
         ##

@@ -57,11 +57,11 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "connection"
         hosts:
-        - host: "red.${DOMAIN}"
-          paths:
-          - path: /
-            pathType: Prefix
+          - host: "red.${DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
-        - hosts:
-          - "red.${DOMAIN}"
-          secretName: node-red-tls
+          - hosts:
+              - "red.${DOMAIN}"
+            secretName: node-red-tls
