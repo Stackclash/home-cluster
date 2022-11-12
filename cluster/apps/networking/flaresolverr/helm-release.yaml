@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: flaresolverr
-      version: 5.2.0
+      version: 5.4.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
@@ -31,6 +31,6 @@ spec:
   values:
     image:
       repository: ghcr.io/flaresolverr/flaresolverr
-      tag: v2.2.1
+      tag: v2.2.10
     env:
       TZ: "${TIMEZONE}"
