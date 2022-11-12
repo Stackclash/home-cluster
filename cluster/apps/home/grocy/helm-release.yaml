@@ -61,6 +61,5 @@ spec:
         tls:
           - hosts:
               - "grocy.${DOMAIN}"
-            secretName: grocy-tls
     env:
       TZ: "${TIMEZONE}"

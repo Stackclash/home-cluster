@@ -63,4 +63,3 @@ spec:
         tls:
           - hosts:
               - "home.${DOMAIN}"
-            secretName: home-tls

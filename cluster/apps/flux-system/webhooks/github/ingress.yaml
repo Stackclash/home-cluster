@@ -24,4 +24,3 @@ spec:
   tls:
     - hosts:
         - "flux-webhook.${DOMAIN}"
-      secretName: flux-webhook-tls

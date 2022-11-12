@@ -65,4 +65,3 @@ spec:
         tls:
           - hosts:
               - "status.${DOMAIN}"
-            secretName: uptime-tls
