@@ -43,6 +43,8 @@ spec:
         enabled: true
       ingressClassResource:
         default: true
+      extraArgs:
+        default-ssl-certificate: "cert-manager/acme-crt-secret"
       config:
         client-header-timeout: 120
         client-body-buffer-size: "100M"
