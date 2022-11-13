@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - booksonic-air
-  # - calibre-web
+  - calibre-web
   # - jackett
   # - ombi
   - PVs
