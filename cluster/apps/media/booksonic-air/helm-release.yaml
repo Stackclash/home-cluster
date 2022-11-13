@@ -40,7 +40,7 @@ spec:
       repository: ghcr.io/linuxserver/booksonic-air
       tag: v2201.1.0-ls73
     env:
-      TZ: "America/Chicago" # ${TIMEZONE}
+      TZ: "${TIMEZONE}"
     persistence:
       config:
         enabled: true
