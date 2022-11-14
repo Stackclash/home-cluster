@@ -10,4 +10,4 @@ resources:
   - PVs
   - radarr
   - readarr
-  # - sonarr
+  - sonarr
