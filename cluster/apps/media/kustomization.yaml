@@ -8,6 +8,6 @@ resources:
   - jackett
   - ombi
   - PVs
-  # - radarr
+  - radarr
   # - readarr
   # - sonarr
