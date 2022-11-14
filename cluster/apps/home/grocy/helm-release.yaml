@@ -53,6 +53,8 @@ spec:
           external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "cart"
+          hajimari.io/targetBlank: "true"
+          hajimari.io/group: External
         hosts:
           - host: "grocy.${DOMAIN}"
             paths:

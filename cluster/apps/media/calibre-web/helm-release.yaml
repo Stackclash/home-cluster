@@ -53,11 +53,20 @@ spec:
       main:
         enabled: true
         ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns.alpha.kubernetes.io/target: "ipv4.${DOMAIN}"
+          external-dns/is-public: 'true'
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: book-multiple
+          hajimari.io/targetBlank: "true"
+          hajimari.io/group: External
         tls:
           - hosts:
-              - "calibre.${DOMAIN}"
+              - "books.${DOMAIN}"
+            secretName: books-tls
         hosts:
-          - host: "calibre.${DOMAIN}"
+          - host: "books.${DOMAIN}"
             paths:
               - path: /
             pathType: Prefix

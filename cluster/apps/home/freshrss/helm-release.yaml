@@ -54,6 +54,8 @@ spec:
           external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "rss"
+          hajimari.io/targetBlank: "true"
+          hajimari.io/group: External
         ingressClassName: nginx
         hosts:
           - host: "rss.${DOMAIN}"

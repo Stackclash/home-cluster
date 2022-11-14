@@ -37,8 +37,8 @@ spec:
       namespace: networking
   values:
     image:
-      repository: linuxserver/booksonic-air
-      tag: v2009.1.0-ls2
+      repository: ghcr.io/linuxserver/booksonic-air
+      tag: v2201.1.0-ls73
     env:
       TZ: "${TIMEZONE}"
     persistence:
@@ -57,11 +57,20 @@ spec:
       main:
         enabled: true
         ingressClassName: nginx
-        tls:
-          - hosts:
-              - "booksonic.${DOMAIN}"
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns.alpha.kubernetes.io/target: "ipv4.${DOMAIN}"
+          external-dns/is-public: 'true'
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: headphones
+          hajimari.io/targetBlank: "true"
+          hajimari.io/group: External
         hosts:
-          - host: "booksonic.${DOMAIN}"
+          - host: "audiobooks.${DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
+        tls:
+          - hosts:
+              - "audiobooks.${DOMAIN}"
+            secretName: booksonic-tls

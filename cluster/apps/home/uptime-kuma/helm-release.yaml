@@ -57,6 +57,8 @@ spec:
           external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "wan"
+          hajimari.io/targetBlank: "true"
+          hajimari.io/group: Internal
         hosts:
           - host: "status.${DOMAIN}"
             paths:

@@ -2,32 +2,19 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ombi
+  name: plex
   namespace: media
 spec:
-  interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: ombi
-      version: 11.5.2
+      chart: plex
+      interval: 5m
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
-      interval: 5m
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    remediation:
-      retries: 3
-      remediateLastFailure: true
-      # cleanupOnFail: true
-  rollback:
-    timeout: 10m
-    recreate: true
-    # cleanupOnFail: true
+      version: 6.4.2
   dependsOn:
     - name: nfs-subdir-external-provisioner
       namespace: storage
@@ -35,12 +22,24 @@ spec:
       namespace: networking
     - name: ingress-nginx
       namespace: networking
+  install:
+    remediation:
+      retries: 3
+  interval: 5m
+  rollback:
+    recreate: true
+    timeout: 10m
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+      retries: 3
   values:
-    image:
-      repository: ghcr.io/linuxserver/ombi
-      tag: version-v4.0.1430
     env:
+      PLEX_CLAIM: "${PLEX_CLAIM_TOKEN}"
       TZ: "${TIMEZONE}"
+    image:
+      repository: ghcr.io/k8s-at-home/plex
+      tag: v1.28.0.5999-97678ded3
     ingress:
       main:
         enabled: true
@@ -50,19 +49,37 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ipv4.${DOMAIN}"
           external-dns/is-public: 'true'
           hajimari.io/enable: 'true'
-          hajimari.io/icon: message-video
+          hajimari.io/icon: plex
           hajimari.io/targetBlank: "true"
           hajimari.io/group: External
         hosts:
-          - host: "ombi.${DOMAIN}"
+          - host: "plex.${DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "ombi.${DOMAIN}"
-            secretName: ombi-tls
+              - "plex.${DOMAIN}"
+            secretName: plex-tls
     persistence:
       config:
         enabled: true
         storageClass: nfs-kube
+      movies:
+        enabled: true
+        existingClaim: movies
+        mountPath: /media/movies
+      tv-shows:
+        enabled: true
+        existingClaim: tv-shows
+        mountPath: /media/tv-shows
+    service:
+      main:
+        annotations:
+          metallb.universe.tf/address-pool: default
+        loadBalancerIP: "${PLEX_LB}"
+        ports:
+          http:
+            port: 32400
+        primary: true
+        type: LoadBalancer
