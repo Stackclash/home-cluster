@@ -24,8 +24,8 @@ spec:
       retries: 5
   values:
     configuration:
-      startTime: "10pm"
-      endTime: "2am"
+      startTime: "2am"
+      endTime: "5am"
       logFormat: "json"
       timeZone: "${TIMEZONE}"
       rebootSentinelCommand: |-
