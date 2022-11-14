@@ -44,6 +44,11 @@ spec:
     ingress:
       main:
         enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: book-search
         hosts:
           - host: "readarr.${DOMAIN}"
             paths:
@@ -52,6 +57,7 @@ spec:
         tls:
           - hosts:
               - "readarr.${DOMAIN}"
+            secretName: readarr-tls
     persistence:
       config:
         enabled: true

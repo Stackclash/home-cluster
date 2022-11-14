@@ -9,5 +9,5 @@ resources:
   - ombi
   - PVs
   - radarr
-  # - readarr
+  - readarr
   # - sonarr
