@@ -1,0 +1,82 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: plex
+  namespace: media
+spec:
+  chart:
+    spec:
+      chart: plex
+      interval: 5m
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      version: 6.4.2
+  dependsOn:
+    - name: nfs-subdir-external-provisioner
+      namespace: storage
+    - name: cert-manager
+      namespace: networking
+    - name: ingress-nginx
+      namespace: networking
+  install:
+    remediation:
+      retries: 3
+  interval: 5m
+  rollback:
+    recreate: true
+    timeout: 10m
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+      retries: 3
+  values:
+    env:
+      PLEX_CLAIM: "${PLEX_CLAIM_TOKEN}"
+      TZ: "${TIMEZONE}"
+    image:
+      repository: ghcr.io/k8s-at-home/plex
+      tag: v1.28.0.5999-97678ded3
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns.alpha.kubernetes.io/target: "ipv4.${DOMAIN}"
+          external-dns/is-public: 'true'
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: plex
+        hosts:
+          - host: "plex.${DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "plex.${DOMAIN}"
+            secretName: plex-tls
+    persistence:
+      config:
+        enabled: true
+        storageClass: nfs-kube
+      movies:
+        enabled: true
+        existingClaim: movies
+        mountPath: /media/movies
+      tv-shows:
+        enabled: true
+        existingClaim: tv-shows
+        mountPath: /media/tv-shows
+    service:
+      main:
+        annotations:
+          metallb.universe.tf/address-pool: default
+        loadBalancerIP: "${PLEX_LB}"
+        ports:
+          http:
+            port: 32400
+        primary: true
+        type: LoadBalancer
