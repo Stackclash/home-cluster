@@ -9,4 +9,4 @@ resources:
   - networking
   - home
   - media
-  # - system-upgrade
+  - system-upgrade

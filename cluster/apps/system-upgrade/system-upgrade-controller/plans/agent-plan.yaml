@@ -4,6 +4,8 @@ kind: Plan
 metadata:
   name: agent-plan
   namespace: system-upgrade
+  labels:
+    k3s-upgrade: agent
 spec:
   concurrency: 1
   drain:
@@ -23,4 +25,4 @@ spec:
   serviceAccountName: system-upgrade
   upgrade:
     image: rancher/k3s-upgrade
-  channel: https://update.k3s.io/v1-release/channels/v1.20
+  channel: https://update.k3s.io/v1-release/channels/stable
