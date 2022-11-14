@@ -6,7 +6,7 @@ resources:
   - booksonic-air
   - calibre-web
   - jackett
-  # - ombi
+  - ombi
   - PVs
   # - radarr
   # - readarr
