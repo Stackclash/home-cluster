@@ -51,6 +51,8 @@ spec:
           external-dns/is-public: 'true'
           hajimari.io/enable: 'true'
           hajimari.io/icon: message-video
+          hajimari.io/targetBlank: "true"
+          hajimari.io/group: External
         hosts:
           - host: "ombi.${DOMAIN}"
             paths:

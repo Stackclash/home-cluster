@@ -49,6 +49,8 @@ spec:
           cert-manager.io/cluster-issuer: letsencrypt-production
           hajimari.io/enable: 'true'
           hajimari.io/icon: television-box
+          hajimari.io/targetBlank: "true"
+          hajimari.io/group: Internal
         hosts:
           - host: "sonarr.${DOMAIN}"
             paths:
