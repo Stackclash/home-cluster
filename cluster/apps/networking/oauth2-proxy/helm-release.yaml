@@ -22,9 +22,13 @@ spec:
       tag: "v7.4.0"
     ingress:
       enabled: true
-      # annotations:
-      #   kubernetes.io/ingress.class: nginx
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${DOMAIN}"
+        external-dns/is-public: "true"
       path: /oauth2
+      pathType: Prefix
       hosts:
         - "auth.${DOMAIN}"
       tls:
@@ -33,71 +37,16 @@ spec:
     authenticatedEmailsFile:
       enabled: true
       restricted_access: |-
-        ${EMAIL_ADDRESS_1}
-        ${EMAIL_ADDRESS_2}
+        "${MY_EMAIL}"
     config:
-      clientID: ${DEX_OAUTH2_PROXY_CLIENT_ID}
-      clientSecret: ${DEX_OAUTH2_PROXY_CLIENT_SECRET}
-      cookieSecret: ${OAUTH2_PROXY_COOKIE_SECRET}
+      clientID: ${OAUTH2_PROXY_CLIENT_ID}
+      clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
+      # cookieSecret: ${OAUTH2_PROXY_COOKIE_SECRET}
     extraArgs:
       provider: oidc
-      oidc-issuer-url: https://billimek.auth0.com/
+      oidc-issuer-url: https://rickcoxdev.auth0.com/
       skip-provider-button:
       pass-authorization-header:
       email-domain: "*"
-      cookie-domain: .eviljungle.com
-      whitelist-domain: .eviljungle.com
-
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: oauth2-proxy
-  namespace: networking
-spec:
-  interval: 10m
-  chart:
-    spec:
-      chart: oauth2-proxy
-      version: 6.4.0
-      sourceRef:
-        kind: HelmRepository
-        name: oauth2-proxy
-        namespace: flux-system
-  values:
-    image:
-      repository: quay.io/oauth2-proxy/oauth2-proxy
-      tag: v7.4.0
-    authenticatedEmailsFile:
-      enabled: true
-      restricted_access: |-
-        ${EMAIL_ADDRESS_1}
-        ${EMAIL_ADDRESS_2}
-    config:
-      clientID: ${DEX_OAUTH2_PROXY_CLIENT_ID}
-      clientSecret: ${DEX_OAUTH2_PROXY_CLIENT_SECRET}
-      cookieSecret: ${OAUTH2_PROXY_COOKIE_SECRET}
-      configFile: |-
-        provider = "oidc"
-        oidc_issuer_url = "https://dex.${DOMAIN}"
-        auth_logging = true
-        cookie_domains = ".${DOMAIN}"
-        cookie_secure = true
-        email_domains = []
-        pass_access_token = true
-        pass_authorization_header = true
-        whitelist_domains = ".${DOMAIN}"
-    ingress:
-      enabled: true
-      className: nginx
-      path: /oauth2
-      pathType: Prefix
-      annotations:
-        external-dns.home.arpa/enabled: "true"
-        cert-manager.home.arpa/enabled: "true"
-      hosts:
-        - &host auth.${DOMAIN}
-      tls:
-        - hosts:
-            - *host
-          secretName: auth-tls
+      cookie-domain: ".${DOMAIN}"
+      whitelist-domain: ".${DOMAIN}"
