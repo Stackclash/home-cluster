@@ -10,3 +10,4 @@ resources:
   - ingress-nginx
   - k8s-gateway
   - metallb
+  - oauth2-proxy
