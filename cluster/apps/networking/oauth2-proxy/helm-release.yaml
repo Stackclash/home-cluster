@@ -33,7 +33,7 @@ spec:
         - "auth.${DOMAIN}"
       tls:
         - hosts:
-          - "auth.${DOMAIN}"
+            - "auth.${DOMAIN}"
     authenticatedEmailsFile:
       enabled: true
       restricted_access: |-
