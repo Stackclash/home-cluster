@@ -56,12 +56,20 @@ spec:
             - name: Obsidian
               url: "obsidian://"
             - name: Readwise
-              url: ""
+              url: "https://readwise.io/"
             - name: Reclipped
-              url: ""
-        - group: Work
-        - group: Coding
-        - group: 
+              url: "https://reclipped.com/"
+            - name: Instapaper
+              url: "https://www.instapaper.com/"
+        - group: K3s Cluster
+            - name: Github Repo
+              url: "https://github.com/RickCoxDev/home-cluster"
+            - name: NameCheap
+              url: "https://www.namecheap.com/"
+            - name: Auth0
+              url: "https://auth0.com/"
+            - name: Cloudflare
+              url: "https://www.cloudflare.com/"
     ingress:
       main:
         enabled: true
