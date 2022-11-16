@@ -62,6 +62,7 @@ spec:
             - name: Instapaper
               url: "https://www.instapaper.com/"
         - group: K3s Cluster
+          bookmarks:
             - name: Github Repo
               url: "https://github.com/RickCoxDev/home-cluster"
             - name: NameCheap
