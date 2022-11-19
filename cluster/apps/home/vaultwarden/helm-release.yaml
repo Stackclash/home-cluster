@@ -86,3 +86,4 @@ spec:
       SMTP_EXPLICIT_TLS: "true"
       ADMIN_TOKEN: "${VAULTWARDEN_ADMIN_TOKEN}"
       SIGNUPS_ALLOWED: "false"
+      DATABASE_URL: mysql://root:${MARIADB_ROOT_PASSWORD}@mariadb.storage.svc.cluster.local:3306/vaultwarden
