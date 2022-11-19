@@ -65,3 +65,38 @@ spec:
           - hosts:
               - "home.${DOMAIN}"
             secretName: home-tls
+    addons:
+      codeserver:
+        enabled: true
+        image:
+          repository: ghcr.io/coder/code-server
+          tag: 4.5.1
+        env:
+          TZ: "${TIMEZONE}"
+        workingDir: "/config"
+        args:
+          - --auth
+          - none
+          - --user-data-dir
+          - "/config/.vscode"
+        volumeMounts:
+          - name: config
+            mounthPath: /config
+        ingress:
+          enabled: true
+          annotations:
+            nginx.ingress.kubernetes.io/rewrite-target: /$2
+            hajimari.io/enable: "true"
+            hajimari.io/icon: "code-braces"
+            hajimari.io/targetBlank: "true"
+            hajimari.io/group: External
+          ingressClassName: nginx
+          hosts:
+            - host: "home.${DOMAIN}"
+              paths:
+                - path: /codeserver(/|$)(.*)
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - "home.${DOMAIN}"
+              secretName: home-tls
