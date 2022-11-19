@@ -88,7 +88,7 @@ spec:
             nginx.ingress.kubernetes.io/rewrite-target: /$2
             hajimari.io/enable: "true"
             hajimari.io/icon: "code-braces"
-            hajimari.io/targetBlank: "true"
+            hajimari.io/url: "https://home.${DOMAIN}/codeserver/"
             hajimari.io/group: External
           ingressClassName: nginx
           hosts:
