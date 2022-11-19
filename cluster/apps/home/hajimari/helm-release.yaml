@@ -36,6 +36,7 @@ spec:
       showAppUrls: false
       alwaysTargetBlank: true
       showGlobalBookmarks: true
+      showAppStatus: false
       namespaceSelector:
         matchNames:
           - home
