@@ -63,7 +63,6 @@ spec:
           external-dns/is-public: 'true'
           hajimari.io/enable: 'true'
           hajimari.io/icon: headphones
-          hajimari.io/targetBlank: "true"
           hajimari.io/group: External
         hosts:
           - host: "audiobooks.${DOMAIN}"

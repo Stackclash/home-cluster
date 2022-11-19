@@ -56,7 +56,6 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           hajimari.io/enable: "true"
           hajimari.io/icon: "connection"
-          hajimari.io/targetBlank: "true"
           hajimari.io/group: Internal
         hosts:
           - host: "red.${DOMAIN}"
