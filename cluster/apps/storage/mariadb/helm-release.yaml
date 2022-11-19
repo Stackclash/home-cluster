@@ -8,12 +8,12 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://rickcoxdev.github.io/arm-charts/
+      # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: mariadb
-      version: 1.1.1
+      version: 11.4.0
       sourceRef:
         kind: HelmRepository
-        name: rickcoxdev-arm-charts
+        name: bitnami
         namespace: flux-system
       interval: 5m
   install:
@@ -30,13 +30,26 @@ spec:
     # cleanupOnFail: true
   values:
     image:
-      repository: linuxserver/mariadb
-      tag: 10.6.10
-    db:
-      rootPassword: "${PASSWORD}"
-    service:
-      type: LoadBalancer
-      loadBalancerIP: "${MARIADB_LB}"
-    persistence:
-      enabled: true
-      storageClass: nfs-kube
+      repository: bitnami/mariadb
+      tag: 10.6.11-debian-11-r0
+    auth:
+      rootPassword: "${MARIADB_ROOT_PASSWORD}"
+    primary:
+      name: primary
+      persistence:
+        enabled: true
+        storageClass: nfs-kube
+      service:
+        annotations: {}
+        type: LoadBalancer
+        loadBalancerIP: "${MARIADB_PRIMARY_LB_IP}"
+    secondary:
+      name: secondary
+      replicaCount: 1
+      persistence:
+        enabled: true
+        storageClass: nfs-kube
+      service:
+        annotations: {}
+        type: LoadBalancer
+        loadBalancerIP: "${MARIADB_SECONDARY_LB_IP}"
