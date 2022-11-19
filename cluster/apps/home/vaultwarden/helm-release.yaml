@@ -53,7 +53,6 @@ spec:
           external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "safe-square"
-          hajimari.io/targetBlank: "true"
           hajimari.io/group: External
         hosts:
           - host: "vault.${DOMAIN}"
