@@ -81,7 +81,7 @@ spec:
           - "/config/.vscode"
         volumeMounts:
           - name: config
-            mounthPath: /config
+            mountPath: /config
         ingress:
           enabled: true
           annotations:
