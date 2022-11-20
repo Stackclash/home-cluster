@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: bitnami/mariadb
-      tag: 10.6.11-debian-11-r0
+      tag: 10.9.4-debian-11-r0
     auth:
       rootPassword: "${MARIADB_ROOT_PASSWORD}"
     primary:
