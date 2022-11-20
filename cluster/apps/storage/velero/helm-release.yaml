@@ -39,11 +39,14 @@ spec:
       - mountPath: /target
         name: plugins
     backupsEnabled: true
-    snapshotsEnabled: false
+    snapshotsEnabled: true
     deployRestic: true
     upgradeCRDs: true
     metrics:
       enabled: false
+    restic:
+      podVolumePath: /var/lib/kubelet/pods
+      privileged: true
     credentials:
       useSecret: true
       name: velero-s3-keys
