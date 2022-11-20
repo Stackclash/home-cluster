@@ -74,10 +74,15 @@ spec:
     schedules:
       daily-backup:
         disabled: false
-        schedule: "0 6 * * *"
+        # Everyday at 3am
+        schedule: "0 3 * * *"
         template:
-          ttl: "120h"
-          includedNamespaces:
-          - home
-          includedResources:
-          - PersistentVolume
+          # keep for 7 days
+          ttl: "168h"
+      weekly-backup:
+        disabled: false
+        # Every Sunday at 12am
+        schedule: "0 0 * * 0"
+        template:
+          # keep for 14 days
+          ttl: "336h"
