@@ -41,6 +41,8 @@ spec:
       tag: develop-version-3.0.6.1301
     env:
       TZ: "${TIMEZONE}"
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     ingress:
       main:
         enabled: true

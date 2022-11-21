@@ -41,6 +41,8 @@ spec:
       tag: nightly-version-0.1.0.904
     env:
       TZ: "${TIMEZONE}"
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     ingress:
       main:
         enabled: true

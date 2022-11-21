@@ -49,6 +49,8 @@ spec:
         enabled: true
         existingClaim: books
         mountPath: /books
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     ingress:
       main:
         enabled: true

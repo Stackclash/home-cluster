@@ -43,6 +43,7 @@ spec:
       tag: v0.107.18
     podAnnotations:
       configmap.reloader.stakater.com/reload: "adguard-home-config"
+      backup.velero.io/backup-volumes: config
     env:
       TZ: "${TIMEZONE}"
     service:
