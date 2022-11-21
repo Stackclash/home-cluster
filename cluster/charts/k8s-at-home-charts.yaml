@@ -6,4 +6,4 @@ metadata:
   namespace: flux-system
 spec:
   url: https://k8s-at-home.com/charts/
-  interval: 24h
+  interval: 5m
