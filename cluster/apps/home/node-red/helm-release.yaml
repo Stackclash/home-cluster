@@ -48,6 +48,8 @@ spec:
         storageClass: nfs-kube
         accessMode: ReadWriteOnce
         size: 1Gi
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
     ingress:
       main:
         enabled: true

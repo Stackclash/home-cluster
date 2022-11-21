@@ -34,6 +34,8 @@ spec:
       tag: 10.6.11-debian-11-r0
     auth:
       rootPassword: "${MARIADB_ROOT_PASSWORD}"
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     primary:
       name: primary
       persistence:

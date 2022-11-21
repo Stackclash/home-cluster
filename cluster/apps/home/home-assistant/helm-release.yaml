@@ -45,6 +45,8 @@ spec:
       config:
         enabled: true
         storageClass: nfs-kube
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     ingress:
       main:
         enabled: true

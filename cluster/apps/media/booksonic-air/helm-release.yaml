@@ -53,6 +53,8 @@ spec:
         enabled: true
         existingClaim: podcasts
         mountPath: /podcasts
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     ingress:
       main:
         enabled: true

@@ -41,6 +41,8 @@ spec:
       tag: version-v4.0.1430
     env:
       TZ: "${TIMEZONE}"
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     ingress:
       main:
         enabled: true
