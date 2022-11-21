@@ -6,4 +6,4 @@ metadata:
   namespace: flux-system
 spec:
   url: https://rickcoxdev.github.io/arm-charts/
-  interval: 24h
+  interval: 5m
