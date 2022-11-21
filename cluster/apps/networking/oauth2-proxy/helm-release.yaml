@@ -5,7 +5,7 @@ metadata:
   name: oauth2-proxy
   namespace: networking
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
       # renovate: registryUrl=https://oauth2-proxy.github.io/manifests
@@ -15,7 +15,7 @@ spec:
         kind: HelmRepository
         name: oauth2-proxy
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   values:
     image:
       repository: "quay.io/oauth2-proxy/oauth2-proxy"
@@ -34,6 +34,7 @@ spec:
       tls:
         - hosts:
             - "auth.${DOMAIN}"
+          secretName: auth-tls
     authenticatedEmailsFile:
       enabled: true
       restricted_access: |-

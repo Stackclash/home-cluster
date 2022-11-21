@@ -5,7 +5,7 @@ metadata:
   name: kube-prometheus-stack
   namespace: monitoring
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
       # renovate: registryUrl=https://prometheus-community.github.io/helm-charts/
@@ -15,7 +15,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   install:
     remediation:
       retries: 3

@@ -5,17 +5,17 @@ metadata:
   name: plex
   namespace: media
 spec:
+  interval: 10m
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: plex
-      interval: 5m
-      reconcileStrategy: ChartVersion
+      version: 6.4.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
-      version: 6.4.2
+      interval: 10m
   dependsOn:
     - name: nfs-subdir-external-provisioner
       namespace: storage
@@ -26,7 +26,6 @@ spec:
   install:
     remediation:
       retries: 3
-  interval: 5m
   rollback:
     recreate: true
     timeout: 10m

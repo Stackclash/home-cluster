@@ -5,7 +5,7 @@ metadata:
   name: mariadb
   namespace: storage
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
@@ -15,7 +15,7 @@ spec:
         kind: HelmRepository
         name: bitnami
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   install:
     remediation:
       retries: 3
