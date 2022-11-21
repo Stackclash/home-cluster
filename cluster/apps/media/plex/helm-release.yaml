@@ -26,13 +26,15 @@ spec:
   install:
     remediation:
       retries: 3
-  rollback:
-    recreate: true
-    timeout: 10m
   upgrade:
     remediation:
-      remediateLastFailure: true
       retries: 3
+      remediateLastFailure: true
+      # cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    # cleanupOnFail: true
   values:
     env:
       PLEX_CLAIM: "${PLEX_CLAIM_TOKEN}"
