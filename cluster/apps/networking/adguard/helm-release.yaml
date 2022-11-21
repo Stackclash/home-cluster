@@ -29,13 +29,11 @@ spec:
     recreate: true
     # cleanupOnFail: true
   dependsOn:
-    - name: cert-manager
-      namespace: networking
-    - name: metallb
-      namespace: networking
     - name: nfs-subdir-external-provisioner
       namespace: storage
-    - name: k8s-gateway
+    - name: cert-manager
+      namespace: networking
+    - name: ingress-nginx
       namespace: networking
   values:
     image:

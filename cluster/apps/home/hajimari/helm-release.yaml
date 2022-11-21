@@ -29,9 +29,11 @@ spec:
     recreate: true
     # cleanupOnFail: true
   dependsOn:
-    - name: k8s-gateway
-      namespace: networking
+    - name: nfs-subdir-external-provisioner
+      namespace: storage
     - name: cert-manager
+      namespace: networking
+    - name: ingress-nginx
       namespace: networking
   values:
     hajimari:

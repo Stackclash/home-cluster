@@ -28,6 +28,9 @@ spec:
     timeout: 10m
     recreate: true
     # cleanupOnFail: true
+  dependsOn:
+    - name: metallb
+      namespace: networking
   values:
     image:
       repository: bitnami/mariadb

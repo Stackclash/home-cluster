@@ -28,6 +28,11 @@ spec:
     timeout: 10m
     recreate: true
     # cleanupOnFail: true
+  dependsOn:
+    - name: cert-manager
+      namespace: networking
+    - name: ingress-nginx
+      namespace: networking
   values:
     image:
       repository: "quay.io/oauth2-proxy/oauth2-proxy"

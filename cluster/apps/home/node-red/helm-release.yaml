@@ -33,7 +33,7 @@ spec:
       namespace: storage
     - name: cert-manager
       namespace: networking
-    - name: k8s-gateway
+    - name: ingress-nginx
       namespace: networking
   values:
     image:
