@@ -5,17 +5,33 @@ metadata:
   name: oauth2-proxy
   namespace: networking
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
-      # renovate: registryUrl=https://oauth2-proxy.github.io/manifests
       chart: oauth2-proxy
       version: 6.5.0
       sourceRef:
         kind: HelmRepository
         name: oauth2-proxy
         namespace: flux-system
-      interval: 5m
+      interval: 10m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+      # cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    # cleanupOnFail: true
+  dependsOn:
+    - name: cert-manager
+      namespace: networking
+    - name: ingress-nginx
+      namespace: networking
   values:
     image:
       repository: "quay.io/oauth2-proxy/oauth2-proxy"
@@ -34,6 +50,7 @@ spec:
       tls:
         - hosts:
             - "auth.${DOMAIN}"
+          secretName: auth-tls
     authenticatedEmailsFile:
       enabled: true
       restricted_access: |-

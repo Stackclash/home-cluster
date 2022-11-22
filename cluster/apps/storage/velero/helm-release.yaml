@@ -5,17 +5,16 @@ metadata:
   name: velero
   namespace: storage
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
-      # renovate: registryUrl=https://vmware-tanzu.github.io/helm-charts
       chart: velero
       version: 2.32.3
       sourceRef:
         kind: HelmRepository
         name: velero
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   install:
     remediation:
       retries: 3
@@ -33,11 +32,11 @@ spec:
       repository: velero/velero
       tag: v1.9.3
     initContainers:
-    - name: velero-plugin-for-aws
-      image: velero/velero-plugin-for-aws:v1.5.2
-      volumeMounts:
-      - mountPath: /target
-        name: plugins
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:v1.5.2
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
     backupsEnabled: true
     snapshotsEnabled: true
     deployRestic: true

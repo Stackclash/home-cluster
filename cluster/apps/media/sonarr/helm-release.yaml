@@ -5,17 +5,16 @@ metadata:
   name: sonarr
   namespace: media
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: sonarr
       version: 16.3.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   install:
     remediation:
       retries: 3

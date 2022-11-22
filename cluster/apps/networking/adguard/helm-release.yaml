@@ -5,17 +5,16 @@ metadata:
   name: adguard-home
   namespace: networking
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: adguard-home
       version: 5.5.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   install:
     remediation:
       retries: 3
@@ -29,13 +28,11 @@ spec:
     recreate: true
     # cleanupOnFail: true
   dependsOn:
-    - name: cert-manager
-      namespace: networking
-    - name: metallb
-      namespace: networking
     - name: nfs-subdir-external-provisioner
       namespace: storage
-    - name: k8s-gateway
+    - name: cert-manager
+      namespace: networking
+    - name: ingress-nginx
       namespace: networking
   values:
     image:
