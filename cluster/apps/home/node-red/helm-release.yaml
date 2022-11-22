@@ -5,17 +5,16 @@ metadata:
   name: node-red
   namespace: home
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: node-red
       version: 10.3.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   install:
     remediation:
       retries: 3
@@ -33,7 +32,7 @@ spec:
       namespace: storage
     - name: cert-manager
       namespace: networking
-    - name: k8s-gateway
+    - name: ingress-nginx
       namespace: networking
   values:
     image:
@@ -48,6 +47,8 @@ spec:
         storageClass: nfs-kube
         accessMode: ReadWriteOnce
         size: 1Gi
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
     ingress:
       main:
         enabled: true
@@ -56,7 +57,6 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           hajimari.io/enable: "true"
           hajimari.io/icon: "connection"
-          hajimari.io/targetBlank: "true"
           hajimari.io/group: Internal
         hosts:
           - host: "red.${DOMAIN}"

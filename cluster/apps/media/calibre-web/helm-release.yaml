@@ -5,17 +5,16 @@ metadata:
   name: calibre-web
   namespace: media
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: calibre-web
       version: 8.4.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   install:
     remediation:
       retries: 3
@@ -49,6 +48,8 @@ spec:
         enabled: true
         existingClaim: books
         mountPath: /books
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     ingress:
       main:
         enabled: true
@@ -59,7 +60,6 @@ spec:
           external-dns/is-public: 'true'
           hajimari.io/enable: 'true'
           hajimari.io/icon: book-multiple
-          hajimari.io/targetBlank: "true"
           hajimari.io/group: External
         tls:
           - hosts:

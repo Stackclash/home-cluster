@@ -5,17 +5,16 @@ metadata:
   name: home-assistant
   namespace: home
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: home-assistant
       version: 13.4.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   install:
     remediation:
       retries: 3
@@ -45,6 +44,8 @@ spec:
       config:
         enabled: true
         storageClass: nfs-kube
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
     ingress:
       main:
         enabled: true
@@ -55,7 +56,6 @@ spec:
           external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "home"
-          hajimari.io/targetBlank: "true"
           hajimari.io/group: External
         hosts:
           - host: "home.${DOMAIN}"
@@ -66,3 +66,38 @@ spec:
           - hosts:
               - "home.${DOMAIN}"
             secretName: home-tls
+    addons:
+      codeserver:
+        enabled: true
+        image:
+          repository: ghcr.io/coder/code-server
+          tag: 4.8.3
+        env:
+          TZ: "${TIMEZONE}"
+        workingDir: "/config"
+        args:
+          - --auth
+          - none
+          - --user-data-dir
+          - "/config/.vscode"
+        volumeMounts:
+          - name: config
+            mountPath: /config
+        ingress:
+          enabled: true
+          annotations:
+            nginx.ingress.kubernetes.io/rewrite-target: /$2
+            hajimari.io/enable: "true"
+            hajimari.io/icon: "code-braces"
+            hajimari.io/url: "https://home.${DOMAIN}/codeserver/"
+            hajimari.io/group: External
+          ingressClassName: nginx
+          hosts:
+            - host: "home.${DOMAIN}"
+              paths:
+                - path: /codeserver(/|$)(.*)
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - "home.${DOMAIN}"
+              secretName: home-tls

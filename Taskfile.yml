@@ -51,3 +51,4 @@ tasks:
         tflint
         yamllint
         yq
+        velero

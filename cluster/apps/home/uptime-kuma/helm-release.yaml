@@ -5,17 +5,16 @@ metadata:
   name: uptime-kuma
   namespace: home
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: uptime-kuma
       version: 1.4.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   install:
     remediation:
       retries: 3
@@ -47,6 +46,8 @@ spec:
         storageClass: nfs-kube
         accessMode: ReadWriteOnce
         size: 1Gi
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
     ingress:
       main:
         enabled: true
@@ -57,7 +58,6 @@ spec:
           external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "wan"
-          hajimari.io/targetBlank: "true"
           hajimari.io/group: Internal
         hosts:
           - host: "status.${DOMAIN}"

@@ -5,17 +5,16 @@ metadata:
   name: mariadb
   namespace: storage
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
-      # renovate: registryUrl=https://rickcoxdev.github.io/arm-charts/
       chart: mariadb
-      version: 1.1.1
+      version: 11.4.0
       sourceRef:
         kind: HelmRepository
-        name: rickcoxdev-arm-charts
+        name: bitnami
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   install:
     remediation:
       retries: 3
@@ -28,15 +27,33 @@ spec:
     timeout: 10m
     recreate: true
     # cleanupOnFail: true
+  dependsOn:
+    - name: metallb
+      namespace: networking
   values:
     image:
-      repository: linuxserver/mariadb
-      tag: 10.6.10
-    db:
-      rootPassword: "${PASSWORD}"
-    service:
-      type: LoadBalancer
-      loadBalancerIP: "${MARIADB_LB}"
-    persistence:
-      enabled: true
-      storageClass: nfs-kube
+      repository: bitnami/mariadb
+      tag: 10.9.4-debian-11-r0
+    auth:
+      rootPassword: "${MARIADB_ROOT_PASSWORD}"
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
+    primary:
+      name: primary
+      persistence:
+        enabled: true
+        storageClass: nfs-kube
+      service:
+        annotations: {}
+        type: LoadBalancer
+        loadBalancerIP: "${MARIADB_PRIMARY_LB_IP}"
+    secondary:
+      name: secondary
+      replicaCount: 1
+      persistence:
+        enabled: true
+        storageClass: nfs-kube
+      service:
+        annotations: {}
+        type: LoadBalancer
+        loadBalancerIP: "${MARIADB_SECONDARY_LB_IP}"

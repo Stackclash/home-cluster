@@ -1,0 +1,69 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: oauth2-proxy
+  namespace: networking
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: oauth2-proxy
+      version: 6.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: oauth2-proxy
+        namespace: flux-system
+      interval: 10m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+      # cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    # cleanupOnFail: true
+  dependsOn:
+    - name: cert-manager
+      namespace: networking
+    - name: ingress-nginx
+      namespace: networking
+  values:
+    image:
+      repository: "quay.io/oauth2-proxy/oauth2-proxy"
+      tag: "v7.4.0"
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${DOMAIN}"
+        external-dns/is-public: "true"
+      path: /oauth2
+      pathType: Prefix
+      hosts:
+        - "auth.${DOMAIN}"
+      tls:
+        - hosts:
+            - "auth.${DOMAIN}"
+          secretName: auth-tls
+    authenticatedEmailsFile:
+      enabled: true
+      restricted_access: |-
+        "${MY_EMAIL}"
+    config:
+      clientID: "${OAUTH2_PROXY_CLIENT_ID}"
+      clientSecret: "${OAUTH2_PROXY_CLIENT_SECRET}"
+      # cookieSecret: ${OAUTH2_PROXY_COOKIE_SECRET}
+    extraArgs:
+      provider: oidc
+      oidc-issuer-url: https://rickcoxdev.us.auth0.com/
+      skip-provider-button:
+      pass-authorization-header:
+      email-domain: "*"
+      cookie-domain: ".${DOMAIN}"
+      whitelist-domain: ".${DOMAIN}"

@@ -7,4 +7,4 @@ metadata:
   namespace: flux-system
 spec:
   url: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
-  interval: 24h
+  interval: 5m
