@@ -43,7 +43,6 @@ jobs:
                     "REPOSITORY_GIT_DIFF",
                     "REPOSITORY_SECRETLINT",
                     "TERRAFORM_TERRAFORM_FMT",
-                    "YAML_PRETTIER",
                     "YAML_YAMLLINT"
                   ]
                 '),
@@ -57,5 +56,3 @@ jobs:
           MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .github/linters/.markdownlint.yaml
           MARKDOWN_MARKDOWNLINT_RULES_PATH: .github/
           YAML_YAMLLINT_CONFIG_FILE: .github/linters/.yamllint.yaml
-          YAML_PRETTIER_CONFIG_FILE: .github/linters/.prettierrc.yaml
-          YAML_PRETTIER_FILTER_REGEX_EXCLUDE: "(.*\\.sops\\.ya?ml)"
