@@ -494,7 +494,7 @@ spec:
           updateMode: Auto
       image:
         repository: quay.io/prometheus-operator/prometheus-operator
-        tag: v0.60.1
+        tag: v0.61.0
         sha: ""
         pullPolicy: IfNotPresent
       prometheusConfigReloader:
