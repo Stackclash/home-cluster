@@ -21,3 +21,6 @@ MD013:
   strict: false
   # Stern length checking
   stern: false
+# MD033/no-inline-html - No inline HTML
+no-inline-html: false
+
