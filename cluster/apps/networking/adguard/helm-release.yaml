@@ -37,7 +37,7 @@ spec:
   values:
     image:
       repository: adguard/adguardhome
-      tag: v0.107.18
+      tag: v0.107.19
     podAnnotations:
       configmap.reloader.stakater.com/reload: "adguard-home-config"
       backup.velero.io/backup-volumes: config
