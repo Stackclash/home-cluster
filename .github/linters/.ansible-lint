@@ -8,3 +8,9 @@ mock_modules:
   - ansible.posix.sysctl
   - ansible.posix.selinux
   - ansible.posix.mount
+exclude_paths:
+  - ../../cluster
+  - ../../.taskfiles
+  - ../../.vscode
+  - ../../cluster
+  - ../../provision/terraform
