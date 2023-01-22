@@ -1,3 +1,9 @@
 # .ansible-lint
 warn_list:
   - unnamed-task
+mock_modules:
+  - community.general.timezone
+  - community.general.modprobe
+  - ansible.posix.authorized_key
+  - ansible.posix.sysctl
+  - ansible.posix.selinux
