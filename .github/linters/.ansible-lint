@@ -7,3 +7,4 @@ mock_modules:
   - ansible.posix.authorized_key
   - ansible.posix.sysctl
   - ansible.posix.selinux
+  - ansible.posix.mount
