@@ -14,3 +14,6 @@ exclude_paths:
   - ../../.vscode
   - ../../cluster
   - ../../provision/terraform
+  - ../../Taskfile.yaml
+  - ../../.sops.yaml
+  - ../../provision/ansible/inventory/host_vars
