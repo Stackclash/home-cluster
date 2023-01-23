@@ -1,3 +1,19 @@
 # .ansible-lint
 warn_list:
   - unnamed-task
+mock_modules:
+  - community.general.timezone
+  - community.general.modprobe
+  - ansible.posix.authorized_key
+  - ansible.posix.sysctl
+  - ansible.posix.selinux
+  - ansible.posix.mount
+exclude_paths:
+  - ../../cluster
+  - ../../.taskfiles
+  - ../../.vscode
+  - ../../cluster
+  - ../../provision/terraform
+  - ../../Taskfile.yaml
+  - ../../.sops.yaml
+  - ../../provision/ansible/inventory/host_vars

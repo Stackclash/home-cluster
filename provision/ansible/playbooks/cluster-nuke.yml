@@ -1,39 +1,40 @@
 ---
-- hosts:
-  - master
-  - worker
+- name: Cluster Nuke
+  hosts:
+    - master
+    - worker
   become: true
   gather_facts: true
   any_errors_fatal: true
   vars_prompt:
-  - name: "run_confirmation"
-    prompt: "This will DESTROY your cluster. Do you wish to continue? [Y/n]"
-    default: "n"
-    private: false
+    - name: "run_confirmation"
+      prompt: "This will DESTROY your cluster. Do you wish to continue? [Y/n]"
+      default: "n"
+      private: false
 
   pre_tasks:
-  - name: cluster-nuke | check confirmation
-    fail:
-      msg: "Abort."
-    when: run_confirmation != "Y"
+    - name: Check confirmation
+      ansible.builtin.fail:
+        msg: "Abort."
+      when: run_confirmation != "Y"
 
   tasks:
-  - name: cluster-nuke | Uninstall k3s
-    ansible.builtin.include_role:
-      name: xanmanning.k3s
-      public: true
-    vars:
-      k3s_state: uninstalled
+    - name: Uninstall k3s
+      ansible.builtin.include_role:
+        name: xanmanning.k3s
+        public: true
+      vars:
+        k3s_state: uninstalled
 
-  - name: cluster-nuke | Gather list of CNI files to delete
-    find:
-      paths: /etc/cni/net.d
-      patterns: "*"
-      hidden: true
-    register: files_to_delete
+    - name: Gather list of CNI files to delete
+      ansible.builtin.find:
+        paths: /etc/cni/net.d
+        patterns: "*"
+        hidden: true
+      register: files_to_delete
 
-  - name: cluster-nuke | Delete CNI files
-    file:
-      path: "{{ item.path }}"
-      state: absent
-    loop: "{{ files_to_delete.files }}"
+    - name: Delete CNI files
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ files_to_delete.files }}"
