@@ -26,7 +26,7 @@
       vars:
         k3s_state: installed
 
-    - name: Get absolute path to this Git repository
+    - name: Get absolute path to this Git repository # noqa command-instead-of-module
       delegate_to: localhost
       become: false
       run_once: true
