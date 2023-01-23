@@ -13,28 +13,28 @@
       private: false
 
   pre_tasks:
-    - name: cluster-nuke | check confirmation
-      fail:
+    - name: Check confirmation
+      ansible.builtin.fail:
         msg: "Abort."
       when: run_confirmation != "Y"
 
   tasks:
-    - name: cluster-nuke | Uninstall k3s
+    - name: Uninstall k3s
       ansible.builtin.include_role:
         name: xanmanning.k3s
         public: true
       vars:
         k3s_state: uninstalled
 
-    - name: cluster-nuke | Gather list of CNI files to delete
-      find:
+    - name: Gather list of CNI files to delete
+      ansible.builtin.find:
         paths: /etc/cni/net.d
         patterns: "*"
         hidden: true
       register: files_to_delete
 
-    - name: cluster-nuke | Delete CNI files
-      file:
+    - name: Delete CNI files
+      ansible.builtin.file:
         path: "{{ item.path }}"
         state: absent
       loop: "{{ files_to_delete.files }}"

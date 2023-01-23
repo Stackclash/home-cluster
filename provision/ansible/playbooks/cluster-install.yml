@@ -31,6 +31,7 @@
       become: false
       run_once: true
       check_mode: false
+      changed_when: false
       ansible.builtin.command: |-
         git rev-parse --show-toplevel
       register: repo_abs_path
@@ -89,6 +90,7 @@
   any_errors_fatal: true
   tasks:
     - name: Get USB drive info
+      changed_when: false
       ansible.builtin.command:
         cmd: "blkid -t LABEL={{ usb_drive_label }} -s TYPE -o value"
       register: usb_drive_type

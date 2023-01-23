@@ -17,4 +17,3 @@ exclude_paths:
   - ../../Taskfile.yaml
   - ../../.sops.yaml
   - ../../provision/ansible/inventory/host_vars
- 
