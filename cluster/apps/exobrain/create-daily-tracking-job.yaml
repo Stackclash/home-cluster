@@ -11,8 +11,8 @@ spec:
         spec:
           restartPolicy: OnFailure
           containers:
-            - name: exobrain-automation
-              image: rickcoxdev/exobrain-automation:v1.0.0
+            - name: create-daily-tracking
+              image: rickcoxdev/exobrain-util:v1.0.0
               imagePullPolicy: IfNotPresent
               command:
                 - node
