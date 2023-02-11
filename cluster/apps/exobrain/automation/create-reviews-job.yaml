@@ -1,23 +1,23 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: create-daily-tracking
+  name: create-reviews
   namespace: exobrain
 spec:
-  schedule: "0 1 * * *"
+  schedule: "30 12 1 * *"
   jobTemplate:
     spec:
       template:
         spec:
           restartPolicy: OnFailure
           containers:
-            - name: create-daily-tracking
+            - name: create-reviews
               image: rickcoxdev/exobrain-util:v1.0.0
               imagePullPolicy: IfNotPresent
               command:
                 - node
                 - exobrain-util.js
-                - daily
+                - review
               env:
                 - name: NOTION_SECRET
                   valueFrom:
@@ -34,3 +34,5 @@ spec:
                     secretKeyRef:
                       name: notion-secrets
                       key: DAILY_TRACKING_DB_ID
+                - name: TZ
+                  value: "${TIMEZONE}"
