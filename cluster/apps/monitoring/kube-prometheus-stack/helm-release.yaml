@@ -506,7 +506,7 @@ spec:
       prometheusConfigReloader:
         image:
           repository: quay.io/prometheus-operator/prometheus-config-reloader
-          tag: v0.62.0
+          tag: v0.63.0
           sha: ""
         resources:
           requests:
