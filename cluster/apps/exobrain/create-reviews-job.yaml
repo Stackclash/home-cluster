@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: create-reviews
+  namespace: exobrain
+spec:
+  schedule: 30 12 1 * *
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: create-reviews
+              image: rickcoxdev/exobrain-util:v1.0.0
+              imagePullPolicy: IfNotPresent
+                - command:
+                    - node
+                    - exobrain-util.js
+                    - review
+                  env:
+                    - name: NOTION_SECRET
+                      valueFrom:
+                        secretKeyRef:
+                          key: NOTION_SECRET
+                          name: notion-secrets
+                    - name: REVIEWS_DB_ID
+                      valueFrom:
+                        secretKeyRef:
+                          key: REVIEWS_DB_ID
+                          name: notion-secrets
+                    - name: DAILY_TRACKING_DB_ID
+                      valueFrom:
+                        secretKeyRef:
+                          key: DAILY_TRACKING_DB_ID
+                          name: notion-secrets
+                    - name: TZ
+                      value: "${TIMEZONE}"
