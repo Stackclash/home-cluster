@@ -34,3 +34,5 @@ spec:
                     secretKeyRef:
                       name: notion-secrets
                       key: DAILY_TRACKING_DB_ID
+                - name: TZ
+                  value: "${TIMEZONE}"
