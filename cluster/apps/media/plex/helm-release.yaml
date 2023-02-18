@@ -80,6 +80,13 @@ spec:
       main:
         annotations:
           metallb.universe.tf/address-pool: default
+          nginx.ingress.kubernetes.io/server-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter
+            '</head>'
+            '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/plex/${TP_THEME}.css">
+            </head>';
+            sub_filter_once on;
         loadBalancerIP: "${PLEX_LB}"
         ports:
           http:

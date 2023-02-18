@@ -61,6 +61,13 @@ spec:
           hajimari.io/enable: 'true'
           hajimari.io/icon: book-multiple
           hajimari.io/group: External
+          nginx.ingress.kubernetes.io/server-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter
+            '</head>'
+            '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/calibreweb/${TP_THEME}.css">
+            </head>';
+            sub_filter_once on;
         tls:
           - hosts:
               - "books.${DOMAIN}"
