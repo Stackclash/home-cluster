@@ -35,4 +35,4 @@ spec:
     speaker:
       image:
         repository: bitnami/metallb-speaker
-        tag: 0.13.7-debian-11-r3
+        tag: 0.13.9-debian-11-r3
