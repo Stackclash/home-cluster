@@ -17,8 +17,7 @@ k3s_server:
   tls-san:
     # kube-vip
     - "{{ kubevip_address }}"
-    - 24.217.162.29
-    # Disable Docker - this will use the default containerd CRI
+  # Disable Docker - this will use the default containerd CRI
   docker: false
   flannel-backend: "none" # This needs to be in quotes
   disable:
