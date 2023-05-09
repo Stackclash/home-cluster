@@ -5,7 +5,7 @@ metadata:
   name: tv-shows
 spec:
   accessModes:
-  - ReadWriteMany
+    - ReadWriteMany
   capacity:
     storage: 100Gi
   nfs:
@@ -22,7 +22,7 @@ metadata:
   namespace: media
 spec:
   accessModes:
-  - ReadWriteMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 100Gi
