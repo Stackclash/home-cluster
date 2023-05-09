@@ -25,15 +25,15 @@
     "enabled": true
   },
   "flux": {
-    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+    "fileMatch": ["cluster/.+\\.ya?ml$"]
   },
   "helm-values": {
-    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+    "fileMatch": ["cluster/.+\\.ya?ml$"]
   },
   "kubernetes": {
     "fileMatch": [
       "ansible/.+\\.ya?ml.j2$",
-      "kubernetes/.+\\.ya?ml$"
+      "cluster/.+\\.ya?ml$"
     ]
   },
   "regexManagers": [
@@ -41,7 +41,7 @@
       "description": "Process various other dependencies",
       "fileMatch": [
         "ansible/.+\\.ya?ml$",
-        "kubernetes/.+\\.ya?ml$"
+        "cluster/.+\\.ya?ml$"
       ],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
