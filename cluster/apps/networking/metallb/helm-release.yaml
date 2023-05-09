@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: metallb
-      version: 4.1.16
+      version: 4.1.23
       sourceRef:
         kind: HelmRepository
         name: bitnami
@@ -31,8 +31,8 @@ spec:
     controller:
       image:
         repository: bitnami/metallb-controller
-        tag: 0.13.7-debian-11-r3
+        tag: 0.13.9-debian-11-r3
     speaker:
       image:
         repository: bitnami/metallb-speaker
-        tag: 0.13.7-debian-11-r3
+        tag: 0.13.9-debian-11-r3
