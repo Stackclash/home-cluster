@@ -7,56 +7,41 @@ on:
     branches:
       - main
 
-concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}
-  cancel-in-progress: true
-
-env:
-  # Currently no way to detect automatically
-  DEFAULT_BRANCH: main
-
 jobs:
-  lint:
-    name: MegaLinter
+  yamllint:
+    name: yamllint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
-      - name: MegaLinter
-        uses: oxsecurity/megalinter@v6.22.2
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'workflow_dispatch' }}
-          ENABLE_LINTERS: |-
-            ${{
-              join(
-                fromJSON('
-                  [
-                    "ANSIBLE_ANSIBLE_LINT",
-                    "KUBERNETES_KUBEVAL",
-                    "MARKDOWN_MARKDOWNLINT",
-                    "TERRAFORM_TERRAFORM_FMT",
-                    "TERRAFORM_TFLINT",
-                    "YAML_YAMLLINT",
-                    "ACTION_ACTIONLINT",
-                    "COPYPASTE_JSCPD",
-                    "REPOSITORY_GIT_DIFF",
-                    "REPOSITORY_SECRETLINT"
-                  ]
-                '),
-                ','
-              )
-            }}
-          ANSIBLE_DIRECTORY: provision/ansible
-          ANSIBLE_ANSIBLE_LINT_CONFIG_FILE: .github/linters/.ansible-lint.yaml
-          KUBERNETES_DIRECTORY: cluster
-          KUBERNETES_KUBEVAL_ARGUMENTS: --ignore-missing-schemas
-          MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .markdownlint.yaml
-          MARKDOWN_MARKDOWNLINT_RULES_PATH: .github/linters/
-          MARKDOWN_MARKDOWNLINT_FILTER_REGEX_EXCLUDE: .github/**/*
-          TERRAFORM_TFLINT_FILTER_REGEX_INCLUDE: provision/terraform/**/*
-          TERRAFORM_TERRAFORM_FMT_FILTER_REGEX_INCLUDE: provision/terraform/**/*
-          YAML_YAMLLINT_CONFIG_FILE: .github/linters/.yamllint.yaml
+      - name: yamllint
+        uses: frenck/action-yamllint@v1
+        with:
+          config: .github/linters/.yamllint.yaml
+
+  markdownlint:
+    name: markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: markdownlint
+        uses: nosborn/github-action-markdown-cli@v3.3.0
+        with:
+          config_file: .github/linters/.markdownlint.yaml
+          files: README.md
+          ignore_files: ./github/*
+
+  ansible-lint:
+    name: ansible-lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: ansible-lint
+        uses: ansible/ansible-lint-action@v4.1.1
+        with:
+          args: '-c .github/linters/.ansible-lint.yaml'
