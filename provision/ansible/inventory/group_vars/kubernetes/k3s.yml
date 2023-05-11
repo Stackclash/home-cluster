@@ -57,3 +57,4 @@ k3s_server_manifests_urls:
 k3s_server_manifests_templates:
   - calico-installation.yaml.j2
   - kube-vip-daemonset.yaml.j2
+ 
