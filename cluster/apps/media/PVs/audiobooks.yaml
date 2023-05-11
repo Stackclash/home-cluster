@@ -5,7 +5,7 @@ metadata:
   name: audiobooks
 spec:
   accessModes:
-  - ReadWriteMany
+    - ReadWriteMany
   capacity:
     storage: 20Gi
   nfs:
@@ -22,7 +22,7 @@ metadata:
   namespace: media
 spec:
   accessModes:
-  - ReadWriteMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 20Gi

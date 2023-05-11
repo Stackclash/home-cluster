@@ -26,7 +26,7 @@
       vars:
         k3s_state: installed
 
-    - name: Get absolute path to this Git repository # noqa command-instead-of-module
+    - name: Get absolute path to this Git repository # noqa command-instead-of-module run-once[task]
       delegate_to: localhost
       become: false
       run_once: true
@@ -36,7 +36,7 @@
         git rev-parse --show-toplevel
       register: repo_abs_path
 
-    - name: Copy kubeconfig to provision folder
+    - name: Copy kubeconfig to provision folder # noqa run-once[task]
       run_once: true
       ansible.builtin.fetch:
         src: "/etc/rancher/k3s/k3s.yaml"
@@ -46,7 +46,7 @@
         - k3s_control_node is defined
         - k3s_control_node
 
-    - name: Update kubeconfig with the correct IPv4 address
+    - name: Update kubeconfig with the correct IPv4 address # noqa run-once[task]
       delegate_to: localhost
       become: false
       run_once: true
@@ -95,7 +95,7 @@
         cmd: "blkid -t LABEL={{ usb_drive_label }} -s TYPE -o value"
       register: usb_drive_type
 
-    - name: Mount USB drive
+    - name: Mount USB drive # noqa: args[module]
       ansible.posix.mount:
         path: "{{ nfs_mount_path }}"
         src: "LABEL={{ usb_drive_label }}"

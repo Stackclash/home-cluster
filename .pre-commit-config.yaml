@@ -36,3 +36,19 @@ repos:
       - id: terraform-fmt
       - id: terraform-validate
       - id: tflint
+  - repo: https://github.com/ansible/ansible-lint
+    rev: V6.16.0
+    hooks:
+      - id: ansible-lint
+        args:
+          - -c
+          - .github/linters/.ansible-lint.yaml
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.34.0
+    hooks:
+      - id: markdownlint
+        args:
+          - --config
+          - .github/linters/.markdownlint.yaml
+          - --ignore
+          - .github/**/*

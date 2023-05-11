@@ -1,4 +1,4 @@
-# .ansible-lint
+---
 warn_list:
   - unnamed-task
 mock_modules:
@@ -8,12 +8,16 @@ mock_modules:
   - ansible.posix.sysctl
   - ansible.posix.selinux
   - ansible.posix.mount
+mock_roles:
+  - xanmanning.k3s
+  - geerlingguy.nfs
 exclude_paths:
-  - ../../cluster
-  - ../../.taskfiles
-  - ../../.vscode
-  - ../../cluster
-  - ../../provision/terraform
-  - ../../Taskfile.yaml
-  - ../../.sops.yaml
-  - ../../provision/ansible/inventory/host_vars
+  - cluster/
+  - .taskfiles/
+  - .vscode/
+  - .github/
+  - cluster/
+  - provision/terraform/
+  - Taskfile.yaml
+  - .sops.yaml
+  - provision/ansible/inventory/host_vars/
