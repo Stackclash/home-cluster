@@ -417,7 +417,7 @@ spec:
         patch:
           enabled: true
           image:
-            repository: registry.k8s.io.io/ingress-nginx/kube-webhook-certgen
+            repository: registry.k8s.io/ingress-nginx/kube-webhook-certgen
             tag: v1.3.0
             sha: ""
             pullPolicy: IfNotPresent
