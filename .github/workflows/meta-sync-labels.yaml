@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
 
       - name: Sync Labels
-        uses: EndBug/label-sync@v2.3.2
+        uses: EndBug/label-sync@da00f2c11fdb78e4fae44adac2fdd713778ea3e8 # v2.3.2
         with:
           config-file: .github/labels.yaml
           token: "${{ secrets.GITHUB_TOKEN }}"
