@@ -659,7 +659,7 @@ spec:
         enableFeatures: []
         image:
           repository: quay.io/prometheus/prometheus
-          tag: v2.42.0
+          tag: v2.44.0
           sha: ""
         tolerations: []
         topologySpreadConstraints: []
