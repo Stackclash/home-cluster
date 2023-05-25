@@ -29,7 +29,7 @@ spec:
     # cleanupOnFail: true
   values:
     image:
-      repository: registry\.k8s\.io/sig-storage/nfs-subdir-external-provisioner
+      repository: registry.k8s.io.io/sig-storage/nfs-subdir-external-provisioner
       tag: v4.0.2
     nfs:
       server: "${NFS_SERVER_IP}"
