@@ -3,9 +3,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
-  - adguard
+  # - adguard
   - cert-manager
   - external-dns
   - ingress-nginx
   - metallb
-  - oauth2-proxy
+  # - oauth2-proxy
