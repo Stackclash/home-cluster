@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   # - storage
   # - flux-system
-  # - kube-system
+  - kube-system
   # - monitoring
   - networking
   # - home
