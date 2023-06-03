@@ -15,3 +15,4 @@ resources:
   - prometheus-community-charts.yaml
   - rickcoxdev-arm-charts.yaml
   - stakater-charts.yaml
+  - velero-charts.yaml
