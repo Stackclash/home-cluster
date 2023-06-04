@@ -35,20 +35,22 @@ spec:
       - name: CF_API_EMAIL
         valueFrom:
           secretKeyRef:
-            name: external-dns-cloud-credentials
+            name: external-dns-secret
             key: email
       - name: CF_API_KEY
         valueFrom:
           secretKeyRef:
-            name: external-dns-cloud-credentials
+            name: external-dns-secret
             key: api-key
     extraArgs:
+      - --annotation-filter=external-dns.alpha.kubernetes.io/target
       - --cloudflare-proxied
-      - --annotation-filter=external-dns/is-public in (true)
+      - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+      - --crd-source-kind=DNSEndpoint
     policy: sync
     sources:
       - ingress
-    txtPrefix: "k8s."
+    txtPrefix: "k3s."
     txtOwnerId: "default"
     domainFilters:
       - "${DOMAIN}"

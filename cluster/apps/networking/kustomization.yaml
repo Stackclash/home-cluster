@@ -5,6 +5,7 @@ resources:
   - namespace.yaml
   # - adguard
   - cert-manager
+  - cloudflared
   - external-dns
   - ingress-nginx
   - metallb
