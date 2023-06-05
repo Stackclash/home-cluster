@@ -33,7 +33,7 @@ spec:
           name: letsencrypt-production
         spec:
           acme:
-            email: "${CF_EMAIL}"
+            email: "${CLOUDFLARE_EMAIL}"
             server: https://acme-v02.api.letsencrypt.org/directory
             preferredChain: "ISRG Root X1"
             privateKeySecretRef:
@@ -41,7 +41,7 @@ spec:
             solvers:
               - dns01:
                   cloudflare:
-                    email: "${CF_EMAIL}"
+                    email: "${CLOUDFLARE_EMAIL}"
                     apiKeySecretRef:
                       name: cloudflare-api-secret
                       key: apikey
@@ -55,14 +55,14 @@ spec:
           name: letsencrypt-staging
         spec:
           acme:
-            email: "${CF_EMAIL}"
+            email: "${CLOUDFLARE_EMAIL}"
             server: https://acme-staging-v02.api.letsencrypt.org/directory
             privateKeySecretRef:
               name: letsencrypt-staging
             solvers:
               - dns01:
                   cloudflare:
-                    email: "${CF_EMAIL}"
+                    email: "${CLOUDFLARE_EMAIL}"
                     apiKeySecretRef:
                       name: cloudflare-api-key
                       key: api-key
