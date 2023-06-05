@@ -9,6 +9,11 @@ spec:
   ref:
     branch: main
   url: https://github.com/RickCoxDev/home-cluster
+  ignore: |
+    # exclude all
+    /*
+    # include kubernetes directory
+    !/cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization

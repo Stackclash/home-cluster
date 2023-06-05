@@ -12,10 +12,10 @@ tasks:
     desc: Install Flux into your cluster
     cmds:
       - kubectl apply -k {{.CLUSTER_DIR}}/bootstrap/
-      - gpg --export-secret-keys --armor {{.SOPS_KEY}} | kubectl create secret generic sops-gpg -n flux-system --from-file=sops.asc=/dev/stdin
-      - kubectl apply -k {{.CLUSTER_DIR}}/flux/flux-system
-      - sleep 10
-      - task: reconcile
+      # - gpg --export-secret-keys --armor {{.SOPS_KEY}} | kubectl create secret generic sops-gpg -n flux-system --from-file=sops.asc=/dev/stdin
+      - sops --decrypt {{.CLUSTER_DIR}}/flux/vars/cluster-secrets.sops.yaml | kubectl apply -f -
+      - kubectl apply -f {{.CLUSTER_DIR}}/flux/vars/cluster-settings.yaml
+      - kubectl apply --kustomize {{.CLUSTER_DIR}}/flux/config
     vars:
       SOPS_KEY:
         sh: yq '.creation_rules[0].pgp' .sops.yaml
