@@ -18,5 +18,5 @@ data:
   NFS_SERVER_IP: "192.168.1.109"
   NFS_BASE_PATH: "/mnt/data"
   NFS_STORAGE_CLASS_PATH: "/k3s-nfs"
-  NFS_PATH_PATTERN: "${.PVC.namespace}-${.PVC.name}"
+  # NFS_PATH_PATTERN: "${.PVC.namespace}-${.PVC.name}"
   TP_THEME: "space-gray"
