@@ -50,6 +50,7 @@ spec:
     policy: sync
     sources:
       - ingress
+      - crd
     txtPrefix: "k3s."
     txtOwnerId: "default"
     domainFilters:
