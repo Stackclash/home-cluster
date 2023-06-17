@@ -16,4 +16,4 @@ roles:
     src: https://github.com/geerlingguy/ansible-role-nfs
     version: 2.0.0
   - name: githubixx.cilium_cli
-    version: 2.6.0+0.13.2
+    version: 2.7.0+0.14.6
