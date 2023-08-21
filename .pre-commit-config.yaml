@@ -37,7 +37,7 @@ repos:
       - id: terraform-validate
       - id: tflint
   - repo: https://github.com/ansible/ansible-lint
-    rev: V6.16.0
+    rev: v6.18.0
     hooks:
       - id: ansible-lint
         args:
