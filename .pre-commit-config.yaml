@@ -44,7 +44,7 @@ repos:
           - -c
           - .github/linters/.ansible-lint.yaml
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.34.0
+    rev: v0.36.0
     hooks:
       - id: markdownlint
         args:
